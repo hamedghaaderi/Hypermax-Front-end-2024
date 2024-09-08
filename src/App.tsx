@@ -1,7 +1,14 @@
-const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+import { useRoutes } from "react-router-dom";
+import Footer from "./components/footer";
 
-export default App
+const App = () => {
+  const routes = useRoutes([
+    {
+      path: "/",
+      element: <Footer />,
+    },
+  ]);
+  return <>{routes}</>;
+};
+
+export default App;
