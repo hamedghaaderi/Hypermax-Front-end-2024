@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Shabnam";
+    src: url("../public/font/Shabnam-FD.woff2") format("woff2");
+  }
+}

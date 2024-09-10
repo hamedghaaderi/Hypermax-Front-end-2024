@@ -1,7 +1,14 @@
-const App = () => {
-  return (
-    <div>App</div>
-  )
-}
+import { useRoutes } from "react-router-dom";
+import HomePage from "./pages/homepage";
 
-export default App
+const App = () => {
+  const routes = useRoutes([
+    {
+      path: "/",
+      element: <HomePage />,
+    },
+  ]);
+  return <>{routes}</>;
+};
+
+export default App;
