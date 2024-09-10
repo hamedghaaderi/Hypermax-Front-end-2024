@@ -1,11 +1,11 @@
 import { useRoutes } from "react-router-dom";
-import Footer from "./components/footer";
+import HomePage from "./pages/homepage";
 
 const App = () => {
   const routes = useRoutes([
     {
       path: "/",
-      element: <Footer />,
+      element: <HomePage />,
     },
   ]);
   return <>{routes}</>;
