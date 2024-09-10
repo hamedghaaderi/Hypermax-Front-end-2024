@@ -1,4 +1,5 @@
 import Header from "../components/header"
+import MobileMenu from "../components/mobilemenu"
 import Navbar from "../components/navbar"
 
 const HomePage = () => {
@@ -6,6 +7,7 @@ const HomePage = () => {
     <>
     <Header />
     <Navbar />
+    <MobileMenu />
     </>
   )
 }
