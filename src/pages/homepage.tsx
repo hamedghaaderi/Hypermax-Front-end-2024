@@ -1,13 +1,11 @@
-import Header from "../components/header"
-import Navbar from "../components/navbar"
+import Footer from "../components/footer";
 
 const HomePage = () => {
   return (
     <>
-    <Header />
-    <Navbar />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

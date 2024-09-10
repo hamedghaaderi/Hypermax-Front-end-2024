@@ -12,7 +12,7 @@ export default {
         "180": "180px"
       },
       maxWidth: {
-        "whole": "1296px"
+        "whole": "1156px"
       },
       height: {
         "46": "46px"
