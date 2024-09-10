@@ -2,6 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      "tablet": "481px",
+      "desk": "769px",
+      "desklg": "1280px",
+    },
     extend: {
       width: {
         "180": "180px"
