@@ -4,8 +4,8 @@ import SubGrouping from "./sub components/subgrouping";
 const Navbar = () => {
   return (
     <>
-      <nav className="font-shabnam bg-white text-text">
-        <div className="max-w-whole m-auto border-t border-t-border">
+      <nav className="hidden desk:block font-shabnam bg-white text-text">
+        <div className="max-w-whole m-auto border-t desk:w-90% desklg:w-full border-t-border">
           <ul className="flex flex-row-reverse">
             <li className="ml-10 transition-colors py-5 duration-300 hover:text-primary">
               <Link to="/">خانه</Link>
