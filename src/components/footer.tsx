@@ -48,7 +48,7 @@ const Footer = () => {
                 <div className=" flex flex-col items-end justify-between pr-3 pl-3 mb-10">
                   <h3 className="mb-6 text-2xl text-heading">دسترسی سریع</h3>
                   <div className="flex flex-row-reverse justify-between items-center">
-                    <ul className="text-right ml-48 text-text leading-10 tablet:ml-16">
+                    <ul className="text-right ml-36 text-text leading-10 tablet:ml-16">
                       <li className=" hover:text-primary">
                         <Link to="/">خانه</Link>
                       </li>
@@ -79,7 +79,6 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-
               <div className="pr-3 mb-10 pl-3 desk:w-1/4">
                 <h3 className=" text-2xl text-heading mb-6 text-right">
                   هایپر مکث
