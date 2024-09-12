@@ -54,6 +54,12 @@ export default {
         "google": "#E60023",
         "instagram": "#F77737",
       },
+      animation: {
+        "opacityin": "opacityIn 0.3s",
+        "opacityout": "opacityOut 0.3s",
+        "translatein": "translateIn 0.3s",
+        "translateout": "translateOut 0.3s",
+      },
       backgroundImage: {
         "newsbg": "url(../../public/image/newsletter.jpg)",
         "bgopacity": "linear-gradient(to right, rgba(6, 23, 56, 0.8), rgba(17, 151, 68, 0.8));"
