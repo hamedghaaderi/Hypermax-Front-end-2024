@@ -87,7 +87,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="px-3 bg-primary mt-2 py-0 rounded-ss-lg rounded-tr-lg desk:mt-4">
-              <p className="px-4 py-6 mb-1 text-sm text-center text-white cursor-default">
+              <p className="px-4 py-6 text-sm text-center text-white cursor-default">
                 .تمامی حقوق این سایت متعلق به
                 <Link className=" hover:opacity-65" to="/">
                   {" "}
