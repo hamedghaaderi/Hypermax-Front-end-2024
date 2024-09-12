@@ -8,7 +8,7 @@ const MobileMenu = () => {
 
   return (
     <>
-      <div className="px-8 font-shabnam pt-4 pb-3 bg-white w-screen fixed bottom-0 rounded-t-xl flex flex-row-reverse items-center justify-between tablet:justify-around tablet:px-0 tablet:pt-5 tablet:pb-4 desk:hidden">
+      <div className="px-8 font-shabnam pt-4 pb-3 bg-white w-screen sticky bottom-0 rounded-t-xl flex flex-row-reverse items-center justify-between tablet:justify-around tablet:px-0 tablet:pt-5 tablet:pb-4 desk:hidden">
         <Link
           to="/"
           className="flex flex-col justify-between items-center text-heading hover:text-primary transition-colors duration-300"

@@ -7,8 +7,8 @@ import { useState } from "react";
 const Header = () => {
   const [show, setShow] = useState(false);
   window.addEventListener("scroll", () => {
-    !show && window.scrollY > 100 && setShow(true);
-    show && window.scrollY <= 100 && setShow(false);
+    !show && window.scrollY > 130 && setShow(true);
+    show && window.scrollY <= 130 && setShow(false);
   });
 
   return (
