@@ -9,16 +9,22 @@ export default {
     },
     extend: {
       width: {
-        "180": "180px"
+        "180": "180px",
+        "90%": "90%",
+        "55%": "55%"
       },
       maxWidth: {
         "whole": "1156px"
       },
       height: {
-        "46": "46px"
+        "46": "46px",
+        "90%": "90%"
       },
       fontFamily: {
         "shabnam": "Shabnam",
+      },
+      content: {
+        "triangle": `""`
       },
       colors: {
         "red": "#ff3838",
@@ -45,7 +51,13 @@ export default {
         "twitter": "#00acee",
         "google": "#E60023",
         "instagram": "#F77737",
-      }
+      },
+      animation: {
+        "opacityin": "opacityIn 0.3s",
+        "opacityout": "opacityOut 0.3s",
+        "translatein": "translateIn 0.3s",
+        "translateout": "translateOut 0.3s",
+      },
     },
   },
   plugins: [],
