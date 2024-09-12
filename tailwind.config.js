@@ -46,6 +46,10 @@ export default {
         "twitter": "#00acee",
         "google": "#E60023",
         "instagram": "#F77737",
+      },
+      backgroundImage: {
+        "newsbg": "url(../../public/image/newsletter.jpg)",
+        "bgopacity":"linear-gradient(to right, rgba(6, 23, 56, 0.8), rgba(17, 151, 68, 0.8))"
       }
     },
   },
