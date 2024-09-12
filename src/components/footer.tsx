@@ -48,30 +48,30 @@ const Footer = () => {
                 </h3>
                 <div className="flex flex-row-reverse justify-between items-center">
                   <ul className="text-right ml-28 text-text leading-10 tablet:ml-10">
-                    <li className=" hover:text-primary">
+                    <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">خانه</Link>
                     </li>
-                    <li className=" hover:text-primary">
+                    <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">فروشگاه</Link>
                     </li>
-                    <li className=" hover:text-primary">
+                    <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">اکانت من</Link>
                     </li>
-                    <li className=" hover:text-primary">
+                    <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">بهترین فروش</Link>
                     </li>
                   </ul>
                   <ul className="text-right text-text leading-10">
-                    <li className=" hover:text-primary">
+                    <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">لیست مقایسه</Link>
                     </li>
-                    <li className=" hover:text-primary">
+                    <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">علاقه مندی ها</Link>
                     </li>
-                    <li className=" hover:text-primary">
+                    <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">ارتباط با ما</Link>
                     </li>
-                    <li className=" hover:text-primary">
+                    <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">قوانین</Link>
                     </li>
                   </ul>
