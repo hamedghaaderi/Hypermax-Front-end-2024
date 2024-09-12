@@ -2,13 +2,22 @@ import Logo from "./sub components/logo";
 import user from "../../public/image/user.png";
 import { Link } from "react-router-dom";
 import TopHeader from "./sub components/topheader";
+import { useState } from "react";
 
 const Header = () => {
+  const [show, setShow] = useState(false);
+  window.addEventListener("scroll", () => {
+    !show && window.scrollY > 100 && setShow(true);
+    show && window.scrollY <= 100 && setShow(false);
+  });
+
   return (
     <>
       <header className="font-shabnam">
         <TopHeader />
-        <div className="bg-white py-5">
+        <div className={
+          show ? "bg-white fixed top-0 w-screen py-5" : "bg-white py-5"
+        }>
           <div className="max-w-whole w-90% desk:w-90% desklg:w-full m-auto flex flex-row-reverse items-center justify-between text-heading">
             <Logo />
             <div className="hidden desk:block">
