@@ -9,6 +9,7 @@ export default {
     },
     extend: {
       width: {
+        "55%": "55%"
         "180": "180px",
         "90%": "90%",
         "48%": "48%",
@@ -18,10 +19,14 @@ export default {
         "whole": "1156px"
       },
       height: {
-        "46": "46px"
+        "46": "46px",
+        "90%": "90%"
       },
       fontFamily: {
         "shabnam": "Shabnam",
+      },
+      content: {
+        "triangle": `""`
       },
       colors: {
         "red": "#ff3838",
@@ -48,10 +53,6 @@ export default {
         "twitter": "#00acee",
         "google": "#E60023",
         "instagram": "#F77737",
-      },
-      backgroundImage: {
-        "newsbg": "url(../../public/image/newsletter.jpg)",
-        "bgopacity":"linear-gradient(to right, rgba(6, 23, 56, 0.8), rgba(17, 151, 68, 0.8))"
       }
     },
   },
