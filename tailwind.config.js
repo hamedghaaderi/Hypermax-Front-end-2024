@@ -10,7 +10,9 @@ export default {
     extend: {
       width: {
         "180": "180px",
-        "90%": "90%"
+        "90%": "90%",
+        "48%": "48%",
+        "23%": "23%"
       },
       maxWidth: {
         "whole": "1156px"
