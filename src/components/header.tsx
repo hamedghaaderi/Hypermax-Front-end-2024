@@ -23,7 +23,7 @@ const Header = () => {
             <div className="hidden desk:block">
               <Link
                 to="/"
-                className="flex flex-row-reverse justify-between items-center cursor-pointer hover:text-primary transition-colors duration-300"
+                className="flex desk:mr-2 desklg:mr-0 flex-row-reverse justify-between items-center cursor-pointer hover:text-primary transition-colors duration-300"
               >
                 <div className="ml-3">
                   <img
@@ -52,13 +52,13 @@ const Header = () => {
               </button>
             </form>
             <div className="hidden desk:block">
-              <div className="flex flex-row-reverse items-center justify-between">
+              <div className="flex flex-row-reverse desk:mr-2 desklg:mr-0 items-center justify-between">
                 <Link
                   to="/"
                   className="w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white"
                 >
                   <i className="fa-solid fa-shuffle"></i>
-                  <div className="absolute py-1 px-2 bg-primary text-white -top-3 -left-1 rounded-full text-xs">
+                  <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
                     1
                   </div>
                 </Link>
@@ -67,13 +67,13 @@ const Header = () => {
                   className="w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white"
                 >
                   <i className="fa-solid fa-heart"></i>
-                  <div className="absolute py-1 px-2 bg-primary text-white -top-3 -left-1 rounded-full text-xs">
+                  <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
                     5
                   </div>
                 </Link>
                 <button className="h-10 w-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
                   <i className="fa-solid fa-basket-shopping"></i>
-                  <div className="absolute py-1 px-2 bg-primary text-white -top-3 -left-1 rounded-full text-xs">
+                  <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
                     15
                   </div>
                 </button>
