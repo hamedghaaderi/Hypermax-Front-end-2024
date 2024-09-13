@@ -13,14 +13,14 @@ const ProductItem = () => {
           />
         </div>
         <div className="border-t border-t-border flex flex-col items-center justify-between h-59% pt-3">
-          <div className="text-orange">
+          <div className="text-orange cursor-default">
             <span className="mr-1 text-sm">3</span>
             <i className="fa-solid fa-star text-sm"></i>
           </div>
-          <div className="text-text text-center">
+          <div className="text-text text-center cursor-default">
             نوشابه کانادرای قطی کولا 
           </div>
-          <div className="flex flex-row items-center justify-center">
+          <div className="flex flex-row items-center justify-center cursor-default">
             <span className="flex flex-row-reverse justify-between items-center text-primary">
               <span>3450000</span>
               <span className="mr-1">ریال</span>
@@ -30,13 +30,13 @@ const ProductItem = () => {
             </span>
           </div>
           <AddRemove />
-          <div className="absolute top-4 left-4 text-primary">
+          <div className="absolute cursor-pointer top-4 left-4 text-primary">
             <i className="fa-solid fa-heart"></i>
           </div>
-          <div className="absolute top-4 left-10 text-text opacity-65">
+          <div className="absolute cursor-pointer top-4 left-10 text-text opacity-65">
             <i className="fa-solid fa-shuffle"></i>
           </div>
-          <div className="absolute top-4 right-4 text-xs text-white bg-orange rounded-lg px-2 py-1">
+          <div className="absolute top-4 cursor-default right-4 text-xs text-white bg-orange rounded-lg px-2 py-1">
             <span className="ml-1">تخفیف</span>
             <span>%100</span>
           </div>

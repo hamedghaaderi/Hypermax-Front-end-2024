@@ -5,10 +5,11 @@ import AsideMenu from "./sub components/asidemenu";
 
 const MobileMenu = () => {
   const [showAside, setShowAside] = useState(false);
+  !showAside && (document.body.style.overflow = "visible");
 
   return (
     <>
-      <div className="px-8 font-shabnam pt-4 pb-3 bg-white w-screen sticky bottom-0 rounded-t-xl flex flex-row-reverse items-center justify-between tablet:justify-around tablet:px-0 tablet:pt-5 tablet:pb-4 desk:hidden">
+      <div className="px-8 z-10 font-shabnam pt-4 pb-3 bg-white w-screen sticky bottom-0 rounded-t-xl flex flex-row-reverse items-center justify-between tablet:justify-around tablet:px-0 tablet:pt-5 tablet:pb-4 desk:hidden">
         <Link
           to="/"
           className="flex flex-col justify-between items-center text-heading hover:text-primary transition-colors duration-300"
@@ -42,7 +43,7 @@ const MobileMenu = () => {
           </div>
           <span className="text-xs tablet:text-sm relative left-1">ورود</span>
         </Link>
-        {showAside && <AsideMenu onClose={() => setShowAside(!showAside)} />}
+        {showAside && <AsideMenu open={showAside} onClose={() => setShowAside(!showAside)} />}
       </div>
     </>
   );

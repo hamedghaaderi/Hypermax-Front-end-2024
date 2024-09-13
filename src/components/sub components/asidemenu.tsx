@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import Logo from "./logo";
 import user from "../../../public/image/user.png";
 
-const AsideMenu = ({ onClose }: { onClose: () => void }) => {
+const AsideMenu = ({ onClose, open }: { onClose: () => void, open: boolean }) => {
+  open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
     document.getElementById("container")?.classList.add("animate-translateout");
@@ -15,11 +16,11 @@ const AsideMenu = ({ onClose }: { onClose: () => void }) => {
     <>
       <div
         id="backdrop"
-        className="bg-transparent backdrop-blur-sm bg-opacity-25 w-screen fixed top-0 left-0 z-10 h-screen flex items-center animate-opacityin"
+        className="bg-transparent backdrop-blur-sm bg-opacity-25 w-screen fixed top-0 left-0 z-20 h-screen flex items-center animate-opacityin"
       >
         <aside
           id="container"
-          className="bg-white w-3/4 tablet:w-55% px-3 py-4 h-screen z-20 absolute right-0 flex flex-col items-center justify-start animate-translatein"
+          className="bg-white w-3/4 tablet:w-55% px-3 py-4 h-screen z-30 absolute right-0 flex flex-col items-center justify-start animate-translatein"
         >
           <button
             onClick={handleClose}
