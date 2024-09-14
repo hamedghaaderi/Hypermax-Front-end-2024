@@ -1,3 +1,4 @@
+import useBasket from "../../store/basket";
 import Add from "./add";
 import AddRemove from "./addremove";
 
@@ -10,14 +11,13 @@ interface IProductItem {
   imageURL: string;
 }
 
-const ProductItem = ({
-  id,
-  name,
-  price,
-  rate,
-  discount,
-  imageURL,
-}: IProductItem) => {
+const ProductItem = (props: IProductItem) => {
+  const { id, name, price, rate, discount, imageURL } = props;
+  const { products, invoice } = useBasket((state: any) => state);
+  console.log('invoice: ', invoice);
+  const isExist: boolean = products.some(
+    (_product: any) => _product.id === props.id
+  );
   return (
     <>
       <div className="mb-12 tablet:last:mb-12 last:mb-0 p-4 h-340px relative bg-white w-60 font-shabnam border-2 border-white transition-colors duration-300 hover:border-primary hover:border-2 rounded-xl">
@@ -36,7 +36,7 @@ const ProductItem = ({
           <div className="text-text text-center cursor-default">{name}</div>
           <div className="flex flex-row items-center justify-center cursor-default">
             <span className="flex flex-row-reverse justify-between items-center text-primary">
-              <span>{price - (price  * discount)}</span>
+              <span>{price - price * discount}</span>
               <span className="mr-1">ریال</span>
             </span>
             {discount !== 0 && (
@@ -45,7 +45,7 @@ const ProductItem = ({
               </span>
             )}
           </div>
-          <Add />
+          {isExist ? <AddRemove off={price - price * discount} {...props} /> : <Add off={price - price * discount} {...props} />}
           <div className="absolute cursor-pointer top-4 left-4 text-primary">
             <i className="fa-solid fa-heart"></i>
           </div>
