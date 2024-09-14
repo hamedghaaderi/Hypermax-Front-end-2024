@@ -1,14 +1,14 @@
 import { create } from "zustand";
 
-const useFavorites = create((set, get: () => any) => ({
+const useFavorites = create((set) => ({
   favorites: [],
   action: {
-    add: (product: any) => {
+    addFavorite: (product: any) => {
       set((_oldFavorites: any) => ({
         favorites: [..._oldFavorites.favorites, { ...product }],
       }));
     },
-    remove: (product: any) => {
+    removeFavorite: (product: any) => {
       set((_oldFavorites: any) => ({
         favorites: _oldFavorites.favorites.filter(
           (_product: any) => _product.id !== product.id
