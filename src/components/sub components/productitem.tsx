@@ -1,4 +1,5 @@
 import useBasket from "../../store/basket";
+import useFavorites from "../../store/favorites";
 import Add from "./add";
 import AddRemove from "./addremove";
 
@@ -13,9 +14,14 @@ interface IProductItem {
 
 const ProductItem = (props: IProductItem) => {
   const { id, name, price, rate, discount, imageURL } = props;
-  const { products, invoice } = useBasket((state: any) => state);
-  console.log('invoice: ', invoice);
-  const isExist: boolean = products.some(
+  const { products } = useBasket((state: any) => state);
+  const {add, remove} = useFavorites((state: any ) => state.action)
+  const {favorites} = useFavorites((state: any ) => state)
+  console.log('favorites: ', favorites);
+  const isExistFavorite: boolean = favorites.some(
+    (_product: any) => _product.id === props.id
+  );
+  const isExistCart: boolean = products.some(
     (_product: any) => _product.id === props.id
   );
   return (
@@ -45,8 +51,8 @@ const ProductItem = (props: IProductItem) => {
               </span>
             )}
           </div>
-          {isExist ? <AddRemove off={price - price * discount} {...props} /> : <Add off={price - price * discount} {...props} />}
-          <div className="absolute cursor-pointer top-4 left-4 text-primary">
+          {isExistCart ? <AddRemove off={price - price * discount} {...props} /> : <Add off={price - price * discount} {...props} />}
+          <div onClick={isExistFavorite ? () => remove(props) : () => add(props)} className={isExistFavorite ? "absolute cursor-pointer top-4 left-4 text-primary" : "absolute cursor-pointer top-4 left-4 text-text opacity-65"}>
             <i className="fa-solid fa-heart"></i>
           </div>
           <div className="absolute cursor-pointer top-4 left-10 text-text opacity-65">
