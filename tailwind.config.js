@@ -20,7 +20,10 @@ export default {
       },
       height: {
         "46": "46px",
-        "90%": "90%"
+        "90%": "90%",
+        "340px": "340px",
+        "41%": "41%",
+        "59%": "59%"
       },
       fontFamily: {
         "shabnam": "Shabnam",

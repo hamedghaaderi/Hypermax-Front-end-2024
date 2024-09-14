@@ -1,5 +1,6 @@
 import { useRoutes } from "react-router-dom";
 import HomePage from "./pages/homepage";
+import ShopPage from "./pages/shoppage";
 
 const App = () => {
   const routes = useRoutes([
@@ -7,6 +8,10 @@ const App = () => {
       path: "/",
       element: <HomePage />,
     },
+    {
+      path: "/shop",
+      element: <ShopPage />
+    }
   ]);
   return <>{routes}</>;
 };

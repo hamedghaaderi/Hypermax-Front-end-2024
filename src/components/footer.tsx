@@ -52,7 +52,7 @@ const Footer = () => {
                       <Link to="/">خانه</Link>
                     </li>
                     <li className="transition-colors duration-300 hover:text-primary">
-                      <Link to="/">فروشگاه</Link>
+                      <Link to="/shop">فروشگاه</Link>
                     </li>
                     <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">اکانت من</Link>

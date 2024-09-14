@@ -16,7 +16,7 @@ const Header = () => {
       <header className="font-shabnam">
         <TopHeader />
         <div className={
-          show ? "bg-white fixed top-0 w-screen py-5" : "bg-white py-5"
+          show ? "bg-white fixed top-0 w-screen z-20 py-5" : "bg-white py-5"
         }>
           <div className="max-w-whole w-90% desk:w-90% desklg:w-full m-auto flex flex-row-reverse items-center justify-between text-heading">
             <Logo />
