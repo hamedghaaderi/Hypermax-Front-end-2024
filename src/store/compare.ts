@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const useCompare = create((set) => ({
+const useCompares = create((set) => ({
   compares: [],
   action: {
     addCompare: (product: any) => {
@@ -17,4 +17,4 @@ const useCompare = create((set) => ({
     },
   },
 }));
-export default useCompare;
+export default useCompares;

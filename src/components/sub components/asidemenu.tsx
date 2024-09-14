@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import Logo from "./logo";
 import user from "../../../public/image/user.png";
+import useCompares from "../../store/compare";
+import useFavorites from "../../store/favorites";
 
 const AsideMenu = ({ onClose, open }: { onClose: () => void, open: boolean }) => {
+    const { favorites } = useFavorites((state: any) => state);
+  let totalFavorites = favorites.length;
+  const { compares } = useCompares((state: any) => state);
+  let totalCompares = compares.length;
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
@@ -92,7 +98,7 @@ const AsideMenu = ({ onClose, open }: { onClose: () => void, open: boolean }) =>
                   </div>
                   <span className="text-lg">محصولات مورد علاقه</span>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white left-0 rounded-full text-xs">
-                    100
+                    {totalFavorites}
                   </div>
                 </Link>
                 <Link
@@ -104,7 +110,7 @@ const AsideMenu = ({ onClose, open }: { onClose: () => void, open: boolean }) =>
                   </div>
                   <span className="text-lg">مقایسه</span>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white left-0 rounded-full text-xs">
-                    1
+                    {totalCompares}
                   </div>
                 </Link>
               </div>
