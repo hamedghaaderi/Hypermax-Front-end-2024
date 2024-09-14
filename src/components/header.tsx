@@ -3,6 +3,9 @@ import user from "../../public/image/user.png";
 import { Link } from "react-router-dom";
 import TopHeader from "./sub components/topheader";
 import { useState } from "react";
+import useBasket from "../store/basket";
+import useFavorites from "../store/favorites";
+import useCompares from "../store/compare";
 
 const Header = () => {
   const [show, setShow] = useState(false);
@@ -10,6 +13,15 @@ const Header = () => {
     !show && window.scrollY > 130 && setShow(true);
     show && window.scrollY <= 130 && setShow(false);
   });
+  const { products, invoice } = useBasket((state: any) => state);
+  let totalCart = 0;
+  products.map((_product: any) => {
+    return (totalCart += _product.quantity);
+  });
+  const { favorites } = useFavorites((state: any) => state);
+  let totalFavorites = favorites.length;
+  const { compares } = useCompares((state: any) => state);
+  let totalCompares = compares.length;
 
   return (
     <>
@@ -59,7 +71,7 @@ const Header = () => {
                 >
                   <i className="fa-solid fa-shuffle"></i>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
-                    1
+                    {totalCompares}
                   </div>
                 </Link>
                 <Link
@@ -68,19 +80,19 @@ const Header = () => {
                 >
                   <i className="fa-solid fa-heart"></i>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
-                    5
+                    {totalFavorites}
                   </div>
                 </Link>
                 <button className="h-10 w-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
                   <i className="fa-solid fa-basket-shopping"></i>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
-                    15
+                    {totalCart}
                   </div>
                 </button>
                 <div className="flex flex-col items-end justify-between cursor-default">
                   <span className="text-xs">قیمت کل</span>
                   <span className="flex flex-row-reverse justify-between items-center">
-                    <span>3450000</span>
+                    <span>{invoice.totalPrice}</span>
                     <span className="mr-1">ریال</span>
                   </span>
                 </div>

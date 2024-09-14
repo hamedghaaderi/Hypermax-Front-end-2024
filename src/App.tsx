@@ -11,7 +11,7 @@ const App = () => {
     {
       path: "/shop",
       element: <ShopPage />
-    }
+    },
   ]);
   return <>{routes}</>;
 };

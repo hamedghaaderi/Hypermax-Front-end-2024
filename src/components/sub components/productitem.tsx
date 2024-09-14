@@ -1,3 +1,6 @@
+import useBasket from "../../store/basket";
+import useCompare from "../../store/compare";
+import useFavorites from "../../store/favorites";
 import Add from "./add";
 import AddRemove from "./addremove";
 
@@ -10,14 +13,28 @@ interface IProductItem {
   imageURL: string;
 }
 
-const ProductItem = ({
-  id,
-  name,
-  price,
-  rate,
-  discount,
-  imageURL,
-}: IProductItem) => {
+const ProductItem = (props: IProductItem) => {
+  const { id, name, price, rate, discount, imageURL } = props;
+  const { products } = useBasket((state: any) => state);
+  const { addFavorite, removeFavorite } = useFavorites(
+    (state: any) => state.action
+  );
+  const { favorites } = useFavorites((state: any) => state);
+  console.log('favorites: ', favorites);
+  const { addCompare, removeCompare } = useCompare(
+    (state: any) => state.action
+  );
+  const { compares } = useCompare((state: any) => state);
+  console.log('compares: ', compares);
+  const isExistCompare: boolean = compares.some(
+    (_product: any) => _product.id === props.id
+  );
+  const isExistFavorite: boolean = favorites.some(
+    (_product: any) => _product.id === props.id
+  );
+  const isExistCart: boolean = products.some(
+    (_product: any) => _product.id === props.id
+  );
   return (
     <>
       <div className="mb-12 tablet:last:mb-12 last:mb-0 p-4 h-340px relative bg-white w-60 font-shabnam border-2 border-white transition-colors duration-300 hover:border-primary hover:border-2 rounded-xl">
@@ -36,7 +53,7 @@ const ProductItem = ({
           <div className="text-text text-center cursor-default">{name}</div>
           <div className="flex flex-row items-center justify-center cursor-default">
             <span className="flex flex-row-reverse justify-between items-center text-primary">
-              <span>{price - (price  * discount)}</span>
+              <span>{price - price * discount}</span>
               <span className="mr-1">ریال</span>
             </span>
             {discount !== 0 && (
@@ -45,11 +62,37 @@ const ProductItem = ({
               </span>
             )}
           </div>
-          <Add />
-          <div className="absolute cursor-pointer top-4 left-4 text-primary">
+          {isExistCart ? (
+            <AddRemove off={price - price * discount} {...props} />
+          ) : (
+            <Add off={price - price * discount} {...props} />
+          )}
+          <div
+            onClick={
+              isExistFavorite
+                ? () => removeFavorite(props)
+                : () => addFavorite(props)
+            }
+            className={
+              isExistFavorite
+                ? "absolute cursor-pointer top-4 left-4 text-primary"
+                : "absolute cursor-pointer top-4 left-4 text-text opacity-65"
+            }
+          >
             <i className="fa-solid fa-heart"></i>
           </div>
-          <div className="absolute cursor-pointer top-4 left-10 text-text opacity-65">
+          <div
+            onClick={
+              isExistCompare
+                ? () => removeCompare(props)
+                : () => addCompare(props)
+            }
+            className={
+              isExistCompare
+                ? "absolute cursor-pointer top-4 left-10 text-primary"
+                : "absolute cursor-pointer top-4 left-10 text-text opacity-65"
+            }
+          >
             <i className="fa-solid fa-shuffle"></i>
           </div>
           {discount !== 0 && (
