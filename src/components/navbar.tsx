@@ -12,7 +12,7 @@ const Navbar = () => {
             </li>
             <li className="ml-10 group flex flex-row items-center py-5 justify-between relative transition-color duration-300 hover:text-primary cursor-pointer">
               <i className="fa-solid fa-angle-down mr-1 text-xs"></i>دسته بندی
-              <ul className="px-5 border z-10 border-border invisible opacity-0 transition-all group-hover:text-text group-hover:opacity-100 group-hover:visible group-hover:top-14 bg-white rounded-lg absolute top-24 right-11 before:content-triangle before:block before:absolute before:bg-white before:border-t before:border-t-border before:border-l before:border-l-border before:rotate-45 before:w-4 before:h-4 before:rounded before:right-7 before:-top-2">
+              <ul className="px-5 border border-border invisible opacity-0 transition-all group-hover:text-text group-hover:opacity-100 group-hover:visible group-hover:top-14 bg-white rounded-lg absolute top-24 right-11 before:content-triangle before:block before:absolute before:bg-white before:border-t before:border-t-border before:border-l before:border-l-border before:rotate-45 before:w-4 before:h-4 before:rounded before:right-7 before:-top-2">
                 <SubGrouping />
                 <SubGrouping />
                 <SubGrouping />

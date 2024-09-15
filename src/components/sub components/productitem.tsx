@@ -1,8 +1,5 @@
-import useBasket from "../../store/basket";
 import useCompare from "../../store/compare";
 import useFavorites from "../../store/favorites";
-import Add from "./add";
-import AddRemove from "./addremove";
 
 interface IProductItem {
   id: number;
@@ -14,30 +11,24 @@ interface IProductItem {
 }
 
 const ProductItem = (props: IProductItem) => {
-  const { id, name, price, rate, discount, imageURL } = props;
-  const { products } = useBasket((state: any) => state);
+  const { name, price, rate, discount, imageURL } = props;
   const { addFavorite, removeFavorite } = useFavorites(
     (state: any) => state.action
   );
   const { favorites } = useFavorites((state: any) => state);
-  console.log('favorites: ', favorites);
   const { addCompare, removeCompare } = useCompare(
     (state: any) => state.action
   );
   const { compares } = useCompare((state: any) => state);
-  console.log('compares: ', compares);
   const isExistCompare: boolean = compares.some(
     (_product: any) => _product.id === props.id
   );
   const isExistFavorite: boolean = favorites.some(
     (_product: any) => _product.id === props.id
   );
-  const isExistCart: boolean = products.some(
-    (_product: any) => _product.id === props.id
-  );
   return (
     <>
-      <div className="mb-12 tablet:last:mb-12 last:mb-0 p-4 h-340px relative bg-white w-60 font-shabnam border-2 border-white transition-colors duration-300 hover:border-primary hover:border-2 rounded-xl">
+      <div className="mb-12 desk:mb-7 p-4 h-340px relative bg-white w-60 font-shabnam border-2 border-white transition-colors duration-300 hover:border-primary hover:border-2 rounded-xl">
         <div className="h-41% w-full flex flex-row items-center justify-center">
           <img
             className="h-full w-full object-contain"
@@ -62,11 +53,10 @@ const ProductItem = (props: IProductItem) => {
               </span>
             )}
           </div>
-          {isExistCart ? (
-            <AddRemove off={price - price * discount} {...props} />
-          ) : (
-            <Add off={price - price * discount} {...props} />
-          )}
+          <button className="text-heading font-shabnam bg-border w-full flex flex-row-reverse items-center justify-center hover:text-white hover:bg-primary transition-colors duration-300 h-9 py-1 rounded-lg">
+            <i className="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+            <span className="mr-2">مشاهده محصول</span>
+          </button>
           <div
             onClick={
               isExistFavorite

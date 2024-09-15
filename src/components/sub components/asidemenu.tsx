@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import Logo from "./logo";
 import user from "../../../public/image/user.png";
-import useCompares from "../../store/compare";
-import useFavorites from "../../store/favorites";
 
-const AsideMenu = ({ onClose, open }: { onClose: () => void, open: boolean }) => {
-    const { favorites } = useFavorites((state: any) => state);
-  let totalFavorites = favorites.length;
-  const { compares } = useCompares((state: any) => state);
-  let totalCompares = compares.length;
+const AsideMenu = ({
+  onClose,
+  open,
+}: {
+  onClose: () => void;
+  open: boolean;
+}) => {
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
@@ -88,30 +88,6 @@ const AsideMenu = ({ onClose, open }: { onClose: () => void, open: boolean }) =>
                     <i className="fa-solid fa-address-book text-xl"></i>
                   </div>
                   <span className="text-lg">ارتباط با ما</span>
-                </Link>
-                <Link
-                  to="/"
-                  className="flex flex-row-reverse relative w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
-                >
-                  <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-heart text-xl"></i>
-                  </div>
-                  <span className="text-lg">محصولات مورد علاقه</span>
-                  <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white left-0 rounded-full text-xs">
-                    {totalFavorites}
-                  </div>
-                </Link>
-                <Link
-                  to="/"
-                  className="flex flex-row-reverse relative w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
-                >
-                  <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-shuffle text-xl"></i>
-                  </div>
-                  <span className="text-lg">مقایسه</span>
-                  <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white left-0 rounded-full text-xs">
-                    {totalCompares}
-                  </div>
                 </Link>
               </div>
             </div>

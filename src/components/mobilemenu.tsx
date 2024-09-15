@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import user from "../../public/image/user.png";
 import { useState } from "react";
 import AsideMenu from "./sub components/asidemenu";
 import useBasket from "../store/basket";
+import useFavorites from "../store/favorites";
+import useCompares from "../store/compare";
 
 const MobileMenu = () => {
   const [showAside, setShowAside] = useState(false);
@@ -12,6 +13,10 @@ const MobileMenu = () => {
   products.map((_product: any) => {
     return (total += _product.quantity);
   });
+  const { favorites } = useFavorites((state: any) => state);
+  let totalFavorites = favorites.length;
+  const { compares } = useCompares((state: any) => state);
+  let totalCompares = compares.length;
 
   return (
     <>
@@ -23,33 +28,40 @@ const MobileMenu = () => {
           <i className="fa-solid fa-house mb-2"></i>
           <span className="text-xs tablet:text-sm">خانه</span>
         </Link>
-        <button onClick={() => setShowAside(true)} className="flex flex-col justify-between items-center text-heading hover:text-primary transition-colors duration-300">
+        <button
+          onClick={() => setShowAside(true)}
+          className="flex flex-col justify-between items-center text-heading hover:text-primary transition-colors duration-300"
+        >
           <i className="fa-solid fa-list mb-2"></i>
           <span className="text-xs tablet:text-sm">منو</span>
         </button>
         <button className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300">
           <i className="fa-solid fa-basket-shopping mb-2"></i>
           <span className="text-xs tablet:text-sm">سبد خرید</span>
-          <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
+          <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
             {total}
           </div>
         </button>
-        <Link
-          to="/"
-          className="flex flex-col justify-between items-center text-heading hover:text-primary transition-colors duration-300"
-        >
-          <div className="ml-3">
-            <img
-              src={user}
-              alt="user picture"
-              height="20"
-              width="20"
-              className="rounded-full mb-1"
-            />
+        <button className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300">
+          <i className="fa-solid fa-heart mb-2"></i>
+          <span className="text-xs tablet:text-sm">علاقه مندی</span>
+          <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
+            {totalFavorites}
           </div>
-          <span className="text-xs tablet:text-sm relative left-1">ورود</span>
-        </Link>
-        {showAside && <AsideMenu open={showAside} onClose={() => setShowAside(!showAside)} />}
+        </button>
+        <button className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300">
+          <i className="fa-solid fa-shuffle mb-2"></i>
+          <span className="text-xs tablet:text-sm">مقایسه</span>
+          <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
+            {totalCompares}
+          </div>
+        </button>
+        {showAside && (
+          <AsideMenu
+            open={showAside}
+            onClose={() => setShowAside(!showAside)}
+          />
+        )}
       </div>
     </>
   );
