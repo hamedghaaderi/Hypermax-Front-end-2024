@@ -2,17 +2,12 @@ import Logo from "./sub components/logo";
 import user from "../../public/image/user.png";
 import { Link } from "react-router-dom";
 import TopHeader from "./sub components/topheader";
-import { useState } from "react";
 import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
 import useCompares from "../store/compare";
+import Navbar from "./navbar";
 
 const Header = () => {
-  const [show, setShow] = useState(false);
-  window.addEventListener("scroll", () => {
-    !show && window.scrollY > 130 && setShow(true);
-    show && window.scrollY <= 130 && setShow(false);
-  });
   const { products, invoice } = useBasket((state: any) => state);
   let totalCart = 0;
   products.map((_product: any) => {
@@ -25,11 +20,9 @@ const Header = () => {
 
   return (
     <>
-      <header className="font-shabnam">
+      <header className="font-shabnam sticky z-20 top-0">
         <TopHeader />
-        <div className={
-          show ? "bg-white fixed top-0 w-screen z-20 py-5" : "bg-white py-5"
-        }>
+        <div className="bg-white py-5">
           <div className="max-w-whole w-90% desk:w-90% desklg:w-full m-auto flex flex-row-reverse items-center justify-between text-heading">
             <Logo />
             <div className="hidden desk:block">
@@ -65,24 +58,18 @@ const Header = () => {
             </form>
             <div className="hidden desk:block">
               <div className="flex flex-row-reverse desk:mr-2 desklg:mr-0 items-center justify-between">
-                <Link
-                  to="/"
-                  className="w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white"
-                >
+                <button className="w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
                   <i className="fa-solid fa-shuffle"></i>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
                     {totalCompares}
                   </div>
-                </Link>
-                <Link
-                  to="/"
-                  className="w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white"
-                >
+                </button>
+                <button className="w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
                   <i className="fa-solid fa-heart"></i>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
                     {totalFavorites}
                   </div>
-                </Link>
+                </button>
                 <button className="h-10 w-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
                   <i className="fa-solid fa-basket-shopping"></i>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
@@ -90,7 +77,7 @@ const Header = () => {
                   </div>
                 </button>
                 <div className="flex flex-col items-end justify-between cursor-default">
-                  <span className="text-xs">قیمت کل</span>
+                  <span className="text-xs">مجموع</span>
                   <span className="flex flex-row-reverse justify-between items-center">
                     <span>{invoice.totalPrice}</span>
                     <span className="mr-1">ریال</span>
@@ -100,6 +87,7 @@ const Header = () => {
             </div>
           </div>
         </div>
+        <Navbar />
       </header>
     </>
   );

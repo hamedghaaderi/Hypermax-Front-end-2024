@@ -23,7 +23,8 @@ export default {
         "90%": "90%",
         "340px": "340px",
         "41%": "41%",
-        "59%": "59%"
+        "59%": "59%",
+        "500px": "500px"
       },
       fontFamily: {
         "shabnam": "Shabnam",
@@ -66,6 +67,11 @@ export default {
       backgroundImage: {
         "newsbg": "url(../../public/image/newsletter.jpg)",
         "bgopacity": "linear-gradient(to right, rgba(6, 23, 56, 0.8), rgba(17, 151, 68, 0.8));"
+      },
+      inset: {
+        "88px": "88px",
+        "213px": "213px",
+        "217px": "217px"
       }
     },
   },
