@@ -4,10 +4,17 @@ import AsideMenu from "./sub components/asidemenu";
 import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
 import useCompares from "../store/compare";
+import { createPortal } from "react-dom";
+import FavModal from "./favmodal";
+import ComModal from "./commodal";
 
 const MobileMenu = () => {
+  const [showFav, setShowFav] = useState(false);
+  const [showCom, setShowCom] = useState(false);
   const [showAside, setShowAside] = useState(false);
   !showAside && (document.body.style.overflow = "visible");
+  !showFav && (document.body.style.overflow = "visible");
+  !showCom && (document.body.style.overflow = "visible");
   const { products } = useBasket((state: any) => state);
   let total = 0;
   products.map((_product: any) => {
@@ -42,14 +49,20 @@ const MobileMenu = () => {
             {total}
           </div>
         </button>
-        <button className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300">
+        <button
+          onClick={() => setShowFav(true)}
+          className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300"
+        >
           <i className="fa-solid fa-heart mb-2"></i>
           <span className="text-xs tablet:text-sm">علاقه مندی</span>
           <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
             {totalFavorites}
           </div>
         </button>
-        <button className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300">
+        <button
+          onClick={() => setShowCom(true)}
+          className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300"
+        >
           <i className="fa-solid fa-shuffle mb-2"></i>
           <span className="text-xs tablet:text-sm">مقایسه</span>
           <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
@@ -62,6 +75,16 @@ const MobileMenu = () => {
             onClose={() => setShowAside(!showAside)}
           />
         )}
+        {showFav &&
+          createPortal(
+            <FavModal open={showFav} onClose={() => setShowFav(false)} />,
+            document.body
+          )}
+        {showCom &&
+          createPortal(
+            <ComModal open={showCom} onClose={() => setShowCom(false)} />,
+            document.body
+          )}
       </div>
     </>
   );

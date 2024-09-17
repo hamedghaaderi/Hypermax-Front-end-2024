@@ -63,6 +63,8 @@ export default {
         "opacityout": "opacityOut 0.3s",
         "translatein": "translateIn 0.3s",
         "translateout": "translateOut 0.3s",
+        "translatein2": "translateIn2 0.3s",
+        "translateout2": "translateOut2 0.3s",
       },
       backgroundImage: {
         "newsbg": "url(../../public/image/newsletter.jpg)",
