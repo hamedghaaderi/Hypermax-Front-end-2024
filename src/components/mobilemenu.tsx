@@ -4,6 +4,7 @@ import AsideMenu from "./sub components/asidemenu";
 import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
 import useCompares from "../store/compare";
+import { createPortal } from "react-dom";
 
 const MobileMenu = () => {
   const [showAside, setShowAside] = useState(false);
@@ -56,12 +57,14 @@ const MobileMenu = () => {
             {totalCompares}
           </div>
         </button>
-        {showAside && (
-          <AsideMenu
-            open={showAside}
-            onClose={() => setShowAside(!showAside)}
-          />
-        )}
+        {showAside &&
+          createPortal(
+            <AsideMenu
+              open={showAside}
+              onClose={() => setShowAside(!showAside)}
+            />,
+            document.body
+          )}
       </div>
     </>
   );
