@@ -7,12 +7,12 @@ const useFavorites = create(
       favorites: [],
       action: {
         addFavorite: (product: any) => {
-          set((_oldFavorites: any) => ({
+          return set((_oldFavorites: any) => ({
             favorites: [..._oldFavorites.favorites, { ...product }],
           }));
         },
         removeFavorite: (product: any) => {
-          set((_oldFavorites: any) => ({
+          return set((_oldFavorites: any) => ({
             favorites: _oldFavorites.favorites.filter(
               (_product: any) => _product.id !== product.id
             ),
@@ -24,7 +24,7 @@ const useFavorites = create(
       name: "favorite_items",
       partialize: (state: any) =>
         Object.fromEntries(
-          Object.entries(state).filter(([key]) => !["actions"].includes(key))
+          Object.entries(state).filter(([key]) => !["action"].includes(key))
         ),
     }
   )
