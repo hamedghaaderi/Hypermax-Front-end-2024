@@ -39,7 +39,7 @@ const AsideMenu = ({
             <div>
               <Link
                 to="/"
-                className="bg-primary hover:opacity-85 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
+                className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
               >
                 <div className="ml-3">
                   <img
