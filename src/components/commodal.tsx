@@ -10,7 +10,9 @@ const ComModal = ({ onClose, open }: IFavModal) => {
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
-    document.getElementById("container")?.classList.add("animate-translateout2");
+    document
+      .getElementById("container")
+      ?.classList.add("animate-translateout2");
     setTimeout(() => {
       onClose();
     }, 280);
@@ -37,7 +39,14 @@ const ComModal = ({ onClose, open }: IFavModal) => {
               مقایسه محصولات
             </span>
           </div>
-          <div className="h-72 overflow-auto w-full bg-white">
+          <div
+            className={
+              compares.length == 0
+                ? "h-72 overflow-auto w-full flex items-center justify-center bg-white"
+                : "h-72 overflow-auto w-full bg-white"
+            }
+          >
+            {compares.length == 0 && <div>شما محصولی برای مقایسه ندارید</div>}
             {compares.map((_favorite: any) => {
               return <ComItem key={_favorite.id} {..._favorite} />;
             })}

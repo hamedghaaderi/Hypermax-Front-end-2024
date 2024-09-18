@@ -10,7 +10,9 @@ const FavModal = ({ onClose, open }: IFavModal) => {
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
-    document.getElementById("container")?.classList.add("animate-translateout2");
+    document
+      .getElementById("container")
+      ?.classList.add("animate-translateout2");
     setTimeout(() => {
       onClose();
     }, 280);
@@ -37,7 +39,14 @@ const FavModal = ({ onClose, open }: IFavModal) => {
               محصولات مورد علاقه
             </span>
           </div>
-          <div className="h-72 overflow-auto w-full bg-white">
+          <div
+            className={
+              favorites.length == 0
+                ? "h-72 overflow-auto w-full flex items-center justify-center bg-white"
+                : "h-72 overflow-auto w-full bg-white"
+            }
+          >
+            {favorites.length == 0 && <div>شما محصول مورد علاقه ای ندارید</div>}
             {favorites.map((_favorite: any) => {
               return <FavItem key={_favorite.id} {..._favorite} />;
             })}
