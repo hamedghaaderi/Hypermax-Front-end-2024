@@ -7,14 +7,17 @@ import useCompares from "../store/compare";
 import { createPortal } from "react-dom";
 import FavModal from "./favmodal";
 import ComModal from "./commodal";
+import CartModal from "./cartmodal";
 
 const MobileMenu = () => {
   const [showFav, setShowFav] = useState(false);
   const [showCom, setShowCom] = useState(false);
   const [showAside, setShowAside] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   !showAside && (document.body.style.overflow = "visible");
   !showFav && (document.body.style.overflow = "visible");
   !showCom && (document.body.style.overflow = "visible");
+  !showCart && (document.body.style.overflow = "visible");
   const { products } = useBasket((state: any) => state);
   let totalCart = 0;
   products.map((_product: any) => {
@@ -42,7 +45,10 @@ const MobileMenu = () => {
           <i className="fa-solid fa-list mb-2"></i>
           <span className="text-xs tablet:text-sm">منو</span>
         </button>
-        <button className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300">
+        <button
+          onClick={() => setShowCart(true)}
+          className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300"
+        >
           <i className="fa-solid fa-basket-shopping mb-2"></i>
           <span className="text-xs tablet:text-sm">سبد خرید</span>
           {totalCart !== 0 && (
@@ -89,6 +95,11 @@ const MobileMenu = () => {
         {showCom &&
           createPortal(
             <ComModal open={showCom} onClose={() => setShowCom(false)} />,
+            document.body
+          )}
+        {showCart &&
+          createPortal(
+            <CartModal open={showCart} onClose={() => setShowCart(false)} />,
             document.body
           )}
       </div>

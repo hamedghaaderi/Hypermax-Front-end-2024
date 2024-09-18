@@ -25,7 +25,8 @@ export default {
         "340px": "340px",
         "41%": "41%",
         "59%": "59%",
-        "500px": "500px"
+        "500px": "500px",
+        "400px": "400px"
       },
       fontFamily: {
         "shabnam": "Shabnam",
@@ -66,6 +67,8 @@ export default {
         "translateout": "translateOut 0.3s",
         "translatein2": "translateIn2 0.3s",
         "translateout2": "translateOut2 0.3s",
+        "translatein3": "translateIn3 0.3s",
+        "translateout3": "translateOut3 0.3s",
       },
       backgroundImage: {
         "newsbg": "url(../../public/image/newsletter.jpg)",
