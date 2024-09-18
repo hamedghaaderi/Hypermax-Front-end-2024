@@ -6,8 +6,11 @@ import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
 import useCompares from "../store/compare";
 import Navbar from "./navbar";
+import { useState } from "react";
+import CartModal2 from "./cartmodal2";
 
 const Header = () => {
+  const [showCart, setShowCart] = useState(false);
   const { products, invoice } = useBasket((state: any) => state);
   let totalCart = 0;
   products.map((_product: any) => {
@@ -57,7 +60,7 @@ const Header = () => {
               </button>
             </form>
             <div className="hidden desk:block">
-              <div className="flex flex-row-reverse desk:mr-2 desklg:mr-0 items-center justify-between">
+              <div className="flex relative flex-row-reverse desk:mr-2 desklg:mr-0 items-center justify-between">
                 <button className="w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
                   <i className="fa-solid fa-shuffle"></i>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
@@ -70,7 +73,14 @@ const Header = () => {
                     {totalFavorites}
                   </div>
                 </button>
-                <button className="h-10 w-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
+                <button
+                  onClick={() => setShowCart(true)}
+                  className={
+                    showCart
+                      ? "w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-primary text-white rounded-full ml-3"
+                      : "w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white"
+                  }
+                >
                   <i className="fa-solid fa-basket-shopping"></i>
                   <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
                     {totalCart}
@@ -83,6 +93,7 @@ const Header = () => {
                     <span className="mr-1">ریال</span>
                   </span>
                 </div>
+                {showCart && <CartModal2 onClose={() => setShowCart(false)} />}
               </div>
             </div>
           </div>
