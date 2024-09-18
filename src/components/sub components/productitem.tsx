@@ -11,7 +11,7 @@ interface IProductItem {
 }
 
 const ProductItem = (props: IProductItem) => {
-  const { name, price, rate, discount, imageURL } = props;
+  const { name, price, rate, discount, imageURL, id } = props;
   const { addFavorite, removeFavorite } = useFavorites(
     (state: any) => state.action
   );

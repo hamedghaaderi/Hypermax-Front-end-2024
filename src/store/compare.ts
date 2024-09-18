@@ -7,12 +7,12 @@ const useCompares = create(
       compares: [],
       action: {
         addCompare: (product: any) => {
-          set((_oldCompares: any) => ({
+          return set((_oldCompares: any) => ({
             compares: [..._oldCompares.compares, { ...product }],
           }));
         },
         removeCompare: (product: any) => {
-          set((_oldCompares: any) => ({
+          return set((_oldCompares: any) => ({
             compares: _oldCompares.compares.filter(
               (_product: any) => _product.id !== product.id
             ),
@@ -24,7 +24,7 @@ const useCompares = create(
       name: "compare_items",
       partialize: (state: any) =>
         Object.fromEntries(
-          Object.entries(state).filter(([key]) => !["actions"].includes(key))
+          Object.entries(state).filter(([key]) => !["action"].includes(key))
         ),
     }
   )

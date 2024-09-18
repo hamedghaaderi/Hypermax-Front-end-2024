@@ -74,7 +74,7 @@ const useBasket = create(
       name: "basket_items",
       partialize: (state: any) =>
         Object.fromEntries(
-          Object.entries(state).filter(([key]) => !["actions"].includes(key))
+          Object.entries(state).filter(([key]) => !["action"].includes(key))
         ),
     }
   )
