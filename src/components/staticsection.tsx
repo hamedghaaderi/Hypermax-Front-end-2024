@@ -13,8 +13,12 @@ const StaticSection = () => {
               </p>
             </div>
             <div className="w-3/4 bg-white rounded-lg mt-5 desk:mt-0 desk:w-3/5 desk:p-2 tablet:w-2/3 tablet:mt-5 tablet:mb-0 p-1 desklg:w-1/2 tablet:p-1">
-              <form className="flex flex-row-reverse justify-between w-full">
+              <form
+                name="news"
+                className="flex flex-row-reverse justify-between w-full"
+              >
                 <input
+                  name="news"
                   type="text"
                   placeholder="شماره تلفن خود را وارد کنید"
                   className="text-right pr-3 rounded-lg w-4/5 border-white border-none outline-none text-xs desklg:text-base"
@@ -70,8 +74,7 @@ const StaticSection = () => {
               <div className="cursor-default text-right mr-5 text-text">
                 <h5 className="text-lg mb-2">راه های پرداخت امن</h5>
                 <p className="text-base">
-                  لورم ایپسوم متن ساختگی با تولید سادگی
-                  نامفهوم از صنعت چاپ
+                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
                 </p>
               </div>
             </div>

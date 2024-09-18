@@ -15,12 +15,12 @@ const FavItem = (props: IFavComItem) => {
   return (
     <>
       <div className="mx-4 py-4 border-b border-b-border last:border-b-0 flex flex-row items-center justify-between">
-        <div
+        <button
           onClick={() => removeFavorite(props)}
-          className="h-9 w-9 flex items-center justify-center text-text hover:text-red transition-colors duration-300"
+          className="h-9 w-9 flex mr-4 items-center justify-center text-text hover:text-red transition-colors duration-300"
         >
           <i className="fa-solid fa-trash-can"></i>
-        </div>
+        </button>
         <div className="flex flex-row-reverse items-center justify-between">
           <div className="w-24 h-24 ml-7">
             <img
@@ -31,7 +31,7 @@ const FavItem = (props: IFavComItem) => {
           </div>
           <div className="flex flex-row-reverse items-center justify-between">
             <div className="flex flex-col items-end ml-7 justify-between text-text">
-              <div className="mb-2">{name}</div>
+              <div className="mb-2 text-right">{name}</div>
               <div className="text-orange">
                 <span className="mr-1">{rate}</span>
                 <i className="fa-solid fa-star text-sm"></i>

@@ -16,9 +16,9 @@ const MobileMenu = () => {
   !showFav && (document.body.style.overflow = "visible");
   !showCom && (document.body.style.overflow = "visible");
   const { products } = useBasket((state: any) => state);
-  let total = 0;
+  let totalCart = 0;
   products.map((_product: any) => {
-    return (total += _product.quantity);
+    return (totalCart += _product.quantity);
   });
   const { favorites } = useFavorites((state: any) => state);
   let totalFavorites = favorites.length;
@@ -45,9 +45,11 @@ const MobileMenu = () => {
         <button className="flex flex-col relative justify-between items-center text-heading hover:text-primary transition-colors duration-300">
           <i className="fa-solid fa-basket-shopping mb-2"></i>
           <span className="text-xs tablet:text-sm">سبد خرید</span>
-          <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
-            {total}
-          </div>
+          {totalCart !== 0 && (
+            <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
+              {totalCart}
+            </div>
+          )}
         </button>
         <button
           onClick={() => setShowFav(true)}
@@ -55,9 +57,11 @@ const MobileMenu = () => {
         >
           <i className="fa-solid fa-heart mb-2"></i>
           <span className="text-xs tablet:text-sm">علاقه مندی</span>
-          <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
-            {totalFavorites}
-          </div>
+          {totalFavorites !== 0 && (
+            <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
+              {totalFavorites}
+            </div>
+          )}
         </button>
         <button
           onClick={() => setShowCom(true)}
@@ -65,9 +69,11 @@ const MobileMenu = () => {
         >
           <i className="fa-solid fa-shuffle mb-2"></i>
           <span className="text-xs tablet:text-sm">مقایسه</span>
-          <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
-            {totalCompares}
-          </div>
+          {totalCompares !== 0 && (
+            <div className="absolute h-5 w-5 flex items-center justify-center bg-primary text-white -top-3 -right-3 rounded-full text-xs">
+              {totalCompares}
+            </div>
+          )}
         </button>
         {showAside && (
           <AsideMenu

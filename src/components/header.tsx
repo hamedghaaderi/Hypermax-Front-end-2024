@@ -6,8 +6,13 @@ import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
 import useCompares from "../store/compare";
 import Navbar from "./navbar";
+import { useState } from "react";
+import ComModal2 from "./commodal2";
+import FavModal2 from "./favmodal2";
 
 const Header = () => {
+  const [showFav, setShowFav] = useState(false);
+  const [showCom, setShowCom] = useState(false);
   const { products, invoice } = useBasket((state: any) => state);
   let totalCart = 0;
   products.map((_product: any) => {
@@ -42,14 +47,15 @@ const Header = () => {
                 <span>ورود</span>
               </Link>
             </div>
-
             <form
               onSubmit={(e) => e.preventDefault()}
+              name="search"
               className="flex flex-row-reverse justify-between items-center border-chalk bg-chalk rounded-lg border-2 h-12 w-3/5 mr-3 desk:w-1/3 desklg:w-2/5 transition-all duration-300 focus-within:bg-white focus-within:border-primary"
             >
               <input
                 className="h-full w-full bg-chalk focus-within:bg-white transition-all duration-300 pr-4 text-right text-sm desk:text-base rounded-r-md outline-none"
                 type="text"
+                name="search"
                 placeholder="... جست و جو کن"
               />
               <button className="h-full w-11 flex flex-row-reverse justify-center items-center rounded-l-md text-heading transition-colors duration-300 hover:text-primary">
@@ -57,24 +63,44 @@ const Header = () => {
               </button>
             </form>
             <div className="hidden desk:block">
-              <div className="flex flex-row-reverse desk:mr-2 desklg:mr-0 items-center justify-between">
-                <button className="w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
+              <div className="flex relative flex-row-reverse desk:mr-2 desklg:mr-0 items-center justify-between">
+                <button
+                  onClick={() => setShowCom(true)}
+                  className={
+                    showCom
+                      ? "w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-primary text-white rounded-full ml-3"
+                      : "w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white"
+                  }
+                >
                   <i className="fa-solid fa-shuffle"></i>
-                  <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
-                    {totalCompares}
-                  </div>
+                  {totalCompares !== 0 && (
+                    <div className="absolute border-2 border-white h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
+                      {totalCompares}
+                    </div>
+                  )}
                 </button>
-                <button className="w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
+                <button
+                  onClick={() => setShowFav(true)}
+                  className={
+                    showFav
+                      ? "w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-primary text-white rounded-full ml-3"
+                      : "w-10 h-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white"
+                  }
+                >
                   <i className="fa-solid fa-heart"></i>
-                  <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
-                    {totalFavorites}
-                  </div>
+                  {totalFavorites !== 0 && (
+                    <div className="absolute border-2 border-white h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
+                      {totalFavorites}
+                    </div>
+                  )}
                 </button>
                 <button className="h-10 w-10 relative flex flex-row-reverse justify-center items-center bg-chalk text-heading rounded-full ml-3 transition-colors duration-300 hover:bg-primary hover:text-white">
                   <i className="fa-solid fa-basket-shopping"></i>
-                  <div className="absolute h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
-                    {totalCart}
-                  </div>
+                  {totalCart !== 0 && (
+                    <div className="absolute border-2 border-white h-6 w-6 flex items-center justify-center bg-primary text-white -top-3 -left-1 rounded-full text-xs">
+                      {totalCart}
+                    </div>
+                  )}
                 </button>
                 <div className="flex flex-col items-end justify-between cursor-default">
                   <span className="text-xs">مجموع</span>
@@ -83,11 +109,27 @@ const Header = () => {
                     <span className="mr-1">ریال</span>
                   </span>
                 </div>
+                {showCom && (
+                  <ComModal2 onClose={() => setShowCom(false)} />
+                )}
+                {showFav && (
+                  <FavModal2 onClose={() => setShowFav(false)} />
+                )}
               </div>
             </div>
           </div>
         </div>
         <Navbar />
+        {/* {showCom &&
+          createPortal(
+            <ComModal2 open={showCom} onClose={() => setShowCom(false)} />,
+            document.body
+          )} */}
+        {/* {showFav &&
+          createPortal(
+            <FavModal2 open={showFav} onClose={() => setShowFav(false)} />,
+            document.body
+          )} */}
       </header>
     </>
   );
