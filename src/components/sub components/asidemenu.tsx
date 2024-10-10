@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import Logo from "./logo";
 import user from "../../../public/image/user.png";
+import { useContext } from "react";
+import { categoryContext } from "../../services/cat-provider";
+import MobileCategory from "./mobilecat";
 
 const AsideMenu = ({
   onClose,
@@ -9,6 +12,7 @@ const AsideMenu = ({
   onClose: () => void;
   open: boolean;
 }) => {
+  const cat = useContext(categoryContext);
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
@@ -53,6 +57,13 @@ const AsideMenu = ({
                 <span className="text-white">ورود</span>
               </Link>
               <div className="flex flex-col items-end justify-between mt-3">
+                <ul className="w-full">
+                  {cat.map((_categories: any) => {
+                    return (
+                      <MobileCategory key={_categories.id} {..._categories} />
+                    );
+                  })}
+                </ul>
                 <Link
                   to="/shop"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
