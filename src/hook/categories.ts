@@ -1,11 +1,11 @@
-import categoriesBaseURL from "../api/categories-config";
+import baseURL from "../api/config";
 import { useQuery } from "@tanstack/react-query";
 
 const useCategories = () => {
   const { isError, isLoading, data } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      return categoriesBaseURL.get("/api-categories").then((res) => res);
+      return baseURL.get("categories/").then((res) => res);
     },
     gcTime: Infinity,
   });
