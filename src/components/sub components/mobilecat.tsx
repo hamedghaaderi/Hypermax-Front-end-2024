@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MobileSubCategory from "./mobilesubcat";
 
-const MobileCategory = ({ name, image, subcategories }: any) => {
+const MobileCategory = ({ name, subcategories }: any) => {
   const [showSubCat, setShowSubCat] = useState(false);
   return (
     <>
