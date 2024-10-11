@@ -31,8 +31,8 @@ const HomePage = () => {
             </div>
           </aside>
         </article>
+        <StaticSection />
       </main>
-      <StaticSection />
       <Footer />
       <MobileMenu />
     </>
