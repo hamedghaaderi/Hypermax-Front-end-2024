@@ -14,9 +14,6 @@ export default {
         "90%": "90%",
         "48%": "48%",
         "23%": "23%",
-        "20vw": "20vw",
-        "30vw": "30vw",
-        "45vw": "45vw"
       },
       maxWidth: {
         "whole": "1156px"
@@ -27,7 +24,8 @@ export default {
         "340px": "340px",
         "41%": "41%",
         "59%": "59%",
-        "500px": "500px"
+        "500px": "500px",
+        "396px": "396px"
       },
       fontFamily: {
         "shabnam": "Shabnam",
@@ -74,11 +72,9 @@ export default {
       inset: {
         "88px": "88px",
         "213px": "213px",
-        "217px": "217px"
+        "217px": "217px",
+        "68px": "68px"
       },
-      padding: {
-        "7px": "7px"
-      }
     },
   },
   plugins: [],
