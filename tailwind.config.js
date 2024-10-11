@@ -23,10 +23,8 @@ export default {
         "46": "46px",
         "90%": "90%",
         "340px": "340px",
-        "41%": "41%",
-        "59%": "59%",
         "500px": "500px",
-        "400px": "400px"
+        "400px": "400px",
         "440px": "440px"
       },
       fontFamily: {
@@ -70,6 +68,10 @@ export default {
         "translateout2": "translateOut2 0.3s",
         "translatein3": "translateIn3 0.3s",
         "translateout3": "translateOut3 0.3s",
+        "loading": "Loading 0.9s linear 0s infinite normal forwards",
+        "loading1": "Loading 0.9s linear 0.25s infinite normal forwards",
+        "loading2": "Loading 0.9s linear 0.5s infinite normal forwards",
+        "loadingproducts": "loadingProducts 2s cubic-bezier(0.52, 0.06, 0.32, 0.99) 0s infinite normal forwards",
       },
       backgroundImage: {
         "newsbg": "url(../../public/image/newsletter.jpg)",
