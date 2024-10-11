@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import Logo from "./logo";
 import user from "../../../public/image/user.png";
+import { useContext } from "react";
+import { categoryContext } from "../../services/cat-provider";
+import MobileCategory from "./mobilecat";
 
 const AsideMenu = ({
   onClose,
@@ -9,6 +12,7 @@ const AsideMenu = ({
   onClose: () => void;
   open: boolean;
 }) => {
+  const cat = useContext(categoryContext);
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
@@ -39,7 +43,7 @@ const AsideMenu = ({
             <div>
               <Link
                 to="/"
-                className="bg-primary hover:opacity-85 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
+                className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
               >
                 <div className="ml-3">
                   <img
@@ -53,41 +57,48 @@ const AsideMenu = ({
                 <span className="text-white">ورود</span>
               </Link>
               <div className="flex flex-col items-end justify-between mt-3">
+                <ul className="w-full">
+                  {cat.map((_categories: any) => {
+                    return (
+                      <MobileCategory key={_categories.id} {..._categories} />
+                    );
+                  })}
+                </ul>
                 <Link
                   to="/shop"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-shop text-xl"></i>
+                    <i className="fa-solid fa-shop"></i>
                   </div>
-                  <span className="text-lg">فروشگاه</span>
+                  <span>فروشگاه</span>
                 </Link>
                 <Link
                   to="/"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-percent text-lg"></i>
+                    <i className="fa-solid fa-percent"></i>
                   </div>
-                  <span className="text-lg">تخفیفات</span>
+                  <span>تخفیفات</span>
                 </Link>
                 <Link
                   to="/"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-circle-info text-xl"></i>
+                    <i className="fa-solid fa-circle-info"></i>
                   </div>
-                  <span className="text-lg">راهنما</span>
+                  <span>راهنما</span>
                 </Link>
                 <Link
                   to="/"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-address-book text-xl"></i>
+                    <i className="fa-solid fa-address-book"></i>
                   </div>
-                  <span className="text-lg">ارتباط با ما</span>
+                  <span>ارتباط با ما</span>
                 </Link>
               </div>
             </div>

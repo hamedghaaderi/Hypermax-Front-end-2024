@@ -27,6 +27,7 @@ export default {
         "59%": "59%",
         "500px": "500px",
         "400px": "400px"
+        "440px": "440px"
       },
       fontFamily: {
         "shabnam": "Shabnam",
@@ -77,8 +78,9 @@ export default {
       inset: {
         "88px": "88px",
         "213px": "213px",
-        "217px": "217px"
-      }
+        "217px": "217px",
+        "68px": "68px"
+      },
     },
   },
   plugins: [],
