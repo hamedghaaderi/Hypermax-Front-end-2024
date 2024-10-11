@@ -17,19 +17,21 @@ const MobileCategory = ({ name, subcategories }: any) => {
                 : "fa-solid fa-angle-down mr-2 text-xs transition-all duration-300"
             }
           ></i>
-          <span className="text-lg">{name}</span>
+          <span>{name}</span>
         </div>
         {showSubCat && (
-          <ul className="rounded-xl p-3 mt-2 text-right bg-chalk w-full">
-            {subcategories.map((_subCategories: any) => {
-              return (
-                <MobileSubCategory
-                  key={_subCategories.id}
-                  {..._subCategories}
-                />
-              );
-            })}
-          </ul>
+          <nav className="px-2 w-full mt-2">
+            <ul className="rounded-xl px-3 py-1 text-right bg-chalk w-full">
+              {subcategories.map((_subCategories: any) => {
+                return (
+                  <MobileSubCategory
+                    key={_subCategories.id}
+                    {..._subCategories}
+                  />
+                );
+              })}
+            </ul>
+          </nav>
         )}
       </li>
     </>

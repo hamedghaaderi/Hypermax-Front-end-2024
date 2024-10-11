@@ -69,36 +69,36 @@ const AsideMenu = ({
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-shop text-xl"></i>
+                    <i className="fa-solid fa-shop"></i>
                   </div>
-                  <span className="text-lg">فروشگاه</span>
+                  <span>فروشگاه</span>
                 </Link>
                 <Link
                   to="/"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-percent text-lg"></i>
+                    <i className="fa-solid fa-percent"></i>
                   </div>
-                  <span className="text-lg">تخفیفات</span>
+                  <span>تخفیفات</span>
                 </Link>
                 <Link
                   to="/"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-circle-info text-xl"></i>
+                    <i className="fa-solid fa-circle-info"></i>
                   </div>
-                  <span className="text-lg">راهنما</span>
+                  <span>راهنما</span>
                 </Link>
                 <Link
                   to="/"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-address-book text-xl"></i>
+                    <i className="fa-solid fa-address-book"></i>
                   </div>
-                  <span className="text-lg">ارتباط با ما</span>
+                  <span>ارتباط با ما</span>
                 </Link>
               </div>
             </div>
