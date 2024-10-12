@@ -105,13 +105,13 @@ const AsideMenu = ({
             <div className="cursor-default flex flex-col mt-28 items-end justify-between">
               <div className="flex flex-row-reverse items-center justify-between">
                 <i className="fa-solid fa-phone-volume text-xl text-primary"></i>
-                <span className="text-lg mr-3 text-text">021 888 9998</span>
+                <a href="tel:+980218889998" className="text-lg mr-3 text-text">021 888 9998</a>
               </div>
               <div className="flex flex-row-reverse items-center justify-between">
                 <i className="fa-solid fa-envelope text-xl text-primary"></i>
-                <span className="text-lg mr-3 text-text">
+                <a href="mailto:support@hyper-max.ir" className="text-lg mr-3 text-text">
                   support@hyper-max.ir
-                </span>
+                </a>
               </div>
             </div>
           </div>

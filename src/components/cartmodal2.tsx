@@ -47,7 +47,11 @@ const CartModal2 = ({ onClose }: IFavModal2) => {
           })}
         </div>
         <Link
-          className="w-full mt-3 h-12 bg-primary rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
+          className={
+            products.length === 0
+              ? "w-full mt-3 h-12 pointer-events-none opacity-85 bg-primary rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
+              : "w-full mt-3 h-12 bg-primary rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
+          }
           to="/"
         >
           برو به تسویه حساب

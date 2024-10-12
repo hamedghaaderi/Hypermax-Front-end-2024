@@ -38,8 +38,8 @@ const ComModal2 = ({ onClose }: IFavModal2) => {
         >
           {compares.length == 0 && <div>شما محصولی برای مقایسه ندارید</div>}
           {compares.length >= 1 &&
-            compares.map((_favorite: any) => {
-              return <ComItem key={_favorite.id} {..._favorite} />;
+            compares.map((_compare: any) => {
+              return <ComItem key={_compare.id} {..._compare} />;
             })}
         </div>
       </div>

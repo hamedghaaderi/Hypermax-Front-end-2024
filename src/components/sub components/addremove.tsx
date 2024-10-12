@@ -1,16 +1,6 @@
 import useBasket from "../../store/basket";
 
-interface IAdd {
-  id: number;
-  name: string;
-  price: number;
-  rate: number;
-  discount: number;
-  imageURL: string;
-  off: number
-}
-
-const AddRemove = (props: IAdd) => {
+const AddRemove = (props: any) => {
   const {add , remove} = useBasket((state: any) => state.action)
   const {products} = useBasket((state: any) => state)
   const item = products.find((_product: any) => _product.id === props.id);
