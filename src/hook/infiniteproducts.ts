@@ -7,7 +7,7 @@ const useInfiniteProducts = () => {
       queryKey: ["infiniteproducts"],
       queryFn: async ({ pageParam }) => {
         return baseURL
-          .get("products/?subcategory=78911&page=" + pageParam)
+          .get("products/?page=" + pageParam)
           .then((res) => res);
       },
       initialPageParam: 1,

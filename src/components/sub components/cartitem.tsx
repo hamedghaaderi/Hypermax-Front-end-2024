@@ -6,7 +6,7 @@ const CartItem = (props: any) => {
   return (
     <>
       <div className="mx-4 py-4 border-b border-b-border last:border-b-0 flex flex-col-reverse items-center justify-between">
-        <div className="w-48 tablet:w-64">
+        <div className="w-48 h-9 tablet:w-64">
           <AddRemove off={price * ((100 - discount_percentage) / 100)} {...props} />
         </div>
         <div className="w-full mb-5 flex flex-row-reverse items-center justify-between">
@@ -18,7 +18,7 @@ const CartItem = (props: any) => {
             />
           </div>
           <div className="text-text">
-            <div className="mb-2 text-right">{name}</div>
+            <div className="mb-2 mx-4 text-right">{name}</div>
           </div>
           <div className="flex flex-col items-center justify-between">
             <span className="flex mb-2 flex-row-reverse items-center justify-between text-primary">

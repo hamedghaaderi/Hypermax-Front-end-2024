@@ -7,7 +7,7 @@ interface IFavModal2 {
 }
 
 const CartModal2 = ({ onClose }: IFavModal2) => {
-  const { products, invoice } = useBasket((state: any) => state);
+  const { products } = useBasket((state: any) => state);
   let totalCart = 0;
   products.map((_product: any) => {
     return (totalCart += _product.quantity);

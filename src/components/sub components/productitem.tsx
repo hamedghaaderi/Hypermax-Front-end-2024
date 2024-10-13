@@ -37,11 +37,16 @@ const ProductItem = (props: any) => {
             </span>
             {discount_percentage !== "0.00" && (
               <span className="flex flex-row-reverse justify-between items-center ml-2 text-red">
-                <span className="line-through text-sm">{Math.round(price)}</span>
+                <span className="line-through text-sm">
+                  {Math.round(price)}
+                </span>
               </span>
             )}
           </div>
-          <button className="text-heading font-shabnam bg-border w-full flex flex-row-reverse items-center justify-center hover:text-white hover:bg-primary transition-colors duration-300 h-9 py-1 rounded-lg">
+          <button
+            onClick={() => setShowModalM(true)}
+            className="text-heading font-shabnam bg-border w-full flex flex-row-reverse items-center justify-center hover:text-white hover:bg-primary transition-colors duration-300 h-9 py-1 rounded-lg"
+          >
             <i className="fa-solid fa-arrow-up-right-from-square text-sm"></i>
             <span className="mr-2">مشاهده محصول</span>
           </button>
