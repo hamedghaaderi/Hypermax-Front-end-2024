@@ -1,9 +1,14 @@
 import useCompare from "../../store/compare";
 import useFavorites from "../../store/favorites";
 import logo from "../../../public/image/logo.png";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import SingleProduct from "./mobileproduct";
 
 const ProductItem = (props: any) => {
-  const { name, price, discount_percentage, image } = props;
+  const { name, price, discount_percentage } = props;
+  const [showModalM, setShowModalM] = useState(false);
+  !showModalM && (document.body.style.overflow = "visible");
   const { addFavorite, removeFavorite } = useFavorites(
     (state: any) => state.action
   );
@@ -86,6 +91,15 @@ const ProductItem = (props: any) => {
           )}
         </div>
       </div>
+      {showModalM &&
+        createPortal(
+          <SingleProduct
+            open={showModalM}
+            onClose={() => setShowModalM(false)}
+            product={props}
+          />,
+          document.body
+        )}
     </>
   );
 };
