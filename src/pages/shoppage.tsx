@@ -7,6 +7,7 @@ import ProductItem from "../components/sub components/productitem";
 import useInfiniteProducts from "../hook/infiniteproducts";
 import IsLoading from "../components/sub components/isloading";
 import IsLoadingProducts from "../components/sub components/isloadingproducts";
+import IsError from "../components/sub components/iserror";
 
 const useOnScreen = (ref: any) => {
   const [isIntersecting, setIntersecting] = useState(false);
@@ -31,7 +32,7 @@ const ShopPage = () => {
   const ref = useRef<any>();
   const { isIntersecting } = useOnScreen(ref);
   const { data, fetchNextPage, isError, isLoading, hasNextPage } =
-    useInfiniteProducts();
+  useInfiniteProducts();
   useEffect(() => {
     if (isIntersecting) {
       fetchNextPage();
@@ -51,6 +52,7 @@ const ShopPage = () => {
           </div>
           <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 desk:mt-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center tablet:gap-x-9 desk:gap-x-5 desklg:gap-x-9">
             {isLoading && <IsLoading />}
+            {isError && <IsError />}
             {data?.pages &&
               data?.pages.map((_product: any) =>
                 _product?.data.results.map((_product: any) => {

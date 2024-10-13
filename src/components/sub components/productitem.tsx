@@ -3,7 +3,7 @@ import useFavorites from "../../store/favorites";
 import logo from "../../../public/image/logo.png";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import SingleProduct from "./mobileproduct";
+import SingleProduct from "./singleproduct";
 
 const ProductItem = (props: any) => {
   const { name, price, discount_percentage } = props;
