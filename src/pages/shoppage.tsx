@@ -8,25 +8,7 @@ import useInfiniteProducts from "../hook/infiniteproducts";
 import IsLoading from "../components/sub components/isloading";
 import IsLoadingProducts from "../components/sub components/isloadingproducts";
 import IsError from "../components/sub components/iserror";
-
-const useOnScreen = (ref: any) => {
-  const [isIntersecting, setIntersecting] = useState(false);
-  useEffect(() => {
-    if (!ref.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIntersecting(entry.isIntersecting);
-      },
-      { threshold: 0 }
-    );
-    observer.observe(ref.current);
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  return { isIntersecting };
-};
+import useOnScreen from "../hook/onscreen";
 
 const ShopPage = () => {
   const ref = useRef<any>();
