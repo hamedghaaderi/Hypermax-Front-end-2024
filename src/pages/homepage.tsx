@@ -7,7 +7,7 @@ import { categoryContext } from "../services/cat-provider";
 import MobileCategory from "../components/sub components/mobilecat";
 
 const HomePage = () => {
-  const cat = useContext(categoryContext);
+  const {categories}: any = useContext(categoryContext);
 
   return (
     <>
@@ -22,7 +22,7 @@ const HomePage = () => {
             </div>
             <div className="p-2">
               <ul className="h-440px overflow-auto">
-                {cat?.map((_categories: any) => {
+                {categories?.map((_categories: any) => {
                   return (
                     <MobileCategory key={_categories.id} {..._categories} />
                   );
