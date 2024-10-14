@@ -1,6 +1,6 @@
 import Logo from "./sub components/logo";
 import user from "../../public/image/user.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TopHeader from "./sub components/topheader";
 import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
@@ -10,11 +10,14 @@ import { useState } from "react";
 import ComModal2 from "./commodal2";
 import FavModal2 from "./favmodal2";
 import CartModal2 from "./cartmodal2";
+import { useForm } from "react-hook-form";
 
 const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const [showFav, setShowFav] = useState(false);
   const [showCom, setShowCom] = useState(false);
+  const { register, getValues } = useForm<any>()
+  const navigate = useNavigate()
   const { products, invoice } = useBasket((state: any) => state);
   let totalCart = 0;
   products.map((_product: any) => {
@@ -24,6 +27,13 @@ const Header = () => {
   let totalFavorites = favorites.length;
   const { compares } = useCompares((state: any) => state);
   let totalCompares = compares.length;
+  const handleKeyUp = (event: any) => {
+    if (event.key === "Enter") {
+      const value = getValues("search")
+      navigate(`/search?q=${value}`)
+      event.target.value = ""
+    }
+  }
 
   return (
     <>
@@ -57,12 +67,13 @@ const Header = () => {
               <input
                 className="h-full w-full bg-chalk focus-within:bg-white transition-all duration-300 pr-4 text-right text-sm desk:text-base rounded-r-md outline-none"
                 type="text"
-                name="search"
                 placeholder="... جست و جو کن"
+                onKeyUp={handleKeyUp}
+                {...register("search")}
               />
-              <button className="h-full w-11 flex flex-row-reverse justify-center items-center rounded-l-md text-heading transition-colors duration-300 hover:text-primary">
+              <div className="h-full w-11 flex flex-row-reverse justify-center items-center rounded-l-md text-heading">
                 <i className="fa-solid fa-magnifying-glass"></i>
-              </button>
+              </div>
             </form>
             <div className="hidden desk:block">
               <div className="flex relative flex-row-reverse desk:mr-2 desklg:mr-0 items-center justify-between">

@@ -5,7 +5,7 @@ import DesktopCategory from "./sub components/desktopcat";
 
 const Navbar = () => {
   const [showCat, setShowCat] = useState(false);
-  const cat = useContext(categoryContext);
+  const {categories}: any = useContext(categoryContext);
 
   return (
     <>
@@ -33,7 +33,7 @@ const Navbar = () => {
               {showCat && (
                 <nav className="absolute w-90% desklg:w-3/4 top-16 right-68px flex flex-row-reverse">
                   <ul className="w-1/3 h-396px overflow-y-auto bg-chalk shadow-md">
-                    {cat.map((_category: any) => {
+                    {categories?.map((_category: any) => {
                       return (
                         <DesktopCategory key={_category.id} {..._category} />
                       );

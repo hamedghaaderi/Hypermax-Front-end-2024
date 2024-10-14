@@ -16,12 +16,8 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
   const isExist: boolean = products.some(
     (_product: any) => _product.id === product.id
   );
-  const cat = useContext(categoryContext);
-  let subCats: any[] = [];
-  cat.map((_category: any) => {
-    subCats = [...subCats, ..._category.subcategories];
-  });
-  const subCat = subCats.find(
+  const {subCategories}: any = useContext(categoryContext);
+  const subCat = subCategories.find(
     (_subCategory: any) => _subCategory.id === product.subcategory
   );
   open && (document.body.style.overflow = "hidden");

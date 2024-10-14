@@ -12,7 +12,7 @@ const AsideMenu = ({
   onClose: () => void;
   open: boolean;
 }) => {
-  const cat = useContext(categoryContext);
+  const {categories}: any = useContext(categoryContext);
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
@@ -58,7 +58,7 @@ const AsideMenu = ({
               </Link>
               <div className="flex flex-col items-end justify-between mt-3">
                 <ul className="w-full">
-                  {cat.map((_categories: any) => {
+                  {categories?.map((_categories: any) => {
                     return (
                       <MobileCategory key={_categories.id} {..._categories} />
                     );
