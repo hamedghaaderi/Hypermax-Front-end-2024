@@ -17,7 +17,7 @@ const Footer = () => {
                 </p>
               </div>
               <div className="flex flex-col items-end desk:w-5/12 desklg:w-fit mb-10">
-                <h3 className="mb-6 text-2xl text-heading font-medium">
+                <h3 className="mb-6 text-2xl text-heading font-medium cursor-default">
                   راه های ارتباط
                 </h3>
                 <div>
@@ -25,15 +25,15 @@ const Footer = () => {
                     <li>
                       <div className="flex flex-row-reverse items-center justify-between mb-5">
                         <i className="fa-solid fa-envelope text-primary text-3xl"></i>
-                        <div className="flex flex-col mr-4 text-text text-right cursor-default">
-                          <span>support@hyper-max.ir</span>
-                          <span>carrer@hyper-max.ir</span>
+                        <div className="flex flex-col mr-4 text-text text-right">
+                          <a href="mailto:support@hyper-max.ir">support@hyper-max.ir</a>
+                          <a href="mailto:support@hyper-max.ir">carrer@hyper-max.ir</a>
                         </div>
                       </div>
                     </li>
                     <li className="flex flex-row-reverse items-center mb-5">
                       <i className="fa-solid fa-phone-volume text-primary text-3xl"></i>
-                      <span className="text-text mr-4 cursor-default">+120 279 532 13</span>
+                      <a href="tel:+12027953213" className="text-text mr-4">+120 279 532 13</a>
                     </li>
                     <li className="flex flex-row-reverse items-center mr-1">
                       <i className="fa-solid fa-location-dot text-primary text-3xl"></i>
@@ -43,7 +43,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex flex-col justify-start desk:w-5/12 desklg:w-fit items-end mb-10">
-                <h3 className="mb-6 text-2xl text-heading text-right">
+                <h3 className="mb-6 text-2xl text-heading text-right cursor-default">
                   دسترسی سریع
                 </h3>
                 <div className="flex flex-row-reverse justify-between items-center">
@@ -78,7 +78,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="mb-10 desk:w-5/12 desklg:w-1/4">
-                <h3 className=" text-2xl text-heading mb-6 text-right">
+                <h3 className=" text-2xl text-heading mb-6 text-right cursor-default">
                   هایپر مکث
                 </h3>
                 <p className="text-text text-right cursor-default">

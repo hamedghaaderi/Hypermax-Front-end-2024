@@ -42,10 +42,12 @@ const CartModal = ({ onClose, open }: ICartModal) => {
               <i className="fa-solid fa-xmark"></i>
             </button>
             <div className="flex items-center justify-center">
-              <span className="flex flex-row-reverse justify-between items-center text-primary mr-3">
-                <span>{totalCart}</span>
-                <span className="mr-1">کالا موجود</span>
-              </span>
+              {products.length !== 0 && (
+                <span className="flex flex-row-reverse justify-between items-center text-primary mr-3">
+                  <span>{totalCart}</span>
+                  <span className="mr-1">کالا موجود</span>
+                </span>
+              )}
               <span className="text-text pr-3 cursor-default">سبد خرید</span>
             </div>
           </div>
@@ -63,18 +65,24 @@ const CartModal = ({ onClose, open }: ICartModal) => {
           </div>
           <div className="flex mt-4 flex-row w-full h-12 items-center justify-between">
             <Link
-              className="w-1/2 bg-primary h-full rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
+              className={
+                products.length === 0
+                  ? "w-full pointer-events-none opacity-85 bg-primary h-full rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all"
+                  : "w-1/2 bg-primary h-full rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all"
+              }
               to="/"
             >
               برو به تسویه حساب
             </Link>
-            <div className="flex flex-col items-end pr-2 justify-between cursor-default w-1/2 text-text">
-              <span className="text-sm">مجموع</span>
-              <span className="flex flex-row-reverse justify-between items-center text-lg">
-                <span>{invoice.totalPrice}</span>
-                <span className="mr-1">ریال</span>
-              </span>
-            </div>
+            {products.length !== 0 && (
+              <div className="flex flex-col items-end pr-2 justify-between cursor-default w-1/2 text-text">
+                <span className="text-sm">مجموع</span>
+                <span className="flex flex-row-reverse justify-between items-center text-lg">
+                  <span>{invoice.totalPrice}</span>
+                  <span className="mr-1">ریال</span>
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </div>

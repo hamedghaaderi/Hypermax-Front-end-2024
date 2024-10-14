@@ -1,11 +1,44 @@
+import { useEffect, useRef, useState } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import MobileMenu from "../components/mobilemenu";
 import StaticSection from "../components/staticsection";
 import ProductItem from "../components/sub components/productitem";
-import test from "../test data/fakedata";
+import useInfiniteProducts from "../hook/infiniteproducts";
+import IsLoading from "../components/sub components/isloading";
+import IsLoadingProducts from "../components/sub components/isloadingproducts";
+import IsError from "../components/sub components/iserror";
+
+const useOnScreen = (ref: any) => {
+  const [isIntersecting, setIntersecting] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIntersecting(entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(ref.current);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  return { isIntersecting };
+};
 
 const ShopPage = () => {
+  const ref = useRef<any>();
+  const { isIntersecting } = useOnScreen(ref);
+  const { data, fetchNextPage, isError, isLoading, hasNextPage } =
+  useInfiniteProducts();
+  useEffect(() => {
+    if (isIntersecting) {
+      fetchNextPage();
+    }
+  }, [isIntersecting]);
+
   return (
     <>
       <Header />
@@ -18,9 +51,17 @@ const ShopPage = () => {
             </button>
           </div>
           <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 desk:mt-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center tablet:gap-x-9 desk:gap-x-5 desklg:gap-x-9">
-            {test.products.map((_product: any) => {
-              return <ProductItem key={_product.id} {..._product} />;
-            })}
+            {isLoading && <IsLoading />}
+            {isError && <IsError />}
+            {data?.pages &&
+              data?.pages.map((_product: any) =>
+                _product?.data.results.map((_product: any) => {
+                  return <ProductItem key={_product.id} {..._product} />;
+                })
+              )}
+            <div className="w-full" ref={ref}>
+              {hasNextPage && <IsLoadingProducts />}
+            </div>
           </div>
           <aside className="hidden desk:block rounded-lg sticky top-213px desklg:top-217px my-7 w-1/4 h-500px bg-heading"></aside>
         </section>

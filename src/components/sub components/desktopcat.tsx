@@ -21,7 +21,7 @@ const DesktopCategory = ({ name, subcategories }: any) => {
           <i className="fa-solid fa-angle-left mr-1 text-xs"></i>
         </div>
         {showSubCat && (
-          <ul className="absolute flex flex-col items-start flex-wrap-reverse left-0 top-0 h-full w-2/3 cursor-default bg-white px-4 text-right leading-9 shadow-md">
+          <ul className="absolute flex flex-col items-start overflow-auto flex-wrap-reverse left-1 top-0 h-full w-2/3 cursor-default bg-white px-4 text-right leading-9 shadow-md">
             {subcategories.map((_subCategories: any) => {
               return (
                 <DesktopSubCategory

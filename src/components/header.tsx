@@ -118,28 +118,14 @@ const Header = () => {
                     <span className="mr-1">ریال</span>
                   </span>
                 </div>
-                {showCom && (
-                  <ComModal2 onClose={() => setShowCom(false)} />
-                )}
-                {showFav && (
-                  <FavModal2 onClose={() => setShowFav(false)} />
-                )}
+                {showCom && <ComModal2 onClose={() => setShowCom(false)} />}
+                {showFav && <FavModal2 onClose={() => setShowFav(false)} />}
                 {showCart && <CartModal2 onClose={() => setShowCart(false)} />}
               </div>
             </div>
           </div>
         </div>
         <Navbar />
-        {/* {showCom &&
-          createPortal(
-            <ComModal2 open={showCom} onClose={() => setShowCom(false)} />,
-            document.body
-          )} */}
-        {/* {showFav &&
-          createPortal(
-            <FavModal2 open={showFav} onClose={() => setShowFav(false)} />,
-            document.body
-          )} */}
       </header>
     </>
   );
