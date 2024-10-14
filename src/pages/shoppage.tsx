@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import MobileMenu from "../components/mobilemenu";
