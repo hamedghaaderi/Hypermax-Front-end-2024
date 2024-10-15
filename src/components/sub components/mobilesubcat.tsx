@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-const MobileSubCategory = ({ name }: any) => {
+const MobileSubCategory = ({ name, id }: any) => {
   return (
     <>
       <li className="leading-8 text-heading text-sm transition-colors duration-300 hover:text-primary">
-        <Link to="/">{name}</Link>
+        <Link to={"/category/" + id}>{name}</Link>
       </li>
     </>
   );
