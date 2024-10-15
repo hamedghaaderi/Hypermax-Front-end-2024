@@ -9,6 +9,7 @@ interface ICartModal {
 
 const CartModal = ({ onClose, open }: ICartModal) => {
   const { products, invoice } = useBasket((state: any) => state);
+  const { removeAll } = useBasket((state: any) => state.action);
   open && (document.body.style.overflow = "hidden");
   let totalCart = 0;
   products.map((_product: any) => {
@@ -37,7 +38,7 @@ const CartModal = ({ onClose, open }: ICartModal) => {
           <div className="w-full flex mb-4 flex-row items-center justify-between">
             <button
               onClick={handleClose}
-              className="bg-border self-start w-9 h-9 rounded-full flex flex-row items-center justify-center transition-colors duration-300 text-heading hover:bg-primary hover:text-white"
+              className="bg-border mr-3 self-start w-9 h-9 rounded-full flex flex-row items-center justify-center transition-colors duration-300 text-heading hover:bg-primary hover:text-white"
             >
               <i className="fa-solid fa-xmark"></i>
             </button>
@@ -64,16 +65,32 @@ const CartModal = ({ onClose, open }: ICartModal) => {
             })}
           </div>
           <div className="flex mt-4 flex-row w-full h-12 items-center justify-between">
-            <Link
+            <div
               className={
                 products.length === 0
-                  ? "w-full pointer-events-none opacity-85 bg-primary h-full rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all"
-                  : "w-1/2 bg-primary h-full rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all"
+                  ? "w-full h-full flex flex-row items-center justify-between duration-300 transition-all"
+                  : "w-1/2 h-full flex flex-row items-center justify-between duration-300 transition-all"
               }
-              to="/"
             >
-              برو به تسویه حساب
-            </Link>
+              <Link
+                className={
+                  products.length === 0
+                    ? "w-full text-sm tablet:text-base pointer-events-none opacity-85 bg-primary h-full rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all"
+                    : "w-4/5 text-sm tablet:text-base bg-primary h-full rounded-l-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all"
+                }
+                to="/"
+              >
+                برو به تسویه حساب
+              </Link>
+              {products.length !== 0 && (
+                <button
+                  onClick={() => removeAll()}
+                  className="w-[19%] bg-primary h-full ml-1 flex items-center justify-center rounded-r-xl flex-row-reverse hover:opacity-85 duration-300 transition-all"
+                >
+                  <i className="fa-solid fa-trash-can text-white text-sm tablet:text-base"></i>
+                </button>
+              )}
+            </div>
             {products.length !== 0 && (
               <div className="flex flex-col items-end pr-2 justify-between cursor-default w-1/2 text-text">
                 <span className="text-sm">مجموع</span>

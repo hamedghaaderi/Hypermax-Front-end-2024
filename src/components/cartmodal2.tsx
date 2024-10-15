@@ -8,6 +8,7 @@ interface IFavModal2 {
 
 const CartModal2 = ({ onClose }: IFavModal2) => {
   const { products } = useBasket((state: any) => state);
+  const { removeAll } = useBasket((state: any) => state.action);
   let totalCart = 0;
   products.map((_product: any) => {
     return (totalCart += _product.quantity);
@@ -46,16 +47,32 @@ const CartModal2 = ({ onClose }: IFavModal2) => {
             return <CartItem key={_Product.id} {..._Product} />;
           })}
         </div>
-        <Link
+        <div
           className={
             products.length === 0
-              ? "w-full mt-3 h-12 pointer-events-none opacity-85 bg-primary rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
-              : "w-full mt-3 h-12 bg-primary rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
+              ? "w-full h-full flex flex-row items-center justify-between"
+              : "w-full h-full flex flex-row items-center justify-between"
           }
-          to="/"
         >
-          برو به تسویه حساب
-        </Link>
+          <Link
+            className={
+              products.length === 0
+                ? "w-full mt-3 h-12 pointer-events-none opacity-85 bg-primary rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
+                : "w-4/5 mt-3 h-12 bg-primary rounded-l-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
+            }
+            to="/"
+          >
+            برو به تسویه حساب
+          </Link>
+          {products.length !== 0 && (
+            <button
+              onClick={() => removeAll()}
+              className="w-[19%] bg-primary h-12 mt-3 ml-1 flex items-center justify-center rounded-r-xl flex-row-reverse hover:opacity-85 duration-300 transition-all"
+            >
+              <i className="fa-solid fa-trash-can text-white"></i>
+            </button>
+          )}
+        </div>
       </div>
     </>
   );

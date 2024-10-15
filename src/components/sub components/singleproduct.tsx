@@ -37,7 +37,7 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
         id="backdrop"
       >
         <div
-          className="bg-white font-shabnam w-screen desk:w-1/2 desklg:w-2/5 h-fit absolute bottom-0 desk:bottom-1/2 desk:left-1/2 desk:-translate-x-1/2 desk:translate-y-1/2 flex flex-col items-center justify-between p-4 rounded-t-3xl desk:rounded-3xl desk:border desk:border-border animate-translatein4 desk:animate-translatein5"
+          className="bg-white font-shabnam w-screen desk:w-1/2 desklg:w-2/5 h-fit absolute bottom-0 desk:bottom-1/2 desk:left-1/2 desk:-translate-x-1/2 desk:translate-y-1/2 flex flex-col items-center justify-between p-4 rounded-t-3xl desk:rounded-3xl desk:border desk:border-border animate-translatein4 desk:animate-none"
           id="container"
         >
           <div className="w-full flex mb-4 flex-row items-center justify-between">

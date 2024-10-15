@@ -35,6 +35,11 @@ const ShopPage = () => {
           <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 desk:mt-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center tablet:gap-x-9 desk:gap-x-5 desklg:gap-x-9">
             {isLoading && <IsLoading />}
             {isError && <IsError />}
+            {data?.pages[0].data.count === 0 && (
+              <div className="font-shabnam text-text cursor-default text-lg">
+                <span>!</span>هیچ محصولی یافت نشد
+              </div>
+            )}
             {data?.pages &&
               data?.pages.map((_product: any) =>
                 _product?.data.results.map((_product: any) => {

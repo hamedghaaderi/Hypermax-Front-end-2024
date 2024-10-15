@@ -68,6 +68,14 @@ const useBasket = create(
             }),
           }));
         },
+        removeAll: () => {
+          set(() => ({
+            products: [],
+            invoice: {
+              totalPrice: 0,
+            },
+          }))
+        }
       },
     }),
     {
