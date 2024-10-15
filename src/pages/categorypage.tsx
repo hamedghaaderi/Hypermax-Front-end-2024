@@ -10,11 +10,11 @@ import IsLoadingProducts from "../components/sub components/isloadingproducts";
 import IsError from "../components/sub components/iserror";
 import useOnScreen from "../hook/onscreen";
 
-const ShopPage = () => {
+const CategoryPage = () => {
   const ref = useRef<any>();
   const { isIntersecting } = useOnScreen(ref);
   const { data, fetchNextPage, isError, isLoading, hasNextPage } =
-  useInfiniteProducts();
+    useInfiniteProducts();
   useEffect(() => {
     if (isIntersecting) {
       fetchNextPage();
@@ -60,4 +60,4 @@ const ShopPage = () => {
   );
 };
 
-export default ShopPage;
+export default CategoryPage;
