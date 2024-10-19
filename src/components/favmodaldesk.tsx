@@ -5,10 +5,10 @@ interface IFavModal2 {
   onClose: () => void;
 }
 
-const FavModal2 = ({ onClose }: IFavModal2) => {
+const FavModalDesk = ({ onClose }: IFavModal2) => {
   const { favorites } = useFavorites((state: any) => state);
   const handleClose = () => {
-    document.getElementById("container")?.classList.add("animate-opacityout");
+    document.getElementById("containerFav")?.classList.add("animate-opacityout");
     setTimeout(() => {
       onClose();
     }, 280);
@@ -18,7 +18,7 @@ const FavModal2 = ({ onClose }: IFavModal2) => {
     <>
       <div
         className="bg-white border-2 border-border z-40 font-shabnam w-fit h-fit absolute top-14 left-20 flex flex-col items-center justify-between p-3 pb-4 rounded-2xl animate-opacityin before:content-triangle before:block before:absolute before:bg-white before:border-t-2 before:border-t-border before:border-l-2 before:border-l-border before:rotate-45 before:w-4 before:h-4 before:rounded before:left-8 before:-top-2"
-        id="container"
+        id="containerFav"
       >
         <div className="w-full flex mb-4 flex-row items-center justify-between">
           <button
@@ -48,4 +48,4 @@ const FavModal2 = ({ onClose }: IFavModal2) => {
   );
 };
 
-export default FavModal2;
+export default FavModalDesk;
