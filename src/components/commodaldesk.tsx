@@ -5,10 +5,10 @@ interface IFavModal2 {
   onClose: () => void;
 }
 
-const ComModal2 = ({ onClose }: IFavModal2) => {
+const ComModalDesk = ({ onClose }: IFavModal2) => {
   const { compares } = useCompares((state: any) => state);
   const handleClose = () => {
-    document.getElementById("container")?.classList.add("animate-opacityout");
+    document.getElementById("containerCom")?.classList.add("animate-opacityout");
     setTimeout(() => {
       onClose();
     }, 280);
@@ -18,7 +18,7 @@ const ComModal2 = ({ onClose }: IFavModal2) => {
     <>
       <div
         className="bg-white border-2 z-30 border-border font-shabnam w-fit h-fit absolute top-14 left-32 flex flex-col items-center justify-between p-3 pb-4 rounded-2xl animate-opacityin before:content-triangle before:block before:absolute before:bg-white before:border-t-2 before:border-t-border before:border-l-2 before:border-l-border before:rotate-45 before:w-4 before:h-4 before:rounded before:left-9 before:-top-2"
-        id="container"
+        id="containerCom"
       >
         <div className="w-full flex mb-4 flex-row items-center justify-between">
           <button
@@ -47,4 +47,4 @@ const ComModal2 = ({ onClose }: IFavModal2) => {
   );
 };
 
-export default ComModal2;
+export default ComModalDesk;

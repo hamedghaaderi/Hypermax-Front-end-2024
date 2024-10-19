@@ -1,15 +1,15 @@
 import Logo from "./sub components/logo";
 import user from "../../public/image/user.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TopHeader from "./sub components/topheader";
 import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
 import useCompares from "../store/compare";
 import Navbar from "./navbar";
 import { useState } from "react";
-import ComModal2 from "./commodal2";
-import FavModal2 from "./favmodal2";
-import CartModal2 from "./cartmodal2";
+import ComModalDesk from "./commodaldesk";
+import FavModalDesk from "./favmodaldesk";
+import CartModalDesk from "./cartmodaldesk";
 import { useForm } from "react-hook-form";
 
 const Header = () => {
@@ -129,9 +129,9 @@ const Header = () => {
                     <span className="mr-1">ریال</span>
                   </span>
                 </div>
-                {showCom && <ComModal2 onClose={() => setShowCom(false)} />}
-                {showFav && <FavModal2 onClose={() => setShowFav(false)} />}
-                {showCart && <CartModal2 onClose={() => setShowCart(false)} />}
+                {showCom && <ComModalDesk onClose={() => setShowCom(false)} />}
+                {showFav && <FavModalDesk onClose={() => setShowFav(false)} />}
+                {showCart && <CartModalDesk onClose={() => setShowCart(false)} />}
               </div>
             </div>
           </div>
