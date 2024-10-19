@@ -7,7 +7,7 @@ interface ICartModal {
   open: boolean;
 }
 
-const CartModal = ({ onClose, open }: ICartModal) => {
+const CartModalMobile = ({ onClose, open }: ICartModal) => {
   const { products, invoice } = useBasket((state: any) => state);
   const { removeAll } = useBasket((state: any) => state.action);
   open && (document.body.style.overflow = "hidden");
@@ -85,7 +85,7 @@ const CartModal = ({ onClose, open }: ICartModal) => {
               {products.length !== 0 && (
                 <button
                   onClick={() => removeAll()}
-                  className="w-[19%] bg-primary h-full ml-1 flex items-center justify-center rounded-r-xl flex-row-reverse hover:opacity-85 duration-300 transition-all"
+                  className="w-19% bg-primary h-full ml-1 flex items-center justify-center rounded-r-xl flex-row-reverse hover:opacity-85 duration-300 transition-all"
                 >
                   <i className="fa-solid fa-trash-can text-white text-sm tablet:text-base"></i>
                 </button>
@@ -107,4 +107,4 @@ const CartModal = ({ onClose, open }: ICartModal) => {
   );
 };
 
-export default CartModal;
+export default CartModalMobile;

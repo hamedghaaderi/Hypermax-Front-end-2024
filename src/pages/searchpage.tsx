@@ -49,7 +49,7 @@ const SearchPage = () => {
             {isLoading && <IsLoading />}
             {isError && <IsError />}
             {data?.pages[0].data.count === 0 && (
-              <div className="font-shabnam text-text cursor-default text-lg">
+              <div className="font-shabnam text-text cursor-default mb-36 mt-32 text-lg">
                 <span>!</span>هیچ محصولی یافت نشد
               </div>
             )}

@@ -16,7 +16,7 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
   const isExist: boolean = products.some(
     (_product: any) => _product.id === product.id
   );
-  const {subCategories}: any = useContext(categoryContext);
+  const { subCategories }: any = useContext(categoryContext);
   const subCat = subCategories.find(
     (_subCategory: any) => _subCategory.id === product.subcategory
   );
@@ -67,15 +67,17 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
                 <div className="flex flex-row-reverse items-center justify-between">
                   <span className="flex flex-row-reverse justify-between items-center text-2xl text-text cursor-default ml-3">
                     <span>
-                      {product.price *
-                        ((100 - product.discount_percentage) / 100)}
+                      {Math.round(
+                        product.price *
+                          ((100 - product.discount_percentage) / 100)
+                      )}
                     </span>
                     <span className="mr-1">ریال</span>
                   </span>
                   {product.discount_percentage !== "0.00" && (
                     <div className="cursor-default text-xs text-white bg-orange rounded-lg px-2 py-1">
                       <span className="ml-1">تخفیف</span>
-                      <span>%{product.discount_percentage}</span>
+                      <span>%{Math.round(product.discount_percentage).toFixed(1)}</span>
                     </div>
                   )}
                 </div>
