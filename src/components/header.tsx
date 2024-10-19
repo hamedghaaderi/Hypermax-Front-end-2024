@@ -11,13 +11,16 @@ import ComModal2 from "./commodal2";
 import FavModal2 from "./favmodal2";
 import CartModal2 from "./cartmodal2";
 import { useForm } from "react-hook-form";
+import LoginSignup from "./login-signup";
 
 const Header = () => {
+  const [showLog, setShowLog] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showFav, setShowFav] = useState(false);
   const [showCom, setShowCom] = useState(false);
-  const { register, getValues } = useForm<any>()
-  const navigate = useNavigate()
+  !showLog && (document.body.style.overflow = "visible");
+  const { register, getValues } = useForm<any>();
+  const navigate = useNavigate();
   const { products, invoice } = useBasket((state: any) => state);
   let totalCart = 0;
   products.map((_product: any) => {
@@ -29,11 +32,14 @@ const Header = () => {
   let totalCompares = compares.length;
   const handleKeyUp = (event: any) => {
     if (event.key === "Enter") {
-      const value = getValues("search")
-      navigate(`/search?q=${value}`)
-      event.target.value = ""
+      const value = getValues("search");
+      navigate(`/search?q=${value}`);
+      event.target.value = "";
     }
-  }
+  };
+  const handleCloseAfterLogin = () => {
+    setShowLog(false);
+  };
 
   return (
     <>
@@ -43,8 +49,8 @@ const Header = () => {
           <div className="max-w-whole w-90% desk:w-90% desklg:w-full m-auto flex flex-row-reverse items-center justify-between text-heading">
             <Logo />
             <div className="hidden desk:block">
-              <Link
-                to="/"
+              <button
+                onClick={() => setShowLog(true)}
                 className="flex desk:mr-2 desklg:mr-0 flex-row-reverse justify-between items-center cursor-pointer hover:text-primary transition-colors duration-300"
               >
                 <div className="ml-3">
@@ -57,7 +63,7 @@ const Header = () => {
                   />
                 </div>
                 <span>ورود</span>
-              </Link>
+              </button>
             </div>
             <form
               onSubmit={(e) => e.preventDefault()}
@@ -138,6 +144,13 @@ const Header = () => {
         </div>
         <Navbar />
       </header>
+      {showLog && (
+        <LoginSignup
+          open={showLog}
+          onClose={() => setShowLog(false)}
+          onCloseAfter={handleCloseAfterLogin}
+        />
+      )}
     </>
   );
 };

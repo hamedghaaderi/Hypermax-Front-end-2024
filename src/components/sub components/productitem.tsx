@@ -37,7 +37,9 @@ const ProductItem = (props: any) => {
           <div className="text-text text-center cursor-default">{name}</div>
           <div className="flex flex-row items-center justify-center cursor-default">
             <span className="flex flex-row-reverse justify-between items-center text-primary">
-              <span>{price * ((100 - discount_percentage) / 100)}</span>
+              <span>
+                {Math.round(price * ((100 - discount_percentage) / 100))}
+              </span>
               <span className="mr-1">ریال</span>
             </span>
             {discount_percentage !== "0.00" && (
@@ -86,7 +88,7 @@ const ProductItem = (props: any) => {
           {discount_percentage !== "0.00" && (
             <div className="absolute top-4 cursor-default right-4 text-xs text-white bg-orange rounded-lg px-2 py-1">
               <span className="ml-1">تخفیف</span>
-              <span>%{discount_percentage}</span>
+              <span>%{Math.round(discount_percentage).toFixed(1)}</span>
             </div>
           )}
         </div>
