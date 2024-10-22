@@ -2,7 +2,7 @@ import baseURL from "../api/config";
 import { useMutation } from "@tanstack/react-query";
 
 const useLogin = () => {
-  const { data, mutate, mutateAsync, status } = useMutation({
+  const { data, mutateAsync, status } = useMutation({
     mutationKey: ["phone_number", "OTP"],
     mutationFn: async (data) => {
       return baseURL
@@ -17,7 +17,6 @@ const useLogin = () => {
 
   return {
     data,
-    mutate,
     mutateAsync,
     status,
   };

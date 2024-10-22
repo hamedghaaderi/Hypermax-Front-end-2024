@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import useAuth from "../hook/auth";
 import useLogin from "../hook/login";
 import { useState } from "react";
+import getUserInfo from "../api/userinfo";
+import useUserData from "../store/userdata";
 
 interface ICartModal {
   onClose: () => void;
@@ -12,10 +14,10 @@ interface ICartModal {
 const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
   open && (document.body.style.overflow = "hidden");
   const [showPhone, setShowPhone] = useState(false);
+  const { addUser } = useUserData((state: any) => state.action);
   const { data: dataPhone, mutate: mutatePhone } = useAuth();
   const {
     data: dataOTP,
-    mutate: mutateOTP,
     status: statusOTP,
     mutateAsync: mutateAsyncOTP,
   } = useLogin();
@@ -34,8 +36,11 @@ const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
     mutatePhone(data);
     setShowPhone(false);
   };
-  const handleOTP: (data: any) => any = (data) => {
-    mutateOTP(data);
+  const handleOTP: (data: any) => any = async (data) => {
+    mutateAsyncOTP(data).then(async (res) => {
+      const user = await getUserInfo(res.data.token);
+      addUser(user?.data)
+    });
   };
   if (dataOTP?.status === 200) {
     document.getElementById("backdropLog")?.classList.add("animate-opacityout");
