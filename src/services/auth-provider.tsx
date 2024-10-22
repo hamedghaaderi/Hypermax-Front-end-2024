@@ -1,25 +1,30 @@
-import React, { createContext, useMemo } from "react";
-import getUserInfo from "../api/user";
-
-export const authContext = createContext([]);
+import { useEffect } from "react";
+import getUserInfo from "../api/userinfo";
+import useUserData from "../store/userdata";
 
 const AuthProvider: React.FC<{ children: React.JSX.Element }> = ({
   children,
 }) => {
-  const token = localStorage.getItem("token") ?? "";
-  const token2 = JSON.parse(token)
+  const { addUser } = useUserData((state: any) => state.action);
+  const user = async () => {
+    try {
+      const token = localStorage.getItem("token") ?? "";
+      const accessToken = JSON.parse(token);
 
-  if(token) {
-   const data = getUserInfo(token2)
-   console.log('data: ', data);
-  }
+      if (token) {
+        const user = await getUserInfo(accessToken);
+        addUser(user?.data);
+      }
+    } catch (erorr) {
+      console.log(erorr);
+    }
+  };
 
-  const memoizedValue: any = useMemo(() => ({}), []);
-  return (
-    <authContext.Provider value={memoizedValue}>
-      {children}
-    </authContext.Provider>
-  );
+  useEffect(() => {
+    user();
+  }, []);
+
+  return <>{children}</>;
 };
 
 export default AuthProvider;

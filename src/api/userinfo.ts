@@ -5,7 +5,7 @@ const getUserInfo: (token: string | null) => any = async (token) => {
     maxBodyLength: Infinity,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: `Bearer ${token}`,
+      "Authorization": `Bearer ${token}`,
     },
   }).then((res) => res);
 
