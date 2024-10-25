@@ -4,6 +4,7 @@ import { categoryContext } from "../../services/cat-provider";
 import useBasket from "../../store/basket";
 import AddRemove from "./addremove";
 import Add from "./add";
+import { Link } from "react-router-dom";
 
 interface ICartModal {
   onClose: () => void;
@@ -57,9 +58,9 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
               />
             </div>
             <div className="flex flex-col items-end gap-y-3 w-full pr-2">
-              <span className="text-primary text-sm cursor-default">
-                {subCat.name}
-              </span>
+              <Link to={"/category/" + subCat.id} className="text-primary text-sm">
+              {subCat.name}
+              </Link>
               <span className="text-text text-sm cursor-default">
                 {product.name}
               </span>
