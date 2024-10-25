@@ -20,7 +20,6 @@ const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
     status: statusPhone,
     mutate: mutatePhone,
   } = useAuth();
-  console.log("statusPhone: ", statusPhone);
   const {
     data: dataOTP,
     status: statusOTP,
@@ -129,24 +128,18 @@ const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
                   disabled={
                     (errors.phone_number &&
                       errors.phone_number.type === "minLength") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "maxLength") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "required") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "pattern") ||
+                    errors.phone_number?.type === "maxLength" ||
+                    errors.phone_number?.type === "required" ||
+                    errors.phone_number?.type === "pattern" ||
                     statusPhone === "pending"
                   }
                   type="submit"
                   className={
                     (errors.phone_number &&
                       errors.phone_number.type === "minLength") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "maxLength") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "required") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "pattern") ||
+                    errors.phone_number?.type === "maxLength" ||
+                    errors.phone_number?.type === "required" ||
+                    errors.phone_number?.type === "pattern" ||
                     statusPhone === "pending"
                       ? "bg-primary cursor-not-allowed opacity-80 transition-all duration-300 flex flex-row justify-between items-center text-white rounded-3xl p-2 pr-3"
                       : "bg-primary opacity-100 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"

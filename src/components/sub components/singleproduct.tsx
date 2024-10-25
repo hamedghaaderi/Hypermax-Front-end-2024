@@ -83,7 +83,7 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
                   )}
                 </div>
                 {product.discount_percentage !== "0.00" && (
-                  <span className="line-through text-sm text-red">
+                  <span className="line-through text-sm text-red cursor-default">
                     {Math.round(product.price)}
                   </span>
                 )}
