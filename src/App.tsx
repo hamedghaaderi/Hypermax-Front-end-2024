@@ -3,6 +3,7 @@ import HomePage from "./pages/homepage";
 import ShopPage from "./pages/shoppage";
 import SearchPage from "./pages/searchpage";
 import CategoryPage from "./pages/categorypage";
+import ProfilePage from "./pages/profilepage";
 
 const App = () => {
   const routes = useRoutes([
@@ -21,6 +22,10 @@ const App = () => {
     {
       path: "/category/:id",
       element: <CategoryPage />
+    },
+    {
+      path: "/profile",
+      element: <ProfilePage />
     },
   ]);
   return <>{routes}</>;

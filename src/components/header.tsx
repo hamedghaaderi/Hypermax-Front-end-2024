@@ -1,6 +1,6 @@
 import Logo from "./sub components/logo";
 import user from "../../public/image/user.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TopHeader from "./sub components/topheader";
 import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
@@ -12,6 +12,7 @@ import FavModalDesk from "./favmodaldesk";
 import CartModalDesk from "./cartmodaldesk";
 import { useForm } from "react-hook-form";
 import LoginSignup from "./login-signup";
+import useUserData from "../store/userdata";
 
 const Header = () => {
   const [showLog, setShowLog] = useState(false);
@@ -21,6 +22,7 @@ const Header = () => {
   !showLog && (document.body.style.overflow = "visible");
   const { register, getValues } = useForm<any>();
   const navigate = useNavigate();
+  const { isLoggedIn } = useUserData((state: any) => state);
   const { products, invoice } = useBasket((state: any) => state);
   let totalCart = 0;
   products.map((_product: any) => {
@@ -49,21 +51,39 @@ const Header = () => {
           <div className="max-w-whole w-90% desk:w-90% desklg:w-full m-auto flex flex-row-reverse items-center justify-between text-heading">
             <Logo />
             <div className="hidden desk:block">
-              <button
-                onClick={() => setShowLog(true)}
-                className="flex desk:mr-2 desklg:mr-0 flex-row-reverse justify-between items-center cursor-pointer hover:text-primary transition-colors duration-300"
-              >
-                <div className="ml-3">
-                  <img
-                    src={user}
-                    alt="user picture"
-                    height="40"
-                    width="40"
-                    className="rounded-full"
-                  />
-                </div>
-                <span>ورود</span>
-              </button>
+              {isLoggedIn ? (
+                <Link
+                  to="/profile"
+                  className="flex desk:mr-2 desklg:mr-0 flex-row-reverse justify-between items-center cursor-pointer hover:text-primary transition-colors duration-300"
+                >
+                  <div className="ml-3">
+                    <img
+                      src={user}
+                      alt="user picture"
+                      height="40"
+                      width="40"
+                      className="rounded-full"
+                    />
+                  </div>
+                  <span>داشبورد</span>
+                </Link>
+              ) : (
+                <button
+                  onClick={() => setShowLog(true)}
+                  className="flex desk:mr-2 desklg:mr-0 flex-row-reverse justify-between items-center cursor-pointer hover:text-primary transition-colors duration-300"
+                >
+                  <div className="ml-3">
+                    <img
+                      src={user}
+                      alt="user picture"
+                      height="40"
+                      width="40"
+                      className="rounded-full"
+                    />
+                  </div>
+                  <span>ورود</span>
+                </button>
+              )}
             </div>
             <form
               onSubmit={(e) => e.preventDefault()}
@@ -137,7 +157,9 @@ const Header = () => {
                 </div>
                 {showCom && <ComModalDesk onClose={() => setShowCom(false)} />}
                 {showFav && <FavModalDesk onClose={() => setShowFav(false)} />}
-                {showCart && <CartModalDesk onClose={() => setShowCart(false)} />}
+                {showCart && (
+                  <CartModalDesk onClose={() => setShowCart(false)} />
+                )}
               </div>
             </div>
           </div>

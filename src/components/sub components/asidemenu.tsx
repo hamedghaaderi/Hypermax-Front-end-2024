@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { categoryContext } from "../../services/cat-provider";
 import MobileCategory from "./mobilecat";
 import LoginSignup from "../login-signup";
+import useUserData from "../../store/userdata";
 
 const AsideMenu = ({
   onClose,
@@ -14,6 +15,7 @@ const AsideMenu = ({
   open: boolean;
 }) => {
   const [showLog, setShowLog] = useState(false);
+  const { isLoggedIn } = useUserData((state: any) => state);
   const { categories }: any = useContext(categoryContext);
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
@@ -23,9 +25,9 @@ const AsideMenu = ({
       onClose();
     }, 280);
   };
-  const handleCloseAfterLogin = ()=> {
-    setShowLog(false)
-  }
+  const handleCloseAfterLogin = () => {
+    setShowLog(false);
+  };
 
   return (
     <>
@@ -46,21 +48,36 @@ const AsideMenu = ({
           <Logo />
           <div className="w-full overflow-y-auto h-full p-3 flex flex-col justify-between font-shabnam">
             <div>
-              <button
-                onClick={() => setShowLog(true)}
-                className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
-              >
-                <div className="ml-3">
-                  <img
-                    src={user}
-                    alt="user picture"
-                    height="40"
-                    width="40"
-                    className="rounded-full"
-                  />
-                </div>
-                <span className="text-white">ورود</span>
-              </button>
+              {isLoggedIn ? (
+                <Link to="/profile" className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center">
+                  <div className="ml-3">
+                    <img
+                      src={user}
+                      alt="user picture"
+                      height="40"
+                      width="40"
+                      className="rounded-full"
+                    />
+                  </div>
+                  <span className="text-white">داشبورد</span>
+                </Link>
+              ) : (
+                <button
+                  onClick={() => setShowLog(true)}
+                  className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
+                >
+                  <div className="ml-3">
+                    <img
+                      src={user}
+                      alt="user picture"
+                      height="40"
+                      width="40"
+                      className="rounded-full"
+                    />
+                  </div>
+                  <span className="text-white">ورود</span>
+                </button>
+              )}
               <div className="flex flex-col items-end justify-between mt-3">
                 <ul className="w-full">
                   {categories?.map((_categories: any) => {
@@ -128,7 +145,11 @@ const AsideMenu = ({
         </aside>
       </div>
       {showLog && (
-        <LoginSignup open={showLog} onClose={() => setShowLog(false)} onCloseAfter={handleCloseAfterLogin}/>
+        <LoginSignup
+          open={showLog}
+          onClose={() => setShowLog(false)}
+          onCloseAfter={handleCloseAfterLogin}
+        />
       )}
     </>
   );
