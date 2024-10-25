@@ -76,6 +76,7 @@ export default {
         "loading1": "Loading 0.9s linear 0.25s infinite normal forwards",
         "loading2": "Loading 0.9s linear 0.5s infinite normal forwards",
         "loadingproducts": "loadingProducts 2s cubic-bezier(0.52, 0.06, 0.32, 0.99) 0s infinite normal forwards",
+        "loadinglogin": "loadingProducts 0.75s linear 0s infinite normal forwards",
       },
       backgroundImage: {
         "newsbg": "url(../../public/image/newsletter.jpg)",

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import Logo from "./logo";
 import user from "../../../public/image/user.png";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { categoryContext } from "../../services/cat-provider";
 import MobileCategory from "./mobilecat";
+import LoginSignup from "../login-signup";
 
 const AsideMenu = ({
   onClose,
@@ -12,7 +13,8 @@ const AsideMenu = ({
   onClose: () => void;
   open: boolean;
 }) => {
-  const {categories}: any = useContext(categoryContext);
+  const [showLog, setShowLog] = useState(false);
+  const { categories }: any = useContext(categoryContext);
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
@@ -21,6 +23,9 @@ const AsideMenu = ({
       onClose();
     }, 280);
   };
+  const handleCloseAfterLogin = ()=> {
+    setShowLog(false)
+  }
 
   return (
     <>
@@ -41,8 +46,8 @@ const AsideMenu = ({
           <Logo />
           <div className="w-full overflow-y-auto h-full p-3 flex flex-col justify-between font-shabnam">
             <div>
-              <Link
-                to="/"
+              <button
+                onClick={() => setShowLog(true)}
                 className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
               >
                 <div className="ml-3">
@@ -55,7 +60,7 @@ const AsideMenu = ({
                   />
                 </div>
                 <span className="text-white">ورود</span>
-              </Link>
+              </button>
               <div className="flex flex-col items-end justify-between mt-3">
                 <ul className="w-full">
                   {categories?.map((_categories: any) => {
@@ -105,11 +110,16 @@ const AsideMenu = ({
             <div className="cursor-default flex flex-col mt-28 items-end justify-between">
               <div className="flex flex-row-reverse items-center justify-between">
                 <i className="fa-solid fa-phone-volume text-xl text-primary"></i>
-                <a href="tel:+980218889998" className="text-lg mr-3 text-text">021 888 9998</a>
+                <a href="tel:+980218889998" className="text-lg mr-3 text-text">
+                  021 888 9998
+                </a>
               </div>
               <div className="flex flex-row-reverse items-center justify-between">
                 <i className="fa-solid fa-envelope text-xl text-primary"></i>
-                <a href="mailto:support@hyper-max.ir" className="text-lg mr-3 text-text">
+                <a
+                  href="mailto:support@hyper-max.ir"
+                  className="text-lg mr-3 text-text"
+                >
                   support@hyper-max.ir
                 </a>
               </div>
@@ -117,6 +127,9 @@ const AsideMenu = ({
           </div>
         </aside>
       </div>
+      {showLog && (
+        <LoginSignup open={showLog} onClose={() => setShowLog(false)} onCloseAfter={handleCloseAfterLogin}/>
+      )}
     </>
   );
 };

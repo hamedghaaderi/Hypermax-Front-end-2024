@@ -5,9 +5,9 @@ import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
 import useCompares from "../store/compare";
 import { createPortal } from "react-dom";
-import FavModal from "./favmodal";
-import ComModal from "./commodal";
-import CartModal from "./cartmodal";
+import FavModalMobile from "./favmodalmobile";
+import ComModalMobile from "./commodalmobile";
+import CartModalMobile from "./cartmodalmobile";
 
 const MobileMenu = () => {
   const [showFav, setShowFav] = useState(false);
@@ -89,17 +89,17 @@ const MobileMenu = () => {
         )}
         {showFav &&
           createPortal(
-            <FavModal open={showFav} onClose={() => setShowFav(false)} />,
+            <FavModalMobile open={showFav} onClose={() => setShowFav(false)} />,
             document.body
           )}
         {showCom &&
           createPortal(
-            <ComModal open={showCom} onClose={() => setShowCom(false)} />,
+            <ComModalMobile open={showCom} onClose={() => setShowCom(false)} />,
             document.body
           )}
         {showCart &&
           createPortal(
-            <CartModal open={showCart} onClose={() => setShowCart(false)} />,
+            <CartModalMobile open={showCart} onClose={() => setShowCart(false)} />,
             document.body
           )}
       </div>
