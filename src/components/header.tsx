@@ -13,13 +13,18 @@ import CartModalDesk from "./cartmodaldesk";
 import { useForm } from "react-hook-form";
 import LoginSignup from "./login-signup";
 import useUserData from "../store/userdata";
+import useLoginSignup from "../store/loginsignup";
+import { createPortal } from "react-dom";
 
 const Header = () => {
-  const [showLog, setShowLog] = useState(false);
+  const { show } = useLoginSignup((state: any) => state);
+  const { showLoginSignup, showClose } = useLoginSignup(
+    (state: any) => state.action
+  );
   const [showCart, setShowCart] = useState(false);
   const [showFav, setShowFav] = useState(false);
   const [showCom, setShowCom] = useState(false);
-  !showLog && (document.body.style.overflow = "visible");
+  !show && (document.body.style.overflow = "visible");
   const { register, getValues } = useForm<any>();
   const navigate = useNavigate();
   const { isLoggedIn } = useUserData((state: any) => state);
@@ -38,9 +43,6 @@ const Header = () => {
       navigate(`/search?q=${value}`);
       event.target.value = "";
     }
-  };
-  const handleCloseAfterLogin = () => {
-    setShowLog(false);
   };
 
   return (
@@ -69,7 +71,10 @@ const Header = () => {
                 </Link>
               ) : (
                 <button
-                  onClick={() => setShowLog(true)}
+                  onClick={() => {
+                    showLoginSignup();
+                    showClose();
+                  }}
                   className="flex desk:mr-2 desklg:mr-0 flex-row-reverse justify-between items-center cursor-pointer hover:text-primary transition-colors duration-300"
                 >
                   <div className="ml-3">
@@ -166,13 +171,7 @@ const Header = () => {
         </div>
         <Navbar />
       </header>
-      {showLog && (
-        <LoginSignup
-          open={showLog}
-          onClose={() => setShowLog(false)}
-          onCloseAfter={handleCloseAfterLogin}
-        />
-      )}
+      {show && createPortal(<LoginSignup />, document.body)}
     </>
   );
 };

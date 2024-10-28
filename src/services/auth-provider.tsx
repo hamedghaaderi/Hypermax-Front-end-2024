@@ -5,15 +5,18 @@ import useUserData from "../store/userdata";
 const AuthProvider: React.FC<{ children: React.JSX.Element }> = ({
   children,
 }) => {
-  const { addUser } = useUserData((state: any) => state.action);
+  const { addUpdateUser } = useUserData((state: any) => state.action);
   const user = async () => {
     try {
       const token = localStorage.getItem("token") ?? "";
-      const accessToken = JSON.parse(token);
+      let accessToken: any;
+      if (token) {
+        accessToken = JSON.parse(token);
+      }
 
       if (token) {
         const user = await getUserInfo(accessToken);
-        addUser(user?.data);
+        addUpdateUser(user?.data);
       }
     } catch (erorr) {
       console.log(erorr);

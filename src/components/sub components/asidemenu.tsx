@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import Logo from "./logo";
 import user from "../../../public/image/user.png";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { categoryContext } from "../../services/cat-provider";
 import MobileCategory from "./mobilecat";
-import LoginSignup from "../login-signup";
 import useUserData from "../../store/userdata";
+import useLoginSignup from "../../store/loginsignup";
 
 const AsideMenu = ({
   onClose,
@@ -14,7 +14,7 @@ const AsideMenu = ({
   onClose: () => void;
   open: boolean;
 }) => {
-  const [showLog, setShowLog] = useState(false);
+  const { showLoginSignup, showClose } = useLoginSignup((state: any) => state.action);
   const { isLoggedIn } = useUserData((state: any) => state);
   const { categories }: any = useContext(categoryContext);
   open && (document.body.style.overflow = "hidden");
@@ -24,9 +24,6 @@ const AsideMenu = ({
     setTimeout(() => {
       onClose();
     }, 280);
-  };
-  const handleCloseAfterLogin = () => {
-    setShowLog(false);
   };
 
   return (
@@ -49,7 +46,10 @@ const AsideMenu = ({
           <div className="w-full overflow-y-auto h-full p-3 flex flex-col justify-between font-shabnam">
             <div>
               {isLoggedIn ? (
-                <Link to="/profile" className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center">
+                <Link
+                  to="/profile"
+                  className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
+                >
                   <div className="ml-3">
                     <img
                       src={user}
@@ -63,7 +63,10 @@ const AsideMenu = ({
                 </Link>
               ) : (
                 <button
-                  onClick={() => setShowLog(true)}
+                  onClick={() => {
+                    showLoginSignup();
+                    showClose();
+                  }}
                   className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
                 >
                   <div className="ml-3">
@@ -144,13 +147,6 @@ const AsideMenu = ({
           </div>
         </aside>
       </div>
-      {showLog && (
-        <LoginSignup
-          open={showLog}
-          onClose={() => setShowLog(false)}
-          onCloseAfter={handleCloseAfterLogin}
-        />
-      )}
     </>
   );
 };

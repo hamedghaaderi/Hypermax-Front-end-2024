@@ -5,9 +5,14 @@ import StaticSection from "../components/staticsection";
 import { useForm } from "react-hook-form";
 import useUserData from "../store/userdata";
 import useUpdateUser from "../hook/updateuser";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
-  const { addUser } = useUserData((state: any) => state.action);
+  const navigate = useNavigate();
+  const { user } = useUserData((state: any) => state);
+  const { addUpdateUser, removeUser } = useUserData(
+    (state: any) => state.action
+  );
   const {
     register,
     handleSubmit,
@@ -16,8 +21,12 @@ const ProfilePage = () => {
   const { status, mutateAsync } = useUpdateUser();
   const handleFormSubmit = (data: any) => {
     mutateAsync(data).then((res) => {
-      addUser(res.data);
+      addUpdateUser(res.data);
     });
+  };
+  const handleLogOut = () => {
+    removeUser(), localStorage.removeItem("token");
+    navigate("/");
   };
 
   return (
@@ -58,6 +67,7 @@ const ProfilePage = () => {
                       pattern: /(09)[0-9]/,
                     })}
                     type="text"
+                    defaultValue={user?.username}
                   />
                 </div>
                 <div className="w-full tablet:w-48% desklg:w-[23%] mt-4">
@@ -76,6 +86,7 @@ const ProfilePage = () => {
                       pattern: /^[A-Za-zآ-ی_ ]+$/,
                     })}
                     type="text"
+                    defaultValue={user?.first_name}
                   />
                 </div>
                 <div className="w-full tablet:w-48% desklg:w-[23%] mt-4">
@@ -94,6 +105,7 @@ const ProfilePage = () => {
                       required: true,
                     })}
                     type="text"
+                    defaultValue={user?.last_name}
                   />
                 </div>
                 <div className="w-full tablet:w-48% desklg:w-[23%] mt-4">
@@ -102,6 +114,7 @@ const ProfilePage = () => {
                     rows={4}
                     disabled={status === "pending"}
                     form="user-info"
+                    defaultValue={user?.address}
                     className={
                       errors.address && errors.address.type === "required"
                         ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-chalk border-2"
@@ -112,42 +125,53 @@ const ProfilePage = () => {
                   />
                 </div>
               </div>
-              <button
-                type="submit"
-                disabled={
-                  status === "pending" ||
-                  (errors.username && errors.username?.type === "pattern") ||
-                  errors.username?.type === "maxLength" ||
-                  errors.username?.type === "minLength" ||
-                  errors.username?.type === "required" ||
-                  (errors.first_name && errors.first_name.type === "pattern") ||
-                  errors.first_name?.type === "required" ||
-                  (errors.last_name && errors.last_name.type === "pattern") ||
-                  errors.last_name?.type === "required" ||
-                  (errors.address && errors.address.type === "required")
-                }
-                className={
-                  status === "pending" ||
-                  (errors.username && errors.username?.type === "pattern") ||
-                  errors.username?.type === "maxLength" ||
-                  errors.username?.type === "minLength" ||
-                  errors.username?.type === "required" ||
-                  (errors.first_name && errors.first_name.type === "pattern") ||
-                  errors.first_name?.type === "required" ||
-                  (errors.last_name && errors.last_name.type === "pattern") ||
-                  errors.last_name?.type === "required" ||
-                  (errors.address && errors.address.type === "required")
-                    ? "mt-7 text-sm bg-primary cursor-not-allowed opacity-80 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"
-                    : "mt-7 text-sm bg-primary opacity-100 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"
-                }
-              >
-                {status === "pending" ? (
-                  <div className="w-4 h-4 ml-1 rounded-full border-t-2 border-white animate-loadinglogin"></div>
-                ) : (
-                  <i className="fa-solid fa-angle-down mr-2 text-xs rotate-90"></i>
-                )}
-                <span className="ml-6">بروزرسانی</span>
-              </button>
+              <div className="flex flex-row-reverse items-center mt-7">
+                <button
+                  type="submit"
+                  disabled={
+                    status === "pending" ||
+                    (errors.username && errors.username?.type === "pattern") ||
+                    errors.username?.type === "maxLength" ||
+                    errors.username?.type === "minLength" ||
+                    errors.username?.type === "required" ||
+                    (errors.first_name &&
+                      errors.first_name.type === "pattern") ||
+                    errors.first_name?.type === "required" ||
+                    (errors.last_name && errors.last_name.type === "pattern") ||
+                    errors.last_name?.type === "required" ||
+                    (errors.address && errors.address.type === "required")
+                  }
+                  className={
+                    status === "pending" ||
+                    (errors.username && errors.username?.type === "pattern") ||
+                    errors.username?.type === "maxLength" ||
+                    errors.username?.type === "minLength" ||
+                    errors.username?.type === "required" ||
+                    (errors.first_name &&
+                      errors.first_name.type === "pattern") ||
+                    errors.first_name?.type === "required" ||
+                    (errors.last_name && errors.last_name.type === "pattern") ||
+                    errors.last_name?.type === "required" ||
+                    (errors.address && errors.address.type === "required")
+                      ? "text-sm border-2 border-primary bg-primary cursor-not-allowed opacity-80 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"
+                      : "text-sm border-2 border-primary bg-primary opacity-100 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"
+                  }
+                >
+                  {status === "pending" ? (
+                    <div className="w-4 h-4 ml-1 rounded-full border-t-2 border-white animate-loadinglogin"></div>
+                  ) : (
+                    <i className="fa-solid fa-angle-down mr-2 text-xs rotate-90"></i>
+                  )}
+                  <span className="ml-6">بروزرسانی</span>
+                </button>
+                <button
+                  onClick={handleLogOut}
+                  className="hover:bg-red hover:text-white transition-all duration-300 border-2 mr-2 tablet:mr-5 border-red rounded-3xl p-2 pr-3 bg-white text-red flex flex-row items-center justify-between"
+                >
+                  <i className="fa-solid fa-arrow-right-from-bracket text-sm"></i>
+                  <span className="ml-6 text-sm">خروج از حساب کاربری</span>
+                </button>
+              </div>
             </form>
           </div>
         </section>

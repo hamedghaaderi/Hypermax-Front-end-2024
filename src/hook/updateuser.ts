@@ -3,7 +3,10 @@ import { useMutation } from "@tanstack/react-query";
 
 const useUpdateUser = () => {
   const token = localStorage.getItem("token") ?? "";
-  const accessToken = JSON.parse(token);
+  let accessToken: any;
+  if (token) {
+    accessToken = JSON.parse(token);
+  }
   const { mutateAsync, status } = useMutation({
     mutationKey: ["update-user"],
     mutationFn: async (data) => {
