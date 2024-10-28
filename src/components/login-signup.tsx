@@ -4,23 +4,20 @@ import useLogin from "../hook/login";
 import { useState } from "react";
 import getUserInfo from "../api/userinfo";
 import useUserData from "../store/userdata";
+import useLoginSignup from "../store/loginsignup";
+import Alert from "./sub components/alert";
 
-interface ICartModal {
-  onClose: () => void;
-  onCloseAfter: () => void;
-  open: boolean;
-}
-
-const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
-  open && (document.body.style.overflow = "hidden");
+const LoginSignup = () => {
+  const { show, showClose } = useLoginSignup((state: any) => state);
+  const { hiddenLoginSignup } = useLoginSignup((state: any) => state.action);
+  show && (document.body.style.overflow = "hidden");
   const [showPhone, setShowPhone] = useState(false);
-  const { addUser } = useUserData((state: any) => state.action);
+  const { addUpdateUser } = useUserData((state: any) => state.action);
   const {
     data: dataPhone,
     status: statusPhone,
     mutate: mutatePhone,
   } = useAuth();
-  console.log("statusPhone: ", statusPhone);
   const {
     data: dataOTP,
     status: statusOTP,
@@ -34,7 +31,7 @@ const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
   const handleClose = () => {
     document.getElementById("backdropLog")?.classList.add("animate-opacityout");
     setTimeout(() => {
-      onClose();
+      hiddenLoginSignup();
     }, 280);
   };
   const handlePhone: (data: any) => any = (data) => {
@@ -44,14 +41,14 @@ const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
   const handleOTP: (data: any) => any = async (data) => {
     mutateAsyncOTP(data).then(async (res) => {
       const user = await getUserInfo(res.data.token);
-      addUser(user?.data);
+      addUpdateUser(user?.data);
     });
   };
   if (dataOTP?.status === 200) {
     document.getElementById("backdropLog")?.classList.add("animate-opacityout");
     localStorage.setItem("token", JSON.stringify(dataOTP?.data.token));
     setTimeout(() => {
-      onCloseAfter();
+      hiddenLoginSignup();
     }, 280);
   }
 
@@ -67,13 +64,21 @@ const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
         >
           {(dataPhone?.status !== 200 || showPhone) && (
             <>
-              <div className="w-full flex mb-4 flex-row items-center justify-between">
-                <button
-                  onClick={handleClose}
-                  className="bg-border mr-3 self-start w-9 h-9 rounded-full flex flex-row items-center justify-center transition-colors duration-300 text-heading hover:bg-primary hover:text-white"
-                >
-                  <i className="fa-solid fa-xmark"></i>
-                </button>
+              <div
+                className={
+                  showClose
+                    ? "w-full flex mb-4 flex-row items-center justify-between"
+                    : "w-full flex mb-4 flex-row items-center justify-end"
+                }
+              >
+                {showClose && (
+                  <button
+                    onClick={handleClose}
+                    className="bg-border mr-3 self-start w-9 h-9 rounded-full flex flex-row items-center justify-center transition-colors duration-300 text-heading hover:bg-primary hover:text-white"
+                  >
+                    <i className="fa-solid fa-xmark"></i>
+                  </button>
+                )}
                 <div className="flex items-center justify-center">
                   <span className="text-text pr-3 cursor-default">
                     ورود یا ثبت نام
@@ -129,24 +134,18 @@ const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
                   disabled={
                     (errors.phone_number &&
                       errors.phone_number.type === "minLength") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "maxLength") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "required") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "pattern") ||
+                    errors.phone_number?.type === "maxLength" ||
+                    errors.phone_number?.type === "required" ||
+                    errors.phone_number?.type === "pattern" ||
                     statusPhone === "pending"
                   }
                   type="submit"
                   className={
                     (errors.phone_number &&
                       errors.phone_number.type === "minLength") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "maxLength") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "required") ||
-                    (errors.phone_number &&
-                      errors.phone_number.type === "pattern") ||
+                    errors.phone_number?.type === "maxLength" ||
+                    errors.phone_number?.type === "required" ||
+                    errors.phone_number?.type === "pattern" ||
                     statusPhone === "pending"
                       ? "bg-primary cursor-not-allowed opacity-80 transition-all duration-300 flex flex-row justify-between items-center text-white rounded-3xl p-2 pr-3"
                       : "bg-primary opacity-100 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"
@@ -212,42 +211,35 @@ const LoginSignup = ({ onClose, open, onCloseAfter }: ICartModal) => {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-row-reverse items-center justify-between w-full">
-                  <button
-                    disabled={
-                      (errors.otp && errors.otp.type === "minLength") ||
-                      (errors.otp && errors.otp.type === "maxLength") ||
-                      (errors.otp && errors.otp.type === "required") ||
-                      statusOTP === "pending"
-                    }
-                    type="submit"
-                    className={
-                      (errors.otp && errors.otp.type === "minLength") ||
-                      (errors.otp && errors.otp.type === "maxLength") ||
-                      (errors.otp && errors.otp.type === "required") ||
-                      statusOTP === "pending"
-                        ? "bg-primary cursor-not-allowed opacity-80 transition-all duration-300 flex flex-row justify-between items-center text-white rounded-3xl p-2 pr-3"
-                        : "bg-primary opacity-100 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"
-                    }
-                  >
-                    {statusOTP === "pending" ? (
-                      <div className="w-4 h-4 ml-1 rounded-full border-t-2 border-white animate-loadinglogin"></div>
-                    ) : (
-                      <i className="fa-solid fa-angle-down mr-2 text-xs rotate-90"></i>
-                    )}
-                    <span className="text-sm ml-4">ورود به سایت</span>
-                  </button>
-                  {statusOTP === "error" && (
-                    <div className="px-2 py-1 text-white bg-red rounded-xl flex fex-row items-center">
-                      <i className="fa-solid fa-circle-exclamation"></i>
-                      <span className="ml-2">کد وارد شده صحیح نیست</span>
-                    </div>
+                <button
+                  disabled={
+                    (errors.otp && errors.otp.type === "minLength") ||
+                    (errors.otp && errors.otp.type === "maxLength") ||
+                    (errors.otp && errors.otp.type === "required") ||
+                    statusOTP === "pending"
+                  }
+                  type="submit"
+                  className={
+                    (errors.otp && errors.otp.type === "minLength") ||
+                    (errors.otp && errors.otp.type === "maxLength") ||
+                    (errors.otp && errors.otp.type === "required") ||
+                    statusOTP === "pending"
+                      ? "bg-primary cursor-not-allowed opacity-80 transition-all duration-300 flex flex-row justify-between items-center text-white rounded-3xl p-2 pr-3"
+                      : "bg-primary opacity-100 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"
+                  }
+                >
+                  {statusOTP === "pending" ? (
+                    <div className="w-4 h-4 ml-1 rounded-full border-t-2 border-white animate-loadinglogin"></div>
+                  ) : (
+                    <i className="fa-solid fa-angle-down mr-2 text-xs rotate-90"></i>
                   )}
-                </div>
+                  <span className="text-sm ml-4">ورود به سایت</span>
+                </button>
               </form>
             </>
           )}
         </div>
+        {statusOTP === "error" && <Alert message="کد وارد شده صحیح نیست" />}
       </div>
     </>
   );
