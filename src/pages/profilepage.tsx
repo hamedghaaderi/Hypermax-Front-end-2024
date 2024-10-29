@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import useUserData from "../store/userdata";
 import useUpdateUser from "../hook/updateuser";
 import { useNavigate } from "react-router-dom";
+import Alert from "../components/sub components/alert";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -55,13 +56,11 @@ const ProfilePage = () => {
                       (errors.username &&
                         errors.username?.type === "pattern") ||
                       errors.username?.type === "maxLength" ||
-                      errors.username?.type === "minLength" ||
-                      errors.username?.type === "required"
+                      errors.username?.type === "minLength"
                         ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-chalk border-2"
                         : "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-primary text-right border-chalk border-2"
                     }
                     {...register("username", {
-                      required: true,
                       maxLength: 11,
                       minLength: 11,
                       pattern: /(09)[0-9]/,
@@ -75,14 +74,11 @@ const ProfilePage = () => {
                   <input
                     disabled={status === "pending"}
                     className={
-                      (errors.first_name &&
-                        errors.first_name.type === "pattern") ||
-                      errors.first_name?.type === "required"
+                      errors.first_name && errors.first_name.type === "pattern"
                         ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-chalk border-2"
                         : "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-primary text-right border-chalk border-2"
                     }
                     {...register("first_name", {
-                      required: true,
                       pattern: /^[A-Za-zآ-ی_ ]+$/,
                     })}
                     type="text"
@@ -94,15 +90,12 @@ const ProfilePage = () => {
                   <input
                     disabled={status === "pending"}
                     className={
-                      (errors.last_name &&
-                        errors.last_name.type === "pattern") ||
-                      errors.last_name?.type === "required"
+                      errors.last_name && errors.last_name.type === "pattern"
                         ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-chalk border-2"
                         : "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-primary text-right border-chalk border-2"
                     }
                     {...register("last_name", {
                       pattern: /^[A-Za-zآ-ی_ ]+$/,
-                      required: true,
                     })}
                     type="text"
                     defaultValue={user?.last_name}
@@ -115,12 +108,8 @@ const ProfilePage = () => {
                     disabled={status === "pending"}
                     form="user-info"
                     defaultValue={user?.address}
-                    className={
-                      errors.address && errors.address.type === "required"
-                        ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-chalk border-2"
-                        : "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-primary text-right border-chalk border-2"
-                    }
-                    {...register("address", { required: true })}
+                    className="w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-primary text-right border-chalk border-2"
+                    {...register("address")}
                     wrap="hard"
                   />
                 </div>
@@ -133,26 +122,18 @@ const ProfilePage = () => {
                     (errors.username && errors.username?.type === "pattern") ||
                     errors.username?.type === "maxLength" ||
                     errors.username?.type === "minLength" ||
-                    errors.username?.type === "required" ||
                     (errors.first_name &&
                       errors.first_name.type === "pattern") ||
-                    errors.first_name?.type === "required" ||
-                    (errors.last_name && errors.last_name.type === "pattern") ||
-                    errors.last_name?.type === "required" ||
-                    (errors.address && errors.address.type === "required")
+                    (errors.last_name && errors.last_name.type === "pattern")
                   }
                   className={
                     status === "pending" ||
                     (errors.username && errors.username?.type === "pattern") ||
                     errors.username?.type === "maxLength" ||
                     errors.username?.type === "minLength" ||
-                    errors.username?.type === "required" ||
                     (errors.first_name &&
                       errors.first_name.type === "pattern") ||
-                    errors.first_name?.type === "required" ||
-                    (errors.last_name && errors.last_name.type === "pattern") ||
-                    errors.last_name?.type === "required" ||
-                    (errors.address && errors.address.type === "required")
+                    (errors.last_name && errors.last_name.type === "pattern")
                       ? "text-sm border-2 border-primary bg-primary cursor-not-allowed opacity-80 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"
                       : "text-sm border-2 border-primary bg-primary opacity-100 hover:opacity-85 flex flex-row justify-between transition-all duration-300 items-center text-white rounded-3xl p-2 pr-3"
                   }
@@ -172,6 +153,9 @@ const ProfilePage = () => {
                   <span className="ml-6 text-sm">خروج از حساب کاربری</span>
                 </button>
               </div>
+              {status === "error" && (
+                <Alert message="این شماره قبلا ثبت نام کرده است" />
+              )}
             </form>
           </div>
         </section>
