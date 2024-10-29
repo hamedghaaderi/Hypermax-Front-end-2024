@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import logo from "../../../public/image/logo.png";
-import { categoryContext } from "../../services/cat-provider";
+import { categoryContext } from "../../services/catbrand-provider";
 import useBasket from "../../store/basket";
 import AddRemove from "./addremove";
 import Add from "./add";
