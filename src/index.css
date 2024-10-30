@@ -95,6 +95,22 @@
       bottom: 348px;
     }
   }
+  @keyframes translateIn6 {
+    0% {
+      bottom: -403px;
+    }
+    100% {
+      bottom: 0;
+    }
+  }
+  @keyframes translateOut6 {
+    0% {
+      bottom: 0;
+    }
+    100% {
+      bottom: -403px;
+    }
+  }
   @keyframes Loading {
     0% {
       transform: scale(0.22);

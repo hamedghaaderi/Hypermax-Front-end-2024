@@ -24,10 +24,10 @@ const DesktopFilter = () => {
     const minInput: any = document.getElementsByName("min_input");
     maxInput[0].value = "";
     minInput[0].value = "";
-    errors.min_input = undefined
-    errors.max_input = undefined
+    errors.min_input = undefined;
+    errors.max_input = undefined;
   };
-  
+
   return (
     <>
       <aside className="hidden font-shabnam desk:block rounded-lg sticky top-213px desklg:top-217px my-7 w-1/4 h-fit bg-white p-5">
@@ -43,7 +43,9 @@ const DesktopFilter = () => {
               حذف همه
             </button>
           )}
-          <h3 className="cursor-default text-primary text-base desklg:text-xl">فیلتر محصولات</h3>
+          <h3 className="cursor-default text-primary text-base desklg:text-xl">
+            فیلتر محصولات
+          </h3>
         </div>
         <div className="w-full flex flex-col items-end justify-between">
           <div className="w-full flex flex-col items-end desklg:flex-row justify-between desklg:items-center mt-3 desklg:mt-5">
@@ -98,7 +100,7 @@ const DesktopFilter = () => {
               </span>
             </div>
             {showBrands && (
-              <div className="w-full cursor-default h-36 absolute bottom-11 right-0 bg-chalk rounded-xl p-3">
+              <div className="w-full border border-border cursor-default h-36 absolute bottom-11 right-0 bg-chalk rounded-xl p-3">
                 <div className="w-full h-full overflow-scroll flex flex-col items-end">
                   {brands?.map((_brand: any) => {
                     return (
@@ -132,7 +134,7 @@ const DesktopFilter = () => {
               </span>
             </div>
             {showSubCats && (
-              <div className="w-full cursor-default h-36 absolute bottom-11 right-0 bg-chalk rounded-xl p-3">
+              <div className="w-full border border-border cursor-default h-36 absolute bottom-11 right-0 bg-chalk rounded-xl p-3">
                 <div className="w-full h-full overflow-scroll flex flex-col items-end">
                   {subCategories?.map((_subCategory: any) => {
                     return (
@@ -155,11 +157,13 @@ const DesktopFilter = () => {
           <button
             disabled={
               (errors.min_input && errors.min_input.type === "pattern") ||
-              (errors.max_input && errors.max_input.type === "pattern")
+              (errors.max_input && errors.max_input.type === "pattern") ||
+              !isFilter
             }
             className={
               (errors.min_input && errors.min_input.type === "pattern") ||
-              (errors.max_input && errors.max_input.type === "pattern")
+              (errors.max_input && errors.max_input.type === "pattern") ||
+              !isFilter
                 ? "w-full bg-primary text-sm desklg:text-base text-white rounded-xl py-2 px-3 mt-3 desklg:mt-5 cursor-not-allowed opacity-80 transition-all duration-300"
                 : "w-full bg-primary text-sm desklg:text-base text-white rounded-xl py-2 px-3 mt-3 desklg:mt-5 opacity-100 hover:opacity-85 transition-all duration-300"
             }

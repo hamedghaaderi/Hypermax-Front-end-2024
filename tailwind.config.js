@@ -72,6 +72,8 @@ export default {
         "translatein4": "translateIn4 0.3s",
         "translateout4": "translateOut4 0.3s",
         "translatein5": "translateIn5 0.3s",
+        "translatein6": "translateIn6 0.3s",
+        "translateout6": "translateOut6 0.3s",
         "loading": "Loading 0.9s linear 0s infinite normal forwards",
         "loading1": "Loading 0.9s linear 0.25s infinite normal forwards",
         "loading2": "Loading 0.9s linear 0.5s infinite normal forwards",
