@@ -10,6 +10,7 @@ import IsLoadingProducts from "../components/sub components/isloadingproducts";
 import IsError from "../components/sub components/iserror";
 import useOnScreen from "../hook/onscreen";
 import { useSearchParams } from "react-router-dom";
+import DesktopFilter from "../components/sub components/desktopfilter";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -63,7 +64,7 @@ const SearchPage = () => {
               {hasNextPage && <IsLoadingProducts />}
             </div>
           </div>
-          <aside className="hidden desk:block rounded-lg sticky top-213px desklg:top-217px my-7 w-1/4 h-500px bg-heading"></aside>
+          <DesktopFilter />
         </section>
         <StaticSection />
       </main>
