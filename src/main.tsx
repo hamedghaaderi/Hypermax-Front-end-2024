@@ -26,7 +26,7 @@ createRoot(document.getElementById("root")!).render(
       <CatBrandProvider>
         <BrowserRouter>
           <App />
-          {/* <ReactQueryDevtools /> */}
+          <ReactQueryDevtools />
         </BrowserRouter>
       </CatBrandProvider>
     </AuthProvider>

@@ -11,7 +11,12 @@ const useFilter = create((set) => ({
       if (_price === "") {
         return set((_oldFilter: any) => ({
           maxPrice: _price,
-          isFilter: _oldFilter.minPrice === "" ? false : true,
+          isFilter:
+            _oldFilter.minPrice === "" &&
+            _oldFilter.brand === null &&
+            _oldFilter.subCategory === null
+              ? false
+              : true,
         }));
       } else {
         return set(() => ({
@@ -24,7 +29,12 @@ const useFilter = create((set) => ({
       if (_price === "") {
         return set((_oldFilter: any) => ({
           minPrice: _price,
-          isFilter: _oldFilter.maxPrice === "" ? false : true,
+          isFilter:
+            _oldFilter.maxPrice === "" &&
+            _oldFilter.brand === null &&
+            _oldFilter.subCategory === null
+              ? false
+              : true,
         }));
       } else {
         return set(() => ({
