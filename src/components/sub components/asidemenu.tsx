@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Logo from "./logo";
 import user from "../../../public/image/user.png";
 import { useContext } from "react";
-import { categoryContext } from "../../services/cat-provider";
+import { categoryContext } from "../../services/catbrand-provider";
 import MobileCategory from "./mobilecat";
 import useUserData from "../../store/userdata";
 import useLoginSignup from "../../store/loginsignup";

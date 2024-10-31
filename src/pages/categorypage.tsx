@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import MobileMenu from "../components/mobilemenu";
@@ -9,8 +9,12 @@ import IsLoading from "../components/sub components/isloading";
 import IsLoadingProducts from "../components/sub components/isloadingproducts";
 import IsError from "../components/sub components/iserror";
 import useOnScreen from "../hook/onscreen";
+import DesktopFilter from "../components/sub components/desktopfilter";
+import { createPortal } from "react-dom";
+import MobileFilter from "../components/sub components/mobilefilter";
 
 const CategoryPage = () => {
+  const [showFilter, setShowFilter] = useState(false);
   const ref = useRef<any>();
   const { isIntersecting } = useOnScreen(ref);
   const { data, fetchNextPage, isError, isLoading, hasNextPage } =
@@ -27,7 +31,10 @@ const CategoryPage = () => {
       <main className="bg-body">
         <section className="max-w-whole m-auto relative desk:flex desk:w-90% desklg:w-full desk:flex-row">
           <div className="desk:hidden border-y border-y-border flex flex-row-reverse h-fit w-full sticky mb-9 top-88px px-7 p-2 z-10 bg-white">
-            <button className="flex items-center py-1 px-2 border border-border rounded-xl text-text font-shabnam bg-body">
+            <button
+              onClick={() => setShowFilter(true)}
+              className="flex items-center py-1 px-2 border border-border rounded-xl text-text font-shabnam bg-body"
+            >
               <i className="fa-solid fa-sliders text-xs tablet:text-sm text-primary"></i>
               <span className="text-xs tablet:text-sm ml-2">فیلتر ها</span>
             </button>
@@ -50,12 +57,20 @@ const CategoryPage = () => {
               {hasNextPage && <IsLoadingProducts />}
             </div>
           </div>
-          <aside className="hidden desk:block rounded-lg sticky top-213px desklg:top-217px my-7 w-1/4 h-500px bg-heading"></aside>
+          <DesktopFilter />
         </section>
         <StaticSection />
       </main>
       <Footer />
       <MobileMenu />
+      {showFilter &&
+        createPortal(
+          <MobileFilter
+            open={showFilter}
+            onClose={() => setShowFilter(false)}
+          />,
+          document.body
+        )}
     </>
   );
 };

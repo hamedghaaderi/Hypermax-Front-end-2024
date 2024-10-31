@@ -21,7 +21,7 @@ const Alert = ({ message }: { message: string }) => {
       {close && (
         <div
           id="alert"
-          className="p-3 animate-opacityin desk:p-4 text-white top-12 right-12 bg-red rounded-xl text-lg desk:text-xl fixed flex fex-row items-baseline"
+          className="p-3 animate-opacityin z-50 desk:p-4 text-white top-12 right-12 bg-red rounded-xl text-lg desk:text-xl fixed flex fex-row items-baseline"
         >
           <i className="fa-solid fa-circle-exclamation"></i>
           <span className="ml-5 desk:ml-8">{message}</span>
