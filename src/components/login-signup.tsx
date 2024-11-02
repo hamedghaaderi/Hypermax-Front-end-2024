@@ -5,7 +5,9 @@ import { useState } from "react";
 import getUserInfo from "../api/userinfo";
 import useUserData from "../store/userdata";
 import useLoginSignup from "../store/loginsignup";
-import Alert from "./sub components/alert";
+import ErrorAlert from "./sub components/erroralert";
+import { createPortal } from "react-dom";
+import SuccessAlert from "./sub components/successalert";
 
 const LoginSignup = () => {
   const { show, showClose } = useLoginSignup((state: any) => state);
@@ -94,7 +96,7 @@ const LoginSignup = () => {
                 </p>
                 <div className="mb-7 w-full flex flex-col justify-between items-end">
                   <input
-                    className="rounded-3xl p-3 pr-4 border-2 border-border w-full text-right outline-none transition-all duration-300 focus-within:border-primary"
+                    className="rounded-3xl p-3 pr-4 border-2 border-border w-full text-center outline-none transition-all duration-300 focus-within:border-primary"
                     type="text"
                     placeholder="شماره موبایل خود را وارد کنید"
                     disabled={statusPhone === "pending"}
@@ -173,7 +175,7 @@ const LoginSignup = () => {
                 </button>
                 <div className="flex items-center justify-center">
                   <span className="text-text pr-3 cursor-default">
-                    ورود و ثبت نام
+                    ورود یا ثبت نام
                   </span>
                 </div>
               </div>
@@ -186,7 +188,7 @@ const LoginSignup = () => {
                 </p>
                 <div className="mb-7 w-full flex flex-col justify-between items-end">
                   <input
-                    className="rounded-3xl p-3 pr-4 border-2 border-border w-full text-right outline-none transition-all duration-300 focus-within:border-primary"
+                    className="rounded-3xl p-3 pr-4 border-2 border-border w-full text-center outline-none transition-all duration-300 focus-within:border-primary"
                     type="text"
                     disabled={statusOTP === "pending"}
                     {...register("otp", {
@@ -239,7 +241,16 @@ const LoginSignup = () => {
             </>
           )}
         </div>
-        {statusOTP === "error" && <Alert message="کد وارد شده صحیح نیست" />}
+        {statusOTP === "error" &&
+          createPortal(
+            <ErrorAlert message="کد وارد شده صحیح نیست" />,
+            document.body
+          )}
+        {statusPhone === "success" &&
+          createPortal(
+            <SuccessAlert message="کد یکبار مصرف با موفقیت ارسال شد" />,
+            document.body
+          )}
       </div>
     </>
   );

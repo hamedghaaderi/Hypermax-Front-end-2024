@@ -6,7 +6,9 @@ import { useForm } from "react-hook-form";
 import useUserData from "../store/userdata";
 import useUpdateUser from "../hook/updateuser";
 import { useNavigate } from "react-router-dom";
-import Alert from "../components/sub components/alert";
+import ErrorAlert from "../components/sub components/erroralert";
+import SuccessAlert from "../components/sub components/successalert";
+import { createPortal } from "react-dom";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -57,7 +59,7 @@ const ProfilePage = () => {
                         errors.username?.type === "pattern") ||
                       errors.username?.type === "maxLength" ||
                       errors.username?.type === "minLength"
-                        ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-chalk border-2"
+                        ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-2 border-red"
                         : "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-primary text-right border-chalk border-2"
                     }
                     {...register("username", {
@@ -75,7 +77,7 @@ const ProfilePage = () => {
                     disabled={status === "pending"}
                     className={
                       errors.first_name && errors.first_name.type === "pattern"
-                        ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-chalk border-2"
+                        ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-red border-2"
                         : "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-primary text-right border-chalk border-2"
                     }
                     {...register("first_name", {
@@ -91,7 +93,7 @@ const ProfilePage = () => {
                     disabled={status === "pending"}
                     className={
                       errors.last_name && errors.last_name.type === "pattern"
-                        ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-chalk border-2"
+                        ? "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-red text-right border-red border-2"
                         : "w-full mt-2 p-2 px-5 bg-chalk rounded-2xl outline-none transition-all duration-300 focus-within:border-primary text-right border-chalk border-2"
                     }
                     {...register("last_name", {
@@ -153,9 +155,16 @@ const ProfilePage = () => {
                   <span className="ml-6 text-sm">خروج از حساب کاربری</span>
                 </button>
               </div>
-              {status === "error" && (
-                <Alert message="این شماره قبلا ثبت نام کرده است" />
-              )}
+              {status === "error" &&
+                createPortal(
+                  <ErrorAlert message="این شماره قبلا ثبت نام کرده است" />,
+                  document.body
+                )}
+              {status === "success" &&
+                createPortal(
+                  <SuccessAlert message="تغییرات با موفقیت انجام شد" />,
+                  document.body
+                )}
             </form>
           </div>
         </section>
