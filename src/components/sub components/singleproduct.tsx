@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import logo from "../../../public/image/logo.png";
 import { categoryContext } from "../../services/catbrand-provider";
 import useBasket from "../../store/basket";
 import AddRemove from "./addremove";
@@ -52,14 +51,17 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
           <div className="w-full">
             <div className="w-full h-64 flex items-center justify-center">
               <img
-                className="object-contain"
-                src={logo}
+                className="object-contain w-full h-64"
+                src={product.image}
                 alt="product picture"
               />
             </div>
             <div className="flex flex-col items-end gap-y-3 w-full pr-2">
-              <Link to={"/category/" + subCat.id} className="text-primary text-sm">
-              {subCat.name}
+              <Link
+                to={"/category/" + subCat.id}
+                className="text-primary text-sm"
+              >
+                {subCat.name}
               </Link>
               <span className="text-text text-sm cursor-default">
                 {product.name}
@@ -78,7 +80,9 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
                   {product.discount_percentage !== "0.00" && (
                     <div className="cursor-default text-xs text-white bg-orange rounded-lg px-2 py-1">
                       <span className="ml-1">تخفیف</span>
-                      <span>%{Math.round(product.discount_percentage).toFixed(1)}</span>
+                      <span>
+                        %{Math.round(product.discount_percentage).toFixed(1)}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -90,8 +94,8 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
               </div>
               {product.description !== "" && (
                 <div>
-                  <h4 className="text-heading text-xl">توضیحات</h4>
-                  <p className="text-text text-sm">{product.description}</p>
+                  <h4 className="text-heading text-xl text-right">توضیحات</h4>
+                  <p className="text-text text-sm text-right max-h-20 overflow-auto pr-2 mt-3">{product.description}</p>
                 </div>
               )}
             </div>

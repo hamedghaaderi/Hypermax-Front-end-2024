@@ -1,12 +1,11 @@
 import useCompare from "../../store/compare";
 import useFavorites from "../../store/favorites";
-import logo from "../../../public/image/logo.png";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import SingleProduct from "./singleproduct";
 
 const ProductItem = (props: any) => {
-  const { name, price, discount_percentage } = props;
+  const { name, price, discount_percentage, image } = props;
   const [showModalM, setShowModalM] = useState(false);
   !showModalM && (document.body.style.overflow = "visible");
   const { addFavorite, removeFavorite } = useFavorites(
@@ -28,8 +27,8 @@ const ProductItem = (props: any) => {
       <div className="mb-12 desk:mb-7 p-4 h-340px relative bg-white w-60 font-shabnam border-2 border-white transition-colors duration-300 hover:border-primary hover:border-2 rounded-xl">
         <div className="h-1/2 w-full flex flex-row items-center justify-center">
           <img
-            className="h-full w-full object-contain"
-            src={logo}
+            className="h-3/4  w-full object-contain"
+            src={image}
             alt="product picture"
           />
         </div>
