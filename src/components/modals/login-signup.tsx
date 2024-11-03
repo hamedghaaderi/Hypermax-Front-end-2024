@@ -1,17 +1,18 @@
 import { useForm } from "react-hook-form";
-import useAuth from "../hook/auth";
-import useLogin from "../hook/login";
+import useAuth from "../../hook/auth";
+import useLogin from "../../hook/login";
 import { useState } from "react";
-import getUserInfo from "../api/userinfo";
-import useUserData from "../store/userdata";
-import useLoginSignup from "../store/loginsignup";
-import Alert from "./sub components/alert";
+import getUserInfo from "../../api/userinfo";
+import useUserData from "../../store/userdata";
+import useLoginSignup from "../../store/loginsignup";
+import ErrorAlert from "../alerts/erroralert";
+import { createPortal } from "react-dom";
+import SuccessAlert from "../alerts/successalert";
 
 const LoginSignup = () => {
+  const [showPhone, setShowPhone] = useState(false);
   const { show, showClose } = useLoginSignup((state: any) => state);
   const { hiddenLoginSignup } = useLoginSignup((state: any) => state.action);
-  show && (document.body.style.overflow = "hidden");
-  const [showPhone, setShowPhone] = useState(false);
   const { addUpdateUser } = useUserData((state: any) => state.action);
   const {
     data: dataPhone,
@@ -28,6 +29,9 @@ const LoginSignup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<any>({ mode: "onChange" });
+
+  show && (document.body.style.overflow = "hidden");
+
   const handleClose = () => {
     document.getElementById("backdropLog")?.classList.add("animate-opacityout");
     setTimeout(() => {
@@ -44,6 +48,7 @@ const LoginSignup = () => {
       addUpdateUser(user?.data);
     });
   };
+
   if (dataOTP?.status === 200) {
     document.getElementById("backdropLog")?.classList.add("animate-opacityout");
     localStorage.setItem("token", JSON.stringify(dataOTP?.data.token));
@@ -94,7 +99,7 @@ const LoginSignup = () => {
                 </p>
                 <div className="mb-7 w-full flex flex-col justify-between items-end">
                   <input
-                    className="rounded-3xl p-3 pr-4 border-2 border-border w-full text-right outline-none transition-all duration-300 focus-within:border-primary"
+                    className="rounded-3xl p-3 pr-4 border-2 border-border w-full text-center outline-none transition-all duration-300 focus-within:border-primary"
                     type="text"
                     placeholder="شماره موبایل خود را وارد کنید"
                     disabled={statusPhone === "pending"}
@@ -173,7 +178,7 @@ const LoginSignup = () => {
                 </button>
                 <div className="flex items-center justify-center">
                   <span className="text-text pr-3 cursor-default">
-                    ورود و ثبت نام
+                    ورود یا ثبت نام
                   </span>
                 </div>
               </div>
@@ -186,7 +191,7 @@ const LoginSignup = () => {
                 </p>
                 <div className="mb-7 w-full flex flex-col justify-between items-end">
                   <input
-                    className="rounded-3xl p-3 pr-4 border-2 border-border w-full text-right outline-none transition-all duration-300 focus-within:border-primary"
+                    className="rounded-3xl p-3 pr-4 border-2 border-border w-full text-center outline-none transition-all duration-300 focus-within:border-primary"
                     type="text"
                     disabled={statusOTP === "pending"}
                     {...register("otp", {
@@ -239,7 +244,16 @@ const LoginSignup = () => {
             </>
           )}
         </div>
-        {statusOTP === "error" && <Alert message="کد وارد شده صحیح نیست" />}
+        {statusOTP === "error" &&
+          createPortal(
+            <ErrorAlert message="کد وارد شده صحیح نیست" />,
+            document.body
+          )}
+        {statusPhone === "success" &&
+          createPortal(
+            <SuccessAlert message="کد یکبار مصرف با موفقیت ارسال شد" />,
+            document.body
+          )}
       </div>
     </>
   );

@@ -4,7 +4,7 @@ import Footer from "../components/footer";
 import StaticSection from "../components/staticsection";
 import { useContext } from "react";
 import { categoryContext } from "../services/catbrand-provider";
-import MobileCategory from "../components/sub components/mobilecat";
+import MobileCategory from "../components/categories/mobilecat";
 
 const HomePage = () => {
   const {categories}: any = useContext(categoryContext);

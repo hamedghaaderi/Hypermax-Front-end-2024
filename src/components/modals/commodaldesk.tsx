@@ -1,5 +1,5 @@
-import useCompares from "../store/compare";
-import ComItem from "./sub components/comitem";
+import useCompares from "../../store/compare";
+import ComItem from "../products/comitem";
 
 interface IFavModal2 {
   onClose: () => void;

@@ -1,4 +1,4 @@
-import Logo from "./logo";
+import Logo from "../sub-components/logo";
 
 const IsLoading = () => {
     return (

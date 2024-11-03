@@ -50,6 +50,7 @@ const MobileFilter = ({ onClose, open }: ICartModal) => {
     const searchQuery = q === "" ? "" : `q=${q}&`;
     const query = `${searchQuery}${maxQuery}${minQuery}${brandQuery}${subCatQuery}`;
     setSearchParams(query);
+    handleClose()
   };
   
   useEffect(() => {
@@ -95,6 +96,7 @@ const MobileFilter = ({ onClose, open }: ICartModal) => {
                     pattern: /^[0-9]+$/,
                     onChange: (e: any) => setMinPrice(e.target.value),
                   })}
+                  value={minPrice}
                 />
               </div>
               <div className="w-48% flex flex-col items-end justify-between">
@@ -113,6 +115,7 @@ const MobileFilter = ({ onClose, open }: ICartModal) => {
                     pattern: /^[0-9]+$/,
                     onChange: (e: any) => setMaxPrice(e.target.value),
                   })}
+                  value={maxPrice}
                 />
               </div>
             </div>

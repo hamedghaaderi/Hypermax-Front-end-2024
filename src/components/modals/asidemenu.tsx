@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import Logo from "./logo";
+import Logo from "../sub-components/logo";
 import user from "../../../public/image/user.png";
 import { useContext } from "react";
 import { categoryContext } from "../../services/catbrand-provider";
-import MobileCategory from "./mobilecat";
 import useUserData from "../../store/userdata";
 import useLoginSignup from "../../store/loginsignup";
+import MobileCategory from "../categories/mobilecat";
 
 const AsideMenu = ({
   onClose,

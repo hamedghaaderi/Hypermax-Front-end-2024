@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Alert = ({ message }: { message: string }) => {
+const ErrorAlert = ({ message }: { message: string }) => {
   const [close, setClose] = useState(true);
 
   useEffect(() => {
@@ -31,4 +31,4 @@ const Alert = ({ message }: { message: string }) => {
   );
 };
 
-export default Alert;
+export default ErrorAlert;

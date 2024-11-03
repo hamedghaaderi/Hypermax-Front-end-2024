@@ -1,5 +1,5 @@
-import useFavorites from "../store/favorites";
-import FavItem from "./sub components/favitem";
+import useFavorites from "../../store/favorites";
+import FavItem from "../products/favitem";
 
 interface IFavModal2 {
   onClose: () => void;
