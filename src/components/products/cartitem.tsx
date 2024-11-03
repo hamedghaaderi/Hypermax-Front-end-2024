@@ -1,4 +1,4 @@
-import AddRemove from "./addremove";
+import AddRemove from "../sub-components/addremove";
 
 const CartItem = (props: any) => {
   const { name, price, discount_percentage, image } = props;

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import AsideMenu from "./sub components/asidemenu";
+import AsideMenu from "./modals/asidemenu";
 import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
 import useCompares from "../store/compare";
 import { createPortal } from "react-dom";
-import FavModalMobile from "./favmodalmobile";
-import ComModalMobile from "./commodalmobile";
-import CartModalMobile from "./cartmodalmobile";
+import FavModalMobile from "./modals/favmodalmobile";
+import ComModalMobile from "./modals/commodalmobile";
+import CartModalMobile from "./modals/cartmodalmobile";
 
 const MobileMenu = () => {
   const [showFav, setShowFav] = useState(false);

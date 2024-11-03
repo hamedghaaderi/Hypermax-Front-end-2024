@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { categoryContext } from "../services/catbrand-provider";
-import DesktopCategory from "./sub components/desktopcat";
+import { categoryContext } from "../../services/catbrand-provider";
+import DesktopCategory from "../categories/desktopcat";
 
 const Navbar = () => {
   const [showCat, setShowCat] = useState(false);

@@ -2,7 +2,7 @@ import useCompare from "../../store/compare";
 import useFavorites from "../../store/favorites";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import SingleProduct from "./singleproduct";
+import SingleProduct from "../modals/singleproduct";
 
 const ProductItem = (props: any) => {
   const { name, price, discount_percentage, image } = props;

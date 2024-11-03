@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { categoryContext } from "../../services/catbrand-provider";
 import useBasket from "../../store/basket";
-import AddRemove from "./addremove";
-import Add from "./add";
+import AddRemove from "../sub-components/addremove";
+import Add from "../sub-components/add";
 import { Link } from "react-router-dom";
 
 interface ICartModal {

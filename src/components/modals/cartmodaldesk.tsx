@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import useBasket from "../store/basket";
-import CartItem from "./sub components/cartitem";
+import useBasket from "../../store/basket";
+import CartItem from "../products/cartitem";
 
 interface IFavModal2 {
   onClose: () => void;

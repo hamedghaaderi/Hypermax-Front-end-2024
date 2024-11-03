@@ -5,25 +5,33 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 const useInfiniteProducts = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  const q = searchParams.get("q") ?? "";
+  const qSearch = searchParams.get("q") ?? "";
+  const qBrand = searchParams.get("brand") ?? "";
+  const qCategory = searchParams.get("cat") ?? "";
+  const qMinPrice = searchParams.get("min") ?? "";
+  const qMaxPrice = searchParams.get("max") ?? "";
   const route = location.pathname.split("/");
   const id = location.pathname.split("/").pop();
   const subCatKey = route[1] === "category" ? id : "";
-  const q1 = searchParams.get("brand") ?? "";
-  const q2 = searchParams.get("cat") ?? "";
-  const q3 = searchParams.get("min") ?? "";
-  const q4 = searchParams.get("max") ?? "";
 
-  const brandQuery = q1 === "" ? "" : `&brand=${q1}`;
-  const maxQuery = q4 === "" ? "" : `&price_max=${q4}`;
-  const minQuery = q3 === "" ? "" : `&price_min=${q3}`;
-  const catQuery = q2 === "" ? "" : `&subcategory=${q2}`;
+  const brandQuery = qBrand === "" ? "" : `&brand=${qBrand}`;
+  const maxQuery = qMaxPrice === "" ? "" : `&price_max=${qMaxPrice}`;
+  const minQuery = qMinPrice === "" ? "" : `&price_min=${qMinPrice}`;
+  const catQuery = qCategory === "" ? "" : `&subcategory=${qCategory}`;
   const subCatQuery = route[1] === "category" ? `&subcategory=${id}` : "";
-  const searchQuery = q === "" ? "" : `&search=${q}`;
+  const searchQuery = qSearch === "" ? "" : `&search=${qSearch}`;
 
   const { data, isError, isLoading, fetchNextPage, hasNextPage } =
     useInfiniteQuery({
-      queryKey: ["products", q, subCatKey, q1, q4, q3, q2],
+      queryKey: [
+        "products",
+        qSearch,
+        subCatKey,
+        qBrand,
+        qMaxPrice,
+        qMinPrice,
+        qCategory,
+      ],
       queryFn: async ({ pageParam }) => {
         return baseURL
           .get(

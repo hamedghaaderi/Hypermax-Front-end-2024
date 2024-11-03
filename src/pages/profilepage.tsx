@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import useUserData from "../store/userdata";
 import useUpdateUser from "../hook/updateuser";
 import { useNavigate } from "react-router-dom";
-import ErrorAlert from "../components/sub components/erroralert";
-import SuccessAlert from "../components/sub components/successalert";
+import ErrorAlert from "../components/alerts/erroralert";
+import SuccessAlert from "../components/alerts/successalert";
 import { createPortal } from "react-dom";
 
 const ProfilePage = () => {

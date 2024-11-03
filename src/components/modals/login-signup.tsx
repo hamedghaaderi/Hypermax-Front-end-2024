@@ -1,19 +1,18 @@
 import { useForm } from "react-hook-form";
-import useAuth from "../hook/auth";
-import useLogin from "../hook/login";
+import useAuth from "../../hook/auth";
+import useLogin from "../../hook/login";
 import { useState } from "react";
-import getUserInfo from "../api/userinfo";
-import useUserData from "../store/userdata";
-import useLoginSignup from "../store/loginsignup";
-import ErrorAlert from "./sub components/erroralert";
+import getUserInfo from "../../api/userinfo";
+import useUserData from "../../store/userdata";
+import useLoginSignup from "../../store/loginsignup";
+import ErrorAlert from "../alerts/erroralert";
 import { createPortal } from "react-dom";
-import SuccessAlert from "./sub components/successalert";
+import SuccessAlert from "../alerts/successalert";
 
 const LoginSignup = () => {
+  const [showPhone, setShowPhone] = useState(false);
   const { show, showClose } = useLoginSignup((state: any) => state);
   const { hiddenLoginSignup } = useLoginSignup((state: any) => state.action);
-  show && (document.body.style.overflow = "hidden");
-  const [showPhone, setShowPhone] = useState(false);
   const { addUpdateUser } = useUserData((state: any) => state.action);
   const {
     data: dataPhone,
@@ -30,6 +29,9 @@ const LoginSignup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<any>({ mode: "onChange" });
+
+  show && (document.body.style.overflow = "hidden");
+
   const handleClose = () => {
     document.getElementById("backdropLog")?.classList.add("animate-opacityout");
     setTimeout(() => {
@@ -46,6 +48,7 @@ const LoginSignup = () => {
       addUpdateUser(user?.data);
     });
   };
+
   if (dataOTP?.status === 200) {
     document.getElementById("backdropLog")?.classList.add("animate-opacityout");
     localStorage.setItem("token", JSON.stringify(dataOTP?.data.token));

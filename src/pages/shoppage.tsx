@@ -3,17 +3,18 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import MobileMenu from "../components/mobilemenu";
 import StaticSection from "../components/staticsection";
-import ProductItem from "../components/sub components/productitem";
+import ProductItem from "../components/products/productitem";
 import useInfiniteProducts from "../hook/infiniteproducts";
-import IsLoading from "../components/sub components/isloading";
-import IsLoadingProducts from "../components/sub components/isloadingproducts";
-import IsError from "../components/sub components/iserror";
+import IsLoading from "../components/loadings-errors/isloading";
+import IsLoadingProducts from "../components/loadings-errors/isloadingproducts";
+import IsError from "../components/loadings-errors/iserror";
 import useOnScreen from "../hook/onscreen";
-import DesktopFilter from "../components/sub components/desktopfilter";
+import DesktopFilter from "../components/filters/desktopfilter";
 import { createPortal } from "react-dom";
-import MobileFilter from "../components/sub components/mobilefilter";
+import MobileFilter from "../components/filters/mobilefilter";
 import { categoryContext } from "../services/catbrand-provider";
 import { useSearchParams } from "react-router-dom";
+import NoProducts from "../components/loadings-errors/noproducts";
 
 const ShopPage = () => {
   const [showFilter, setShowFilter] = useState(false);
@@ -76,11 +77,7 @@ const ShopPage = () => {
           <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 desk:mt-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center tablet:gap-x-9 desk:gap-x-5 desklg:gap-x-9">
             {isLoading && <IsLoading />}
             {isError && <IsError />}
-            {data?.pages[0].data.count === 0 && (
-              <div className="font-shabnam text-text cursor-default mb-36 mt-32 text-lg">
-                <span>!</span>هیچ محصولی یافت نشد
-              </div>
-            )}
+            {data?.pages[0].data.count === 0 && <NoProducts />}
             {data?.pages &&
               data?.pages.map((_product: any) =>
                 _product?.data.results.map((_product: any) => {

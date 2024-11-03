@@ -1,12 +1,12 @@
-import useCompares from "../store/compare";
-import ComItem from "./sub components/comitem";
+import useFavorites from "../../store/favorites";
+import FavItem from "../products/favitem";
 
 interface IFavModal {
   onClose: () => void;
   open: boolean;
 }
-const ComModalMobile = ({ onClose, open }: IFavModal) => {
-  const { compares } = useCompares((state: any) => state);
+const FavModalMobile = ({ onClose, open }: IFavModal) => {
+  const { favorites } = useFavorites((state: any) => state);
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
@@ -36,19 +36,19 @@ const ComModalMobile = ({ onClose, open }: IFavModal) => {
               <i className="fa-solid fa-xmark"></i>
             </button>
             <span className="text-text pr-3 cursor-default">
-              مقایسه محصولات
+              محصولات مورد علاقه
             </span>
           </div>
           <div
             className={
-              compares.length == 0
+              favorites.length == 0
                 ? "h-72 overflow-auto w-full flex items-center justify-center bg-white"
                 : "h-72 overflow-auto w-full bg-white"
             }
           >
-            {compares.length == 0 && <div>شما محصولی برای مقایسه ندارید</div>}
-            {compares.map((_compare: any) => {
-              return <ComItem key={_compare.id} {..._compare} />;
+            {favorites.length == 0 && <div>شما محصول مورد علاقه ای ندارید</div>}
+            {favorites.map((_favorite: any) => {
+              return <FavItem key={_favorite.id} {..._favorite} />;
             })}
           </div>
         </div>
@@ -57,4 +57,4 @@ const ComModalMobile = ({ onClose, open }: IFavModal) => {
   );
 };
 
-export default ComModalMobile;
+export default FavModalMobile;
