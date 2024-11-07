@@ -60,7 +60,7 @@ const CartModalDesk = ({ onClose }: IFavModal2) => {
                 ? "w-full mt-3 h-12 pointer-events-none opacity-85 bg-primary rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
                 : "w-4/5 mt-3 h-12 bg-primary rounded-l-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all "
             }
-            to="/"
+            to="/cart"
           >
             برو به تسویه حساب
           </Link>

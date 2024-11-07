@@ -6,6 +6,7 @@ import CategoryPage from "./pages/categorypage";
 import ProfilePage from "./pages/profilepage";
 import AuthGuardProvider from "./services/auth-guard";
 import NotFound from "./pages/notfound";
+import CartPage from "./pages/cartpage";
 
 const App = () => {
   return (
@@ -21,6 +22,14 @@ const App = () => {
           element={
             <AuthGuardProvider>
               <ProfilePage />
+            </AuthGuardProvider>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <AuthGuardProvider>
+              <CartPage />
             </AuthGuardProvider>
           }
         />
