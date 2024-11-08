@@ -12,7 +12,7 @@ const CartPageItem = (props: any) => {
 
   return (
     <>
-      <div className="py-6 px-7 border-b border-b-border last:border-b-0 flex flex-col-reverse items-center justify-between">
+      <div className="py-6 mx-7 border-b border-b-border last:border-b-0 flex flex-col-reverse items-center justify-between">
         <div className="w-48 h-9 tablet:w-64">
           <AddRemove
             off={price * ((100 - discount_percentage) / 100)}
