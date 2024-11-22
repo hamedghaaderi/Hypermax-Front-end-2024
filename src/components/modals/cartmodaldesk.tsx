@@ -23,7 +23,7 @@ const CartModalDesk = ({ onClose }: IFavModal2) => {
   return (
     <>
       <div
-        className="bg-white border-2 border-border z-40 font-shabnam w-fit h-fit absolute top-14 left-5 flex flex-col items-center justify-between p-3 pb-4 rounded-2xl animate-opacityin before:content-triangle before:block before:absolute before:bg-white before:border-t-2 before:border-t-border before:border-l-2 before:border-l-border before:rotate-45 before:w-4 before:h-4 before:rounded before:left-8 before:-top-2"
+        className="bg-white border-2 border-border z-40 font-shabnam w-fit h-fit absolute top-14 left-5 flex flex-col items-center justify-between p-3 pb-4 rounded-2xl animate-opacityin"
         id="containerCart"
       >
         <div className="w-full flex mb-3 flex-row items-center justify-between">

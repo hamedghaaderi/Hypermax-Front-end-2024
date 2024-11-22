@@ -1,6 +1,6 @@
 import Logo from "./sub-components/logo";
 import user from "../../public/image/user.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TopHeader from "./sub-components/topheader";
 import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
@@ -15,6 +15,7 @@ import LoginSignup from "./modals/login-signup";
 import useUserData from "../store/userdata";
 import useLoginSignup from "../store/loginsignup";
 import { createPortal } from "react-dom";
+import HeaderAccountModal from "./modals/headeraccountmodal";
 
 const Header = () => {
   const { show } = useLoginSignup((state: any) => state);
@@ -22,6 +23,7 @@ const Header = () => {
     (state: any) => state.action
   );
   const [showCart, setShowCart] = useState(false);
+  const [showAccount, setShowAccount] = useState(false);
   const [showFav, setShowFav] = useState(false);
   const [showCom, setShowCom] = useState(false);
   !show && (document.body.style.overflow = "visible");
@@ -50,13 +52,13 @@ const Header = () => {
       <header className="font-shabnam sticky z-20 top-0">
         <TopHeader />
         <div className="bg-white py-5">
-          <div className="max-w-whole w-90% desk:w-90% desklg:w-full m-auto flex flex-row-reverse items-center justify-between text-heading">
+          <div className="max-w-whole w-90% desk:w-90% desklg:w-full m-auto flex flex-row-reverse items-center relative justify-between text-heading">
             <Logo />
             <div className="hidden desk:block">
               {isLoggedIn ? (
-                <Link
-                  to="/profile"
-                  className="flex desk:mr-2 desklg:mr-0 flex-row-reverse justify-between items-center cursor-pointer hover:text-primary transition-colors duration-300"
+                <div
+                  onClick={() => setShowAccount(!showAccount)}
+                  className="flex desk:mr-2 desklg:mr-0 flex-row-reverse justify-between items-center cursor-pointer h-full hover:text-primary transition-colors duration-300"
                 >
                   <div className="ml-3">
                     <img
@@ -64,11 +66,12 @@ const Header = () => {
                       alt="user picture"
                       height="40"
                       width="40"
-                      className="rounded-full"
+                      className="rounded-full "
                     />
                   </div>
                   <span>داشبورد</span>
-                </Link>
+                  {showAccount && <HeaderAccountModal />}
+                </div>
               ) : (
                 <button
                   onClick={() => {

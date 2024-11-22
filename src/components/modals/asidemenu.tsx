@@ -47,7 +47,7 @@ const AsideMenu = ({
             <div>
               {isLoggedIn ? (
                 <Link
-                  to="/profile"
+                  to="/account"
                   className="bg-primary hover:opacity-85 transition-all duration-300 w-full rounded-xl p-3 flex flex-row-reverse justify-start items-center"
                 >
                   <div className="ml-3">
