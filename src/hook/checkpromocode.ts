@@ -2,7 +2,7 @@ import baseURL from "../api/config";
 import { useMutation } from "@tanstack/react-query";
 
 const useCheckPromoCode = () => {
-  const { data, mutate, status } = useMutation({
+  const { data, mutate } = useMutation({
     mutationKey: ["promo_code"],
     mutationFn: async (data) => {
       return baseURL
@@ -18,7 +18,6 @@ const useCheckPromoCode = () => {
   return {
     data,
     mutate,
-    status,
   };
 };
 

@@ -10,6 +10,9 @@ import useShippingPrice from "../hook/shippingprice";
 import useCheckPromoCode from "../hook/checkpromocode";
 import useCreateOrder from "../hook/createorder";
 import PersonalInfo from "../components/sub-components/personalinfo";
+import { createPortal } from "react-dom";
+import SuccessAlert from "../components/alerts/successalert";
+import ErrorAlert from "../components/alerts/erroralert";
 
 const CartPage = () => {
   const { products, orders, invoice } = useBasket((state: any) => state);
@@ -21,11 +24,7 @@ const CartPage = () => {
     getValues,
   } = useForm<any>();
 
-  const {
-    data: promoData,
-    mutate: mutateCheckPromo,
-    status: statusPromo,
-  } = useCheckPromoCode();
+  const { data: promoData, mutate: mutateCheckPromo } = useCheckPromoCode();
   const { data: shippingData } = useShippingPrice();
   const { data: createOrderData, mutate: mutateCreateOrder } = useCreateOrder();
 
@@ -87,7 +86,11 @@ const CartPage = () => {
                 <div className="flex flex-row-reverse w-full items-center justify-between pt-4">
                   <span>تخفیف</span>
                   <div className="flex flex-row-reverse items-center">
-                    <span className="ml-1">0</span>
+                    <span className="ml-1">
+                      {promoData && promoData?.data.code_status == "valid"
+                        ? Math.round(promoData?.data.savings)
+                        : 0}
+                    </span>
                     <span className="text-sm text-text">ریال</span>
                   </div>
                 </div>
@@ -104,7 +107,7 @@ const CartPage = () => {
                 />
                 <button
                   type="submit"
-                  className="p-3 bg-primary text-white rounded-xl text-sm w-1/3"
+                  className="p-3 bg-primary hover:opacity-85 transition-all duration-300 text-white rounded-xl text-sm w-1/3"
                 >
                   اعمال
                 </button>
@@ -114,8 +117,10 @@ const CartPage = () => {
                   <span className="text-xl text-right">جمع نهایی</span>
                   <div className="text-xl flex flex-row-reverse items-center">
                     <span className="ml-1">
-                      {shippingData
-                        ? invoice.totalPrice + shippingData?.data.shipping_price
+                      {shippingData || promoData
+                        ? invoice.totalPrice +
+                          shippingData?.data.shipping_price -
+                          (promoData?.data.savings ?? 0)
                         : invoice.totalPrice}
                     </span>
                     <span className="text-sm text-text">ریال</span>
@@ -138,8 +143,8 @@ const CartPage = () => {
                     user?.first_name === "" ||
                     user?.last_name === "" ||
                     user?.address === ""
-                      ? "text-white text-lg cursor-not-allowed bg-primary opacity-85 rounded-xl p-2 w-full"
-                      : "text-white text-lg bg-primary opacity-100 rounded-xl p-2 w-full"
+                      ? "text-white text-lg cursor-not-allowed hover:opacity-85 transition-all duration-300 bg-primary opacity-85 rounded-xl p-2 w-full"
+                      : "text-white text-lg bg-primary hover:opacity-85 transition-all duration-300 opacity-100 rounded-xl p-2 w-full"
                   }
                   onClick={handleCreateOrderDesk}
                 >
@@ -215,7 +220,11 @@ const CartPage = () => {
               <div className="flex flex-row-reverse w-full items-center justify-between pt-4">
                 <span>تخفیف</span>
                 <div className="flex flex-row-reverse items-center">
-                  <span className="ml-1">0</span>
+                  <span className="ml-1">
+                    {promoData && promoData?.data.code_status == "valid"
+                      ? Math.round(promoData?.data.savings)
+                      : 0}
+                  </span>
                   <span className="text-sm text-text">ریال</span>
                 </div>
               </div>
@@ -232,7 +241,7 @@ const CartPage = () => {
               />
               <button
                 type="submit"
-                className="p-3 bg-primary text-white rounded-xl text-sm w-1/3"
+                className="p-3 bg-primary hover:opacity-85 transition-all duration-300 text-white rounded-xl text-sm w-1/3"
               >
                 اعمال
               </button>
@@ -242,8 +251,10 @@ const CartPage = () => {
                 <span className="text-xl">جمع نهایی</span>
                 <div className="text-xl flex flex-row-reverse items-center">
                   <span className="ml-1">
-                    {shippingData
-                      ? invoice.totalPrice + shippingData?.data.shipping_price
+                    {shippingData || promoData
+                      ? invoice.totalPrice +
+                        shippingData?.data.shipping_price -
+                        (promoData?.data.savings ?? 0)
                       : invoice.totalPrice}
                   </span>
                   <span className="text-sm text-text">ریال</span>
@@ -266,8 +277,8 @@ const CartPage = () => {
                   user?.first_name === "" ||
                   user?.last_name === "" ||
                   user?.address === ""
-                    ? "text-white text-lg cursor-not-allowed bg-primary opacity-85 rounded-xl p-2 w-full"
-                    : "text-white text-lg bg-primary opacity-100 rounded-xl p-2 w-full"
+                    ? "text-white hover:opacity-85 transition-all duration-300 text-lg cursor-not-allowed bg-primary opacity-85 rounded-xl p-2 w-full"
+                    : "text-white hover:opacity-85 transition-all duration-300 text-lg bg-primary opacity-100 rounded-xl p-2 w-full"
                 }
                 onClick={handleCreateOrderMobile}
               >
@@ -276,6 +287,16 @@ const CartPage = () => {
             </div>
           </section>
         )}
+        {promoData?.data.code_status == "valid" &&
+          createPortal(
+            <SuccessAlert message={promoData.data.message} />,
+            document.body
+          )}
+        {promoData?.data.code_status == "invalid" &&
+          createPortal(
+            <ErrorAlert message={promoData.data.message} />,
+            document.body
+          )}
         <StaticSection />
       </main>
       <Footer />
