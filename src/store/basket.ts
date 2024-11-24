@@ -5,15 +5,19 @@ const useBasket = create(
   persist(
     (set, get: () => any) => ({
       products: [],
+      orders: [],
       invoice: {
         totalPrice: 0,
       },
       action: {
         add: (product: any, off: number) => {
-          const alreadyExist: boolean = get().products.some(
+          const alreadyExistProducts: boolean = get().products.some(
             (_product: any) => _product.id === product.id
           );
-          if (alreadyExist) {
+          const alreadyExistOrders: boolean = get().orders.some(
+            (_product: any) => _product.product_id === product.id
+          );
+          if (alreadyExistProducts || alreadyExistOrders) {
             return set((oldBasket: any) => ({
               invoice: {
                 totalPrice: oldBasket.invoice.totalPrice + off,
@@ -27,6 +31,15 @@ const useBasket = create(
                 }
                 return _product;
               }),
+              orders: oldBasket.orders.map((_product: any) => {
+                if (_product.product_id === product.id) {
+                  return {
+                    product_id: product.id,
+                    quantity: _product.quantity + 1,
+                  };
+                }
+                return _product;
+              }),
             }));
           }
 
@@ -35,20 +48,31 @@ const useBasket = create(
               totalPrice: oldBasket.invoice.totalPrice + off,
             },
             products: [...oldBasket.products, { ...product, quantity: 1 }],
+            orders: [
+              ...oldBasket.orders,
+              { product_id: product.id, quantity: 1 },
+            ],
           }));
         },
         remove: (product: any, off: number) => {
-          const shouldRemove = get().products.some(
+          const shouldRemoveProducts = get().products.some(
             (_product: any) =>
               _product.quantity === 1 && _product.id === product.id
           );
-          if (shouldRemove) {
+          const shouldRemoveOrders = get().orders.some(
+            (_product: any) =>
+              _product.quantity === 1 && _product.product_id === product.id
+          );
+          if (shouldRemoveProducts || shouldRemoveOrders) {
             return set((oldBasket: any) => ({
               invoice: {
                 totalPrice: oldBasket.invoice.totalPrice - off,
               },
               products: oldBasket.products.filter(
                 (_product: any) => _product.id !== product.id
+              ),
+              orders: oldBasket.orders.filter(
+                (_product: any) => _product.product_id !== product.id
               ),
             }));
           }
@@ -66,16 +90,26 @@ const useBasket = create(
               }
               return _product;
             }),
+            orders: oldBasket.orders.map((_product: any) => {
+              if (_product.product_id === product.id) {
+                return {
+                  product_id: product.id,
+                  quantity: _product.quantity - 1,
+                };
+              }
+              return _product;
+            }),
           }));
         },
         removeAll: () => {
           set(() => ({
             products: [],
+            orders: [],
             invoice: {
               totalPrice: 0,
             },
-          }))
-        }
+          }));
+        },
       },
     }),
     {
