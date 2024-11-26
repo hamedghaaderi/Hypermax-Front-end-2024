@@ -13,8 +13,11 @@ import PersonalInfo from "../components/sub-components/personalinfo";
 import { createPortal } from "react-dom";
 import SuccessAlert from "../components/alerts/successalert";
 import ErrorAlert from "../components/alerts/erroralert";
+import { useState } from "react";
+import Redirect from "../components/sub-components/redirect";
 
 const CartPage = () => {
+  const [showRedirect, setShowRedirect] = useState(false);
   const { products, orders, invoice } = useBasket((state: any) => state);
   const { removeAll } = useBasket((state: any) => state.action);
   const { user } = useUserData((state: any) => state);
@@ -26,7 +29,10 @@ const CartPage = () => {
 
   const { data: promoData, mutate: mutateCheckPromo } = useCheckPromoCode();
   const { data: shippingData } = useShippingPrice();
-  const { data: createOrderData, mutate: mutateCreateOrder } = useCreateOrder();
+  const {
+    data: createOrderData,
+    mutateAsync: mutateAsyncCreateOrder,
+  } = useCreateOrder();
 
   const handlePromoCodeDesk = (data: any) => {
     let requestData: any = {
@@ -48,7 +54,9 @@ const CartPage = () => {
       items: orders,
       promo_code: promo_mobile,
     };
-    mutateCreateOrder(requestData);
+    mutateAsyncCreateOrder(requestData).then(() => {
+      setShowRedirect(true);
+    });
   };
   const handleCreateOrderDesk = () => {
     const promo_desk = getValues("promo_code_desk");
@@ -56,7 +64,9 @@ const CartPage = () => {
       items: orders,
       promo_code: promo_desk,
     };
-    mutateCreateOrder(requestData);
+    mutateAsyncCreateOrder(requestData).then(() => {
+      setShowRedirect(true);
+    });
   };
 
   return (
@@ -297,6 +307,12 @@ const CartPage = () => {
             <ErrorAlert message={promoData.data.message} />,
             document.body
           )}
+        {showRedirect &&
+          createPortal(
+            <Redirect url={createOrderData?.data.url} />,
+            document.body
+          )}
+
         <StaticSection />
       </main>
       <Footer />
