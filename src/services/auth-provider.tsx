@@ -5,7 +5,10 @@ import useUserData from "../store/userdata";
 const AuthProvider: React.FC<{ children: React.JSX.Element }> = ({
   children,
 }) => {
-  const { addUpdateUser, removeFailedUser } = useUserData((state: any) => state.action);
+  const { addUpdateUser, removeFailedUser, pendingUser } = useUserData(
+    (state: any) => state.action
+  );
+
   const user = async () => {
     try {
       const token = localStorage.getItem("token") ?? "";
@@ -16,11 +19,14 @@ const AuthProvider: React.FC<{ children: React.JSX.Element }> = ({
 
       if (token) {
         const user = await getUserInfo(accessToken);
+        if (user?.status != 200 || user?.status != 403) {
+          pendingUser();
+        }
         if (user?.status == 200) {
           addUpdateUser(user?.data);
         }
         if (user?.status == 403) {
-          removeFailedUser()
+          removeFailedUser();
         }
       }
     } catch (erorr) {

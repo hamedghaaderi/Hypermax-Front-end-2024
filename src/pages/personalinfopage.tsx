@@ -7,7 +7,7 @@ import ErrorAlert from "../components/alerts/erroralert";
 import { createPortal } from "react-dom";
 
 const PersonalInfoPage = () => {
-  const { user } = useUserData((state: any) => state);
+  const { isLoggedIn, user } = useUserData((state: any) => state);
   const { addUpdateUser } = useUserData((state: any) => state.action);
   const {
     register,
@@ -23,8 +23,8 @@ const PersonalInfoPage = () => {
 
   return (
     <>
-      {user === null && <IsLoading />}
-      {user !== null && (
+      {isLoggedIn === "pending" && <IsLoading />}
+      {isLoggedIn && (
         <div className="bg-white rounded-2xl p-5 flex flex-col items-end justify-between desk:mr-7 desk:w-4/5">
           <div className="flex flex-row items-center justify-between mr-1">
             <h3 className="text-text text-lg mr-2">پروفایل شما</h3>
