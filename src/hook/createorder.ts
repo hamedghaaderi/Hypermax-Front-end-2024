@@ -13,7 +13,7 @@ const useCreateOrder = () => {
       return baseURL
         .post("create_order/", data, {
           headers: {
-            "Content-type": "application/x-www-form-urlencoded",
+            "Content-type": "application/json",
             "Authorization": `Bearer ${accessToken}`,
           },
         })
