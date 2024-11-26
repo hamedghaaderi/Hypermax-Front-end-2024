@@ -32,6 +32,7 @@ const CartPage = () => {
   const {
     data: createOrderData,
     mutateAsync: mutateAsyncCreateOrder,
+    status: createOrderStatus,
   } = useCreateOrder();
 
   const handlePromoCodeDesk = (data: any) => {
@@ -312,7 +313,11 @@ const CartPage = () => {
             <Redirect url={createOrderData?.data.url} />,
             document.body
           )}
-
+        {createOrderStatus === "error" &&
+          createPortal(
+            <ErrorAlert message="مشکلی به وجود آمده است، لطفا دوباره وارد شوید" />,
+            document.body
+          )}
         <StaticSection />
       </main>
       <Footer />

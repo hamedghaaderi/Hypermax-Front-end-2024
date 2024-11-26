@@ -7,9 +7,9 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const AccountPage = () => {
   const navigate = useNavigate();
-  const { removeUser } = useUserData((state: any) => state.action);
+  const { removeFailedUser } = useUserData((state: any) => state.action);
   const handleLogOut = () => {
-    removeUser(), localStorage.removeItem("token");
+    removeFailedUser(), localStorage.removeItem("token");
     navigate("/");
   };
 

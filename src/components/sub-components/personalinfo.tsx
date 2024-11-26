@@ -11,9 +11,12 @@ const PersonalInfo = () => {
   const { products } = useBasket((state: any) => state);
   const { user } = useUserData((state: any) => state);
   const { addUpdateUser } = useUserData((state: any) => state.action);
-  const { status: statusUpdate, mutateAsync: mutateAsyncUpdate } =
-    useUpdateUser();
-    
+  const {
+    status: statusUpdate,
+    data: updateData,
+    mutateAsync: mutateAsyncUpdate,
+  } = useUpdateUser();
+
   const {
     register: registerUserInfo,
     handleSubmit: handleSubmitUserInfo,
@@ -153,12 +156,17 @@ const PersonalInfo = () => {
               )}
               <span className="ml-6">بروزرسانی</span>
             </button>
-            {statusUpdate === "error" &&
+            {updateData?.status == 400 &&
               createPortal(
                 <ErrorAlert message="این شماره قبلا ثبت نام کرده است" />,
                 document.body
               )}
-            {statusUpdate === "success" &&
+            {updateData?.status == 403 &&
+              createPortal(
+                <ErrorAlert message="مشکلی به وجود آمده است، لطفا دوباره وارد شوید" />,
+                document.body
+              )}
+            {updateData?.status == 200 &&
               createPortal(
                 <SuccessAlert message="تغییرات با موفقیت انجام شد" />,
                 document.body

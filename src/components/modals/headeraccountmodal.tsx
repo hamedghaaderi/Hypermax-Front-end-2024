@@ -3,9 +3,9 @@ import useUserData from "../../store/userdata";
 
 const HeaderAccountModal = () => {
   const navigate = useNavigate();
-  const { removeUser } = useUserData((state: any) => state.action);
+  const { removeFailedUser } = useUserData((state: any) => state.action);
   const handleLogOut = () => {
-    removeUser(), localStorage.removeItem("token");
+    removeFailedUser(), localStorage.removeItem("token");
     navigate("/");
   };
 

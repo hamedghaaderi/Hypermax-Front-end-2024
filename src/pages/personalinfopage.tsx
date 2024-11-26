@@ -14,7 +14,7 @@ const PersonalInfoPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<any>({ mode: "onChange" });
-  const { status, mutateAsync } = useUpdateUser();
+  const { mutateAsync, data, status } = useUpdateUser();
   const handleFormSubmit = (data: any) => {
     mutateAsync(data).then((res) => {
       addUpdateUser(res.data);
@@ -151,12 +151,17 @@ const PersonalInfoPage = () => {
               <span className="ml-6">بروزرسانی</span>
             </button>
 
-            {status === "error" &&
+            {data?.status == 400 &&
               createPortal(
                 <ErrorAlert message="این شماره قبلا ثبت نام کرده است" />,
                 document.body
               )}
-            {status === "success" &&
+            {data?.status == 403 &&
+              createPortal(
+                <ErrorAlert message="مشکلی به وجود آمده است، لطفا دوباره وارد شوید" />,
+                document.body
+              )}
+            {data?.status == 200 &&
               createPortal(
                 <SuccessAlert message="تغییرات با موفقیت انجام شد" />,
                 document.body

@@ -7,7 +7,7 @@ const useUpdateUser = () => {
   if (token) {
     accessToken = JSON.parse(token);
   }
-  const { mutateAsync, status } = useMutation({
+  const { mutateAsync, status, data } = useMutation({
     mutationKey: ["update-user"],
     mutationFn: async (data) => {
       return baseURL
@@ -17,13 +17,15 @@ const useUpdateUser = () => {
             "Authorization": `Bearer ${accessToken}`,
           },
         })
-        .then((res) => res);
+        .then((res) => res)
+        .catch((error) => error.response);
     },
   });
 
   return {
     status,
     mutateAsync,
+    data,
   };
 };
 

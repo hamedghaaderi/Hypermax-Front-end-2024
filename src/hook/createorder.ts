@@ -7,14 +7,14 @@ const useCreateOrder = () => {
   if (token) {
     accessToken = JSON.parse(token);
   }
-  const { data, mutateAsync } = useMutation({
+  const { data, mutateAsync, status } = useMutation({
     mutationKey: ["create_order"],
     mutationFn: async (data) => {
       return baseURL
         .post("create_order/", data, {
           headers: {
             "Content-type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
+            "Authorization": `Bearer ${accessToken}`,
           },
         })
         .then((res) => res);
@@ -24,6 +24,7 @@ const useCreateOrder = () => {
   return {
     data,
     mutateAsync,
+    status
   };
 };
 

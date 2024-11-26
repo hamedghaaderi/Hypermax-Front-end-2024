@@ -13,7 +13,7 @@ const useUserData = create(
             isLoggedIn: true,
           }));
         },
-        removeUser: () => {
+        removeFailedUser: () => {
           return set(() => ({
             user: null,
             isLoggedIn: false,
