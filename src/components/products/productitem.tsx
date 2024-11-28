@@ -24,7 +24,7 @@ const ProductItem = (props: any) => {
   );
   return (
     <>
-      <div className="mb-12 desk:mb-7 p-4 h-340px relative bg-white w-60 font-shabnam border-2 border-white transition-colors duration-300 hover:border-primary hover:border-2 rounded-xl">
+      <div className="p-4 h-340px relative bg-white w-60 font-shabnam border-2 border-white transition-colors duration-300 hover:border-primary hover:border-2 rounded-xl flex-shrink-0">
         <div className="h-1/2 w-full flex flex-row items-center justify-center">
           <img
             className="h-3/4  w-full object-contain"

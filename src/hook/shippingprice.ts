@@ -7,7 +7,6 @@ const useShippingPrice = () => {
     queryFn: async () => {
       return baseURL.get("shipping_price/").then((res) => res);
     },
-    gcTime: Infinity,
   });
   return { data };
 };
