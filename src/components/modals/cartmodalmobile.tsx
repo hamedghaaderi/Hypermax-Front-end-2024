@@ -78,7 +78,7 @@ const CartModalMobile = ({ onClose, open }: ICartModal) => {
                     ? "w-full text-sm tablet:text-base pointer-events-none opacity-85 bg-primary h-full rounded-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all"
                     : "w-4/5 text-sm tablet:text-base bg-primary h-full rounded-l-xl flex items-center justify-center text-white hover:opacity-85 duration-300 transition-all"
                 }
-                to="/"
+                to="/cart"
               >
                 برو به تسویه حساب
               </Link>

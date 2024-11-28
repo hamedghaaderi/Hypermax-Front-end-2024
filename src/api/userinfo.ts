@@ -7,7 +7,9 @@ const getUserInfo: (token: string | null) => any = async (token) => {
       "Content-Type": "application/x-www-form-urlencoded",
       "Authorization": `Bearer ${token}`,
     },
-  }).then((res) => res);
+  })
+    .then((res) => res)
+    .catch((error) => error.response);
 
   return data;
 };

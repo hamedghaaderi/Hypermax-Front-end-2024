@@ -1,32 +1,31 @@
 import baseURL from "../api/config";
 import { useMutation } from "@tanstack/react-query";
 
-const useUpdateUser = () => {
+const useCreateOrder = () => {
   const token = localStorage.getItem("token") ?? "";
   let accessToken: any;
   if (token) {
     accessToken = JSON.parse(token);
   }
-  const { mutateAsync, status, data } = useMutation({
-    mutationKey: ["update-user"],
+  const { data, mutateAsync, status } = useMutation({
+    mutationKey: ["create_order"],
     mutationFn: async (data) => {
       return baseURL
-        .patch("user/update/", data, {
+        .post("create_order/", data, {
           headers: {
-            "Content-type": "application/x-www-form-urlencoded",
+            "Content-type": "application/json",
             "Authorization": `Bearer ${accessToken}`,
           },
         })
-        .then((res) => res)
-        .catch((error) => error.response);
+        .then((res) => res);
     },
   });
 
   return {
-    status,
-    mutateAsync,
     data,
+    mutateAsync,
+    status
   };
 };
 
-export default useUpdateUser;
+export default useCreateOrder;

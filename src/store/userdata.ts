@@ -13,7 +13,13 @@ const useUserData = create(
             isLoggedIn: true,
           }));
         },
-        removeUser: () => {
+        pendingUser: () => {
+          return set(() => ({
+            user: null,
+            isLoggedIn: "pending",
+          }));
+        },
+        removeFailedUser: () => {
           return set(() => ({
             user: null,
             isLoggedIn: false,
