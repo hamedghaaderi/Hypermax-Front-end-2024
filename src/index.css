@@ -146,3 +146,6 @@
   border-radius: 6px;
   background-color: #32b765;
 }
+.swiper-pagination-bullet-active {
+  background-color: #32b765
+}
