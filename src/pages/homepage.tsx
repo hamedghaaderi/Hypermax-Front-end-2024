@@ -5,16 +5,17 @@ import StaticSection from "../components/staticsection";
 import { useContext } from "react";
 import { categoryContext } from "../services/catbrand-provider";
 import MobileCategory from "../components/categories/mobilecat";
+import useBanners from "../hook/banners";
 
 const HomePage = () => {
-  const {categories}: any = useContext(categoryContext);
-
+  const { categories }: any = useContext(categoryContext);
+  const { isError, isLoading, data } = useBanners();
   return (
     <>
       <Header />
       <main className="bg-body font-shabnam">
         <article className="max-w-whole desk:w-90% desklg:w-full m-auto flex flex-row py-6 gap-x-5">
-          <section className="bg-black desk:w-2/3 desklg:w-3/4"></section>
+          <section className="desk:w-2/3 desklg:w-3/4"></section>
           <aside className="hidden desk:block desk:w-1/3 desklg:w-1/4 text-text border rounded-md border-border bg-white">
             <div className="p-3 bg-primary text-white rounded-md mb-1 flex flex-row items-center justify-center">
               <span>دسته بندی</span>
