@@ -17,8 +17,9 @@ import HomeSection from "../components/sub-components/homesection";
 
 const HomePage = () => {
   const { categories }: any = useContext(categoryContext);
-  const { data: productData, isError } = useInfiniteProducts();
+  const { data: productData } = useInfiniteProducts();
   const { status, data: bannersData } = useBanners();
+  
   return (
     <>
       <Header />
