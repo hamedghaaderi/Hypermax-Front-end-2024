@@ -44,10 +44,10 @@ const HomePage = () => {
                 {bannersData?.data.map((_banner: any) => {
                   return (
                     <SwiperSlide className="h-full w-full" key={_banner.id}>
-                      <Link className="inline-block h-full w-full" to={"/shop"}>
+                      <Link className="inline-block h-full w-full" to={_banner.link}>
                         <img
                           className="inline-block h-full w-full object-cover desk:rounded-md"
-                          src={_banner.link}
+                          src={_banner.image}
                           alt={_banner.title}
                         />
                       </Link>
