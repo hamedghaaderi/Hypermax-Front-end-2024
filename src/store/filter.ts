@@ -44,12 +44,24 @@ const useFilter = create((set) => ({
       }
     },
     setBrand: (_brand: any) => {
+      if (_brand === null) {
+        return set(() => ({
+          subCategory: _brand,
+          isFilter: false,
+        }));
+      }
       return set(() => ({
         brand: _brand,
         isFilter: true,
       }));
     },
     setSubCategory: (_subCategory: any) => {
+      if (_subCategory === null) {
+        return set(() => ({
+          subCategory: _subCategory,
+          isFilter: false,
+        }));
+      }
       return set(() => ({
         subCategory: _subCategory,
         isFilter: true,

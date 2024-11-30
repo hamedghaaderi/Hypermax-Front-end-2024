@@ -46,9 +46,6 @@ const Navbar = () => {
               <Link to="/shop">فروشگاه</Link>
             </li>
             <li className="ml-10 py-5 transition-colors duration-300 hover:text-primary">
-              <Link to="/">تخفیفات</Link>
-            </li>
-            <li className="ml-10 py-5 transition-colors duration-300 hover:text-primary">
               <Link to="/">راهنما</Link>
             </li>
             <li className="hover:text-primary py-5 transition-colors duration-300">

@@ -26,7 +26,7 @@ export default {
         "340px": "340px",
         "500px": "500px",
         "400px": "400px",
-        "440px": "440px"
+        "316px": "316px"
       },
       fontFamily: {
         "shabnam": "Shabnam",

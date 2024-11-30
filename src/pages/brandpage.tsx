@@ -16,7 +16,7 @@ import { useSearchParams } from "react-router-dom";
 import { categoryContext } from "../services/catbrand-provider";
 import NoProducts from "../components/loadings-errors/noproducts";
 
-const CategoryPage = () => {
+const BrandPage = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [searchParams] = useSearchParams();
   const brandQuery = searchParams.get("brand") ?? null;
@@ -106,4 +106,4 @@ const CategoryPage = () => {
   );
 };
 
-export default CategoryPage;
+export default BrandPage;

@@ -8,8 +8,8 @@ import ErrorAlert from "../alerts/erroralert";
 import SuccessAlert from "../alerts/successalert";
 
 const PersonalInfo = () => {
-  const { products, isLoggedIn } = useBasket((state: any) => state);
-  const { user } = useUserData((state: any) => state);
+  const { products } = useBasket((state: any) => state);
+  const { user, isLoading } = useUserData((state: any) => state);
   const { addUpdateUser } = useUserData((state: any) => state.action);
   const {
     status: statusUpdate,
@@ -30,8 +30,8 @@ const PersonalInfo = () => {
   };
   return (
     <>
-      {isLoggedIn === "pending" && <IsLoading />}
-      {products.length !== 0 && isLoggedIn && (
+      {isLoading && <IsLoading />}
+      {products.length !== 0 && user!== null && (
         <div className="pt-5 rounded-2xl bg-white">
           <div className="text-right px-7 pb-6 border-b-2 border-border text-text text-xl tablet:text-2xl">
             مشخصات کاربر

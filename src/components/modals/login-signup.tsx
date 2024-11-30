@@ -13,7 +13,7 @@ const LoginSignup = () => {
   const [showPhone, setShowPhone] = useState(false);
   const { show, showClose } = useLoginSignup((state: any) => state);
   const { hiddenLoginSignup } = useLoginSignup((state: any) => state.action);
-  const { addUpdateUser, removeFailedUser, pendingUser } = useUserData(
+  const { addUpdateUser, removeFailedUser, pendingTrue, pendingFalse } = useUserData(
     (state: any) => state.action
   );
   const {
@@ -46,15 +46,19 @@ const LoginSignup = () => {
   };
   const handleOTP: (data: any) => any = async (data) => {
     mutateAsyncOTP(data).then(async (res) => {
-      const user = await getUserInfo(res.data.token);
-      if (user?.status != 200 || user?.status != 403) {
-        pendingUser();
-      }
-      if (user?.status == 200) {
-        addUpdateUser(user?.data);
-      }
-      if (user?.status == 403) {
-        removeFailedUser();
+      try {
+        pendingTrue();
+        const user = await getUserInfo(res.data.token);
+        if (user?.status == 200) {
+          addUpdateUser(user?.data);
+        }
+        if (user?.status == 403) {
+          removeFailedUser();
+        }
+      } catch (error) {
+        console.log('error: ', error);
+      } finally {
+        pendingFalse();
       }
     });
   };

@@ -6,23 +6,30 @@ const useUserData = create(
     (set) => ({
       user: null,
       isLoggedIn: false,
+      isLoading: false,
       action: {
         addUpdateUser: (_user: any) => {
           return set(() => ({
             user: _user,
             isLoggedIn: true,
+            loading: false
           }));
         },
-        pendingUser: () => {
+        pendingTrue: () => {
           return set(() => ({
-            user: null,
-            isLoggedIn: "pending",
+            isLoading: true
+          }));
+        },
+        pendingFalse: () => {
+          return set(() => ({
+            isLoading: false
           }));
         },
         removeFailedUser: () => {
           return set(() => ({
             user: null,
             isLoggedIn: false,
+            loading: false
           }));
         },
       },
@@ -31,7 +38,7 @@ const useUserData = create(
       name: "isLoggedIn",
       partialize: (state: any) =>
         Object.fromEntries(
-          Object.entries(state).filter(([key]) => !["action", "user"].includes(key))
+          Object.entries(state).filter(([key]) => !["action", "user", "isLoading"].includes(key))
         ),
     }
   )
