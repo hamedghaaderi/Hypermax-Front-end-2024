@@ -7,19 +7,20 @@ import { categoryContext } from "../services/catbrand-provider";
 import MobileCategory from "../components/categories/mobilecat";
 import useBanners from "../hook/banners";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Pagination, FreeMode } from "swiper/modules";
 import { Link } from "react-router-dom";
-
-import "swiper/css";
-import "swiper/css/pagination";
 import useInfiniteProducts from "../hook/infiniteproducts";
 import HomeSection from "../components/sub-components/homesection";
 
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/free-mode";
+
 const HomePage = () => {
-  const { categories }: any = useContext(categoryContext);
+  const { categories, brands }: any = useContext(categoryContext);
   const { data: productData } = useInfiniteProducts();
   const { status, data: bannersData } = useBanners();
-  
+
   return (
     <>
       <Header />
@@ -44,7 +45,10 @@ const HomePage = () => {
                 {bannersData?.data.map((_banner: any) => {
                   return (
                     <SwiperSlide className="h-full w-full" key={_banner.id}>
-                      <Link className="inline-block h-full w-full" to={_banner.link}>
+                      <Link
+                        className="inline-block h-full w-full"
+                        to={_banner.link}
+                      >
                         <img
                           className="inline-block h-full w-full object-cover desk:rounded-md"
                           src={_banner.image}
@@ -82,6 +86,31 @@ const HomePage = () => {
         {productData?.pages && (
           <HomeSection title="محصولات ویژه" href="/shop" data={productData} />
         )}
+        <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
+        <h2 className="text-center text-text text-2xl mb-7">برند ها</h2>
+          <Swiper
+            slidesPerView="auto"
+            freeMode={true}
+            spaceBetween={20}
+            modules={[FreeMode]}
+          >
+            {brands?.map((_brand: any) => {
+              return (
+                <SwiperSlide key={_brand.id} className="w-fit">
+                  <Link to={`/brand/${_brand.id}`}>
+                    <div className="w-40 h-40 p-5 border-2 border-border rounded-xl">
+                      <img
+                        className="w-full h-full object-contain"
+                        src={_brand.image}
+                        alt={_brand.name}
+                      />
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </section>
         <StaticSection />
       </main>
       <Footer />

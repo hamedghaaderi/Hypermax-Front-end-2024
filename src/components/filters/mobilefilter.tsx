@@ -21,7 +21,7 @@ const MobileFilter = ({ onClose, open }: ICartModal) => {
     (state: any) => state
   );
   const { setMaxPrice, setMinPrice, setBrand, setSubCategory, removeAll } =
-  useFilter((state: any) => state.action);
+    useFilter((state: any) => state.action);
   const {
     register,
     formState: { errors },
@@ -50,11 +50,14 @@ const MobileFilter = ({ onClose, open }: ICartModal) => {
     const searchQuery = q === "" ? "" : `q=${q}&`;
     const query = `${searchQuery}${maxQuery}${minQuery}${brandQuery}${subCatQuery}`;
     setSearchParams(query);
-    handleClose()
+    handleClose();
   };
-  
+
   useEffect(() => {
     if (route[1] === "category") {
+      setSubCategory(null);
+    }
+    if (route[1] === "brand") {
       setSubCategory(null);
     }
   }, []);
@@ -119,36 +122,38 @@ const MobileFilter = ({ onClose, open }: ICartModal) => {
                 />
               </div>
             </div>
-            <div className="mt-4 z-30 w-full flex flex-col items-end justify-between relative">
-              <p className="text-text mr-2 cursor-default">برند ها</p>
-              <div
-                onClick={() => setShowBrands(!showBrands)}
-                className="bg-chalk cursor-pointer rounded-xl py-2 px-3 w-full mt-2 h-10 text-text flex flex-row items-center justify-between"
-              >
-                <i className="fa-solid fa-angle-down text-xs rotate-180"></i>
-                <span>{brandOBJ?.name ? brandOBJ?.name : "انتخاب"}</span>
-              </div>
-              {showBrands && (
-                <div className="w-full border border-border cursor-default h-36 absolute bottom-11 right-0 bg-chalk rounded-xl p-3">
-                  <div className="w-full h-full overflow-scroll flex flex-col items-end">
-                    {brands?.map((_brand: any) => {
-                      return (
-                        <span
-                          className="hover:text-primary z-30 cursor-pointer text-text transition-all duration-300 py-1 first:pt-0 last:pb-0 text-right pr-3 animate-opacityin"
-                          key={_brand.id}
-                          onClick={() => {
-                            setShowBrands(!showBrands);
-                            setBrand(_brand.id);
-                          }}
-                        >
-                          {_brand.name}
-                        </span>
-                      );
-                    })}
-                  </div>
+            {route[1] !== "brand" && (
+              <div className="mt-4 z-30 w-full flex flex-col items-end justify-between relative">
+                <p className="text-text mr-2 cursor-default">برند ها</p>
+                <div
+                  onClick={() => setShowBrands(!showBrands)}
+                  className="bg-chalk cursor-pointer rounded-xl py-2 px-3 w-full mt-2 h-10 text-text flex flex-row items-center justify-between"
+                >
+                  <i className="fa-solid fa-angle-down text-xs rotate-180"></i>
+                  <span>{brandOBJ?.name ? brandOBJ?.name : "انتخاب"}</span>
                 </div>
-              )}
-            </div>
+                {showBrands && (
+                  <div className="w-full border border-border cursor-default h-36 absolute bottom-11 right-0 bg-chalk rounded-xl p-3">
+                    <div className="w-full h-full overflow-scroll flex flex-col items-end">
+                      {brands?.map((_brand: any) => {
+                        return (
+                          <span
+                            className="hover:text-primary z-30 cursor-pointer text-text transition-all duration-300 py-1 first:pt-0 last:pb-0 text-right pr-3 animate-opacityin"
+                            key={_brand.id}
+                            onClick={() => {
+                              setShowBrands(!showBrands);
+                              setBrand(_brand.id);
+                            }}
+                          >
+                            {_brand.name}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
             {route[1] !== "category" && (
               <div className="mt-4 z-40 w-full flex flex-col items-end justify-between relative">
                 <p className="text-text mr-2 cursor-default">دسته بندی ها</p>

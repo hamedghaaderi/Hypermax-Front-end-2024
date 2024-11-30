@@ -13,13 +13,15 @@ const useInfiniteProducts = () => {
   const route = location.pathname.split("/");
   const id = location.pathname.split("/").pop();
   const subCatKey = route[1] === "category" ? id : "";
+  const brandKey = route[1] === "brand" ? id : "";
 
   const brandQuery = qBrand === "" ? "" : `&brand=${qBrand}`;
   const maxQuery = qMaxPrice === "" ? "" : `&price_max=${qMaxPrice}`;
   const minQuery = qMinPrice === "" ? "" : `&price_min=${qMinPrice}`;
   const catQuery = qCategory === "" ? "" : `&subcategory=${qCategory}`;
-  const subCatQuery = route[1] === "category" ? `&subcategory=${id}` : "";
-  const searchQuery = qSearch === "" ? "" : `&search=${qSearch}`;
+  const categoryPageQuery = route[1] === "category" ? `&subcategory=${id}` : "";
+  const brandPageQuery = route[1] === "brand" ? `&brand=${id}` : "";
+  const searchPageQuery = qSearch === "" ? "" : `&search=${qSearch}`;
 
   const { data, isError, isLoading, fetchNextPage, hasNextPage } =
     useInfiniteQuery({
@@ -27,6 +29,7 @@ const useInfiniteProducts = () => {
         "products",
         qSearch,
         subCatKey,
+        brandKey,
         qBrand,
         qMaxPrice,
         qMinPrice,
@@ -37,8 +40,9 @@ const useInfiniteProducts = () => {
           .get(
             "products/?page=" +
               pageParam +
-              searchQuery +
-              subCatQuery +
+              searchPageQuery +
+              categoryPageQuery +
+              brandPageQuery +
               brandQuery +
               minQuery +
               maxQuery +
