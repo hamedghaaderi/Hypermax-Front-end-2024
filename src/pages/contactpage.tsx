@@ -7,7 +7,7 @@ import { siteInfoContext } from "../services/siteinfo-provider";
 
 const ContactPage = () => {
   const { info }: any = useContext(siteInfoContext);
-  
+
   return (
     <>
       <Header />
@@ -40,7 +40,7 @@ const ContactPage = () => {
             ></iframe>
           </section>
         </article>
-        <section className="w-90% m-auto flex flex-col desk:flex-row desk:gap-x-5 items-center justify-between pt-7">
+        <section className="w-90% max-w-whole m-auto flex flex-col desk:flex-row desk:gap-x-5 items-center justify-between pt-7">
           <div className="bg-bgcontact1 bg-cover h-60 w-full mb-7 text-white text-center rounded-xl cursor-pointer">
             <div className="h-full group w-full flex flex-col rounded-xl items-center justify-center bg-opacity">
               <span className="text-white text-2xl mb-3">تهران</span>
