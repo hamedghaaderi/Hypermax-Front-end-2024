@@ -7,7 +7,7 @@ import { siteInfoContext } from "../services/siteinfo-provider";
 
 const ContactPage = () => {
   const { info }: any = useContext(siteInfoContext);
-  console.log("info: ", info);
+  
   return (
     <>
       <Header />

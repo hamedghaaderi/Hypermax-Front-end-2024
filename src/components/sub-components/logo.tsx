@@ -1,12 +1,15 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../../public/image/logo.png";
+import { siteInfoContext } from "../../services/siteinfo-provider";
 
 const Logo = () => {
+  const { info }: any = useContext(siteInfoContext);
+  
   return (
     <>
       <div className=" w-180 h-46">
         <Link to="/">
-          <img src={logo} alt="logo" width="180" height="46" />
+          <img src={info?.logo} alt="logo" width="180" height="46" />
         </Link>
       </div>
     </>
