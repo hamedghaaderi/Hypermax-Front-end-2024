@@ -26,7 +26,8 @@ export default {
         "340px": "340px",
         "500px": "500px",
         "400px": "400px",
-        "316px": "316px"
+        "316px": "316px",
+        "716px": "716px"
       },
       fontFamily: {
         "shabnam": "Shabnam",
@@ -59,6 +60,7 @@ export default {
         "twitter": "#00acee",
         "google": "#E60023",
         "instagram": "#F77737",
+        "opacity": "rgba(0, 0, 0, 0.45);",
       },
       animation: {
         "opacityin": "opacityIn 0.3s",
@@ -82,7 +84,11 @@ export default {
       },
       backgroundImage: {
         "newsbg": "url(../../public/image/newsletter.jpg)",
-        "bgopacity": "linear-gradient(to right, rgba(6, 23, 56, 0.8), rgba(17, 151, 68, 0.8));"
+        "bgopacity": "linear-gradient(to right, rgba(6, 23, 56, 0.8), rgba(17, 151, 68, 0.8));",
+        "bgcontact1" : "url(../../public/image/01.jpg)",
+        "bgcontact2" : "url(../../public/image/02.jpg)",
+        "bgcontact3" : "url(../../public/image/03.jpg)",
+        "bgcontact4" : "url(../../public/image/04.jpg)"
       },
       inset: {
         "88px": "88px",

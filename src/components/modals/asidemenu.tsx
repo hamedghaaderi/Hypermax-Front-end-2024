@@ -6,6 +6,7 @@ import { categoryContext } from "../../services/catbrand-provider";
 import useUserData from "../../store/userdata";
 import useLoginSignup from "../../store/loginsignup";
 import MobileCategory from "../categories/mobilecat";
+import { siteInfoContext } from "../../services/siteinfo-provider";
 
 const AsideMenu = ({
   onClose,
@@ -14,8 +15,11 @@ const AsideMenu = ({
   onClose: () => void;
   open: boolean;
 }) => {
-  const { showLoginSignup, showClose } = useLoginSignup((state: any) => state.action);
+  const { showLoginSignup, showClose } = useLoginSignup(
+    (state: any) => state.action
+  );
   const { isLoggedIn } = useUserData((state: any) => state);
+  const { info }: any = useContext(siteInfoContext);
   const { categories }: any = useContext(categoryContext);
   open && (document.body.style.overflow = "hidden");
   const handleClose = () => {
@@ -103,21 +107,12 @@ const AsideMenu = ({
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-percent"></i>
-                  </div>
-                  <span>تخفیفات</span>
-                </Link>
-                <Link
-                  to="/"
-                  className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
-                >
-                  <div className="w-8 h-fit text-center ml-2">
                     <i className="fa-solid fa-circle-info"></i>
                   </div>
                   <span>راهنما</span>
                 </Link>
                 <Link
-                  to="/"
+                  to="/contactus"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
@@ -130,17 +125,20 @@ const AsideMenu = ({
             <div className="cursor-default flex flex-col mt-28 items-end justify-between">
               <div className="flex flex-row-reverse items-center justify-between">
                 <i className="fa-solid fa-phone-volume text-xl text-primary"></i>
-                <a href="tel:+980218889998" className="text-lg mr-3 text-text">
-                  021 888 9998
+                <a
+                  href={`tel:${info?.contact_phone}`}
+                  className="text-lg mr-3 text-text"
+                >
+                  {info?.contact_phone}
                 </a>
               </div>
               <div className="flex flex-row-reverse items-center justify-between">
                 <i className="fa-solid fa-envelope text-xl text-primary"></i>
                 <a
-                  href="mailto:support@hyper-max.ir"
+                  href={`mailto:${info?.contact_email}`}
                   className="text-lg mr-3 text-text"
                 >
-                  support@hyper-max.ir
+                  {info?.contact_email}
                 </a>
               </div>
             </div>

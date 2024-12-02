@@ -10,6 +10,7 @@ import AccountPage from "./pages/accountpage";
 import HistoryPage from "./pages/historypage";
 import PersonalInfoPage from "./pages/personalinfopage";
 import BrandPage from "./pages/brandpage";
+import ContactPage from "./pages/contactpage";
 
 const App = () => {
   const routes = useRoutes([
@@ -19,6 +20,7 @@ const App = () => {
     { path: "/search", element: <SearchPage /> },
     { path: "/category/:id", element: <CategoryPage /> },
     { path: "/brand/:id", element: <BrandPage /> },
+    { path: "/contactus", element: <ContactPage/> },
     {
       path: "/account",
       element: (

@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import Logo from "./sub-components/logo";
+import { useContext } from "react";
+import { siteInfoContext } from "../services/siteinfo-provider";
 
 const Footer = () => {
+  const { info }: any = useContext(siteInfoContext);
+
   return (
     <>
       <footer className="font-shabnam">
@@ -26,18 +30,26 @@ const Footer = () => {
                       <div className="flex flex-row-reverse items-center justify-between mb-5">
                         <i className="fa-solid fa-envelope text-primary text-3xl"></i>
                         <div className="flex flex-col mr-4 text-text text-right">
-                          <a href="mailto:support@hyper-max.ir">support@hyper-max.ir</a>
-                          <a href="mailto:support@hyper-max.ir">carrer@hyper-max.ir</a>
+                          <a href={`mailto:${info?.contact_email}`}>
+                            {info?.contact_email}
+                          </a>
                         </div>
                       </div>
                     </li>
                     <li className="flex flex-row-reverse items-center mb-5">
                       <i className="fa-solid fa-phone-volume text-primary text-3xl"></i>
-                      <a href="tel:+12027953213" className="text-text mr-4">+120 279 532 13</a>
+                      <a
+                        href={`tel:${info?.contact_phone}`}
+                        className="text-text mr-4"
+                      >
+                        {info?.contact_phone}
+                      </a>
                     </li>
                     <li className="flex flex-row-reverse items-center mr-1">
                       <i className="fa-solid fa-location-dot text-primary text-3xl"></i>
-                      <span className="text-text mr-6 cursor-default">ایران جان ، تهران</span>
+                      <span className="text-text mr-6 cursor-default">
+                        {info?.address}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -54,22 +66,10 @@ const Footer = () => {
                     <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/shop">فروشگاه</Link>
                     </li>
-                    <li className="transition-colors duration-300 hover:text-primary">
-                      <Link to="/">اکانت من</Link>
-                    </li>
-                    <li className="transition-colors duration-300 hover:text-primary">
-                      <Link to="/">بهترین فروش</Link>
-                    </li>
                   </ul>
                   <ul className="text-right text-text leading-10">
                     <li className="transition-colors duration-300 hover:text-primary">
-                      <Link to="/">لیست مقایسه</Link>
-                    </li>
-                    <li className="transition-colors duration-300 hover:text-primary">
-                      <Link to="/">علاقه مندی ها</Link>
-                    </li>
-                    <li className="transition-colors duration-300 hover:text-primary">
-                      <Link to="/">ارتباط با ما</Link>
+                      <Link to="/contactus">ارتباط با ما</Link>
                     </li>
                     <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/">قوانین</Link>
@@ -82,7 +82,7 @@ const Footer = () => {
                   هایپر مکث
                 </h3>
                 <p className="text-text text-right cursor-default">
-                  خرید آسان موادغذایی - لبنیات - کنسروجات - نوشیدنی و{" "}
+                  خرید آسان موادغذایی - لبنیات - کنسروجات - نوشیدنی
                 </p>
               </div>
             </div>
