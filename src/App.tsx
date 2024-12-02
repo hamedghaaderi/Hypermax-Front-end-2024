@@ -10,6 +10,7 @@ import AccountPage from "./pages/accountpage";
 import HistoryPage from "./pages/historypage";
 import PersonalInfoPage from "./pages/personalinfopage";
 import BrandPage from "./pages/brandpage";
+import FaqPage from "./pages/faqpage";
 import ContactPage from "./pages/contactpage";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
     { path: "/search", element: <SearchPage /> },
     { path: "/category/:id", element: <CategoryPage /> },
     { path: "/brand/:id", element: <BrandPage /> },
+    { path: "/faq", element: <FaqPage /> },
     { path: "/contactus", element: <ContactPage/> },
     {
       path: "/account",

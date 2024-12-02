@@ -86,31 +86,33 @@ const HomePage = () => {
         {productData?.pages && (
           <HomeSection title="محصولات ویژه" href="/shop" data={productData} />
         )}
-        <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
-        <h2 className="text-center text-text text-2xl mb-7">برند ها</h2>
-          <Swiper
-            slidesPerView="auto"
-            freeMode={true}
-            spaceBetween={20}
-            modules={[FreeMode]}
-          >
-            {brands?.map((_brand: any) => {
-              return (
-                <SwiperSlide key={_brand.id} className="w-fit">
-                  <Link to={`/brand/${_brand.id}`}>
-                    <div className="w-40 h-40 p-5 border-2 border-border rounded-xl">
-                      <img
-                        className="w-full h-full object-contain"
-                        src={_brand.image}
-                        alt={_brand.name}
-                      />
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </section>
+        {brands && (
+          <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
+            <h2 className="text-center text-text text-2xl mb-7">برند ها</h2>
+            <Swiper
+              slidesPerView="auto"
+              freeMode={true}
+              spaceBetween={20}
+              modules={[FreeMode]}
+            >
+              {brands?.map((_brand: any) => {
+                return (
+                  <SwiperSlide key={_brand.id} className="w-fit">
+                    <Link to={`/brand/${_brand.id}`}>
+                      <div className="w-40 h-40 p-5 border-2 border-border rounded-xl">
+                        <img
+                          className="w-full h-full object-contain"
+                          src={_brand.image}
+                          alt={_brand.name}
+                        />
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </section>
+        )}
         <StaticSection />
       </main>
       <Footer />

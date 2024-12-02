@@ -45,27 +45,39 @@ const useFilter = create((set) => ({
     },
     setBrand: (_brand: any) => {
       if (_brand === null) {
-        return set(() => ({
+        return set((_oldFilter: any) => ({
           subCategory: _brand,
-          isFilter: false,
+          isFilter:
+            _oldFilter.maxPrice === "" &&
+            _oldFilter.minPrice === "" &&
+            _oldFilter.subCategory === null
+              ? false
+              : true,
+        }));
+      } else {
+        return set(() => ({
+          brand: _brand,
+          isFilter: true,
         }));
       }
-      return set(() => ({
-        brand: _brand,
-        isFilter: true,
-      }));
     },
     setSubCategory: (_subCategory: any) => {
       if (_subCategory === null) {
+        return set((_oldFilter: any) => ({
+          subCategory: _subCategory,
+          isFilter:
+            _oldFilter.maxPrice === "" &&
+            _oldFilter.minPrice === "" &&
+            _oldFilter.brand === null
+              ? false
+              : true,
+        }));
+      } else {
         return set(() => ({
           subCategory: _subCategory,
-          isFilter: false,
+          isFilter: true,
         }));
       }
-      return set(() => ({
-        subCategory: _subCategory,
-        isFilter: true,
-      }));
     },
     removeAll: () => {
       return set(() => ({
