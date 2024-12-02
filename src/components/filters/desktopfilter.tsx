@@ -14,11 +14,6 @@ const DesktopFilter = () => {
   const { maxPrice, minPrice, brand, subCategory, isFilter } = useFilter(
     (state: any) => state
   );
-  console.log('maxPrice: ', maxPrice);
-  console.log('minPrice: ', minPrice);
-  console.log('brand: ', brand);
-  console.log('subCategory: ', subCategory);
-  console.log('isFilter: ', isFilter);
   const { setMaxPrice, setMinPrice, setBrand, setSubCategory, removeAll } =
     useFilter((state: any) => state.action);
   const {
