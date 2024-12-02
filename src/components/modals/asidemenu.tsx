@@ -103,21 +103,12 @@ const AsideMenu = ({
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
-                    <i className="fa-solid fa-percent"></i>
-                  </div>
-                  <span>تخفیفات</span>
-                </Link>
-                <Link
-                  to="/"
-                  className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
-                >
-                  <div className="w-8 h-fit text-center ml-2">
                     <i className="fa-solid fa-circle-info"></i>
                   </div>
                   <span>راهنما</span>
                 </Link>
                 <Link
-                  to="/"
+                  to="/contactus"
                   className="flex flex-row-reverse w-full justify-start py-2 items-center text-text transition-colors duration-300 hover:text-primary"
                 >
                   <div className="w-8 h-fit text-center ml-2">
