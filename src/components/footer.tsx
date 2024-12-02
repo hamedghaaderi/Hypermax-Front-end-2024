@@ -72,7 +72,7 @@ const Footer = () => {
                       <Link to="/">ارتباط با ما</Link>
                     </li>
                     <li className="transition-colors duration-300 hover:text-primary">
-                      <Link to="/">قوانین</Link>
+                      <Link to="/faq">راهنما</Link>
                     </li>
                   </ul>
                 </div>
