@@ -77,18 +77,9 @@ const HomePage = () => {
             </div>
           </aside>
         </article>
-        {productData?.pages && (
-          <HomeSection title="محصولات پرفروش" href="/shop" data={productData} />
-        )}
-        {productData?.pages && (
-          <HomeSection title="محصولات تازه" href="/shop" data={productData} />
-        )}
-        {productData?.pages && (
-          <HomeSection title="محصولات ویژه" href="/shop" data={productData} />
-        )}
         {brands && (
           <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
-            <h2 className="text-center text-text text-2xl mb-7">برند ها</h2>
+            <h2 className="text-center text-text text-2xl mb-7">برند های ویژه</h2>
             <Swiper
               slidesPerView="auto"
               freeMode={true}
@@ -99,7 +90,7 @@ const HomePage = () => {
                 return (
                   <SwiperSlide key={_brand.id} className="w-fit">
                     <Link to={`/brand/${_brand.id}`}>
-                      <div className="w-40 h-40 p-5 border-2 border-border rounded-xl">
+                      <div className="w-44 h-44 p-6 border-2 hover:border-primary transition-all duration-300 bg-white border-border rounded-full">
                         <img
                           className="w-full h-full object-contain"
                           src={_brand.image}
@@ -112,6 +103,15 @@ const HomePage = () => {
               })}
             </Swiper>
           </section>
+        )}
+        {productData?.pages && (
+          <HomeSection title="محصولات پرفروش" href="/shop" data={productData} />
+        )}
+        {productData?.pages && (
+          <HomeSection title="محصولات تازه" href="/shop" data={productData} />
+        )}
+        {productData?.pages && (
+          <HomeSection title="محصولات ویژه" href="/shop" data={productData} />
         )}
         <StaticSection />
       </main>
