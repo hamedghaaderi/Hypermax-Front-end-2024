@@ -9,6 +9,8 @@ import CartPage from "./pages/cartpage";
 import AccountPage from "./pages/accountpage";
 import HistoryPage from "./pages/historypage";
 import PersonalInfoPage from "./pages/personalinfopage";
+import SamePage from "./pages/samepage";
+import BrandProductPage from "./pages/brandproductpage";
 import BrandPage from "./pages/brandpage";
 import FaqPage from "./pages/faqpage";
 import ContactPage from "./pages/contactpage";
@@ -20,9 +22,22 @@ const App = () => {
     { path: "/shop", element: <ShopPage /> },
     { path: "/search", element: <SearchPage /> },
     { path: "/category/:id", element: <CategoryPage /> },
-    { path: "/brand/:id", element: <BrandPage /> },
+    {
+      path: "/brand",
+      element: <SamePage />,
+      children: [
+        {
+          index: true,
+          element: <BrandPage />,
+        },
+        {
+          path: "/brand/:id",
+          element: <BrandProductPage />,
+        },
+      ],
+    },
     { path: "/faq", element: <FaqPage /> },
-    { path: "/contactus", element: <ContactPage/> },
+    { path: "/contactus", element: <ContactPage /> },
     {
       path: "/account",
       element: (

@@ -79,7 +79,9 @@ const HomePage = () => {
         </article>
         {brands && (
           <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
-            <h2 className="text-center text-text text-2xl mb-7">برند های ویژه</h2>
+            <h2 className="text-center text-text text-2xl mb-7">
+              برند های ویژه
+            </h2>
             <Swiper
               slidesPerView="auto"
               freeMode={true}
@@ -90,7 +92,7 @@ const HomePage = () => {
                 return (
                   <SwiperSlide key={_brand.id} className="w-fit">
                     <Link to={`/brand/${_brand.id}`}>
-                      <div className="w-44 h-44 p-6 border-2 hover:border-primary transition-all duration-300 bg-white border-border rounded-full">
+                      <div className="w-44 h-44 p-7 border-2 hover:border-primary transition-all duration-300 bg-white border-border rounded-full">
                         <img
                           className="w-full h-full object-contain"
                           src={_brand.image}
@@ -101,6 +103,12 @@ const HomePage = () => {
                   </SwiperSlide>
                 );
               })}
+              <SwiperSlide className="w-44 h-44 rounded-full flex items-center justify-center">
+                <Link to="/brand" className="flex flex-col items-center">
+                  <i className="fa-solid fa-angle-left rotate-180 mr-1 h-14 w-14 text-black hover:text-white bg-gray-chalk hover:bg-primary transition-colors duration-300 rounded-full flex items-center justify-center mb-4"></i>
+                  <span className="text-lg">مشاهده همه</span>
+                </Link>
+              </SwiperSlide>
             </Swiper>
           </section>
         )}
