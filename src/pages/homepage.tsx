@@ -11,7 +11,7 @@ import { Autoplay, Pagination, FreeMode } from "swiper/modules";
 import { Link } from "react-router-dom";
 import useInfiniteProducts from "../hook/infiniteproducts";
 import HomeSection from "../components/sub-components/homesection";
-import defaultImage from "../../public/image/default image.jpg"
+import defaultImage from "../../public/image/default image.jpg";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -96,7 +96,9 @@ const HomePage = () => {
                       <div className="w-44 h-44 p-7 border-2 hover:border-primary transition-all duration-300 bg-white border-border rounded-full">
                         <img
                           className="w-full h-full object-contain"
-                          src={_brand.image === null ? defaultImage :_brand.image}
+                          src={
+                            _brand.image === null ? defaultImage : _brand.image
+                          }
                           alt={_brand.name}
                         />
                       </div>
@@ -106,6 +108,46 @@ const HomePage = () => {
               })}
               <SwiperSlide className="w-44 h-44 rounded-full flex items-center justify-center">
                 <Link to="/brand" className="flex flex-col items-center">
+                  <i className="fa-solid fa-angle-left rotate-180 mr-1 h-14 w-14 text-black hover:text-white bg-gray-chalk hover:bg-primary transition-colors duration-300 rounded-full flex items-center justify-center mb-4"></i>
+                  <span className="text-lg">مشاهده همه</span>
+                </Link>
+              </SwiperSlide>
+            </Swiper>
+          </section>
+        )}
+        {categories && (
+          <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
+            <h2 className="text-center text-text text-2xl mb-7">
+              دسته بندی های ویژه
+            </h2>
+            <Swiper
+              slidesPerView="auto"
+              freeMode={true}
+              spaceBetween={20}
+              modules={[FreeMode]}
+            >
+              {categories?.map((_category: any) => {
+                return (
+                  <SwiperSlide
+                    key={_category.id}
+                    className="w-fit flex flex-col items-center"
+                  >
+                    <Link to={`/category/subcategory/${_category.id}`}>
+                      <img
+                        className="inline-block object-fill w-40 h-40 brightness-100 hover:brightness-75 transition-all duration-300 bg-white rounded-xl"
+                        src={
+                          _category.image === null
+                            ? defaultImage
+                            : _category.image
+                        }
+                        alt={_category.name}
+                      />
+                    </Link>
+                  </SwiperSlide>
+                );
+              })}
+              <SwiperSlide className="w-40 h-40 rounded-full flex items-center justify-center">
+                <Link to="/category" className="flex flex-col items-center">
                   <i className="fa-solid fa-angle-left rotate-180 mr-1 h-14 w-14 text-black hover:text-white bg-gray-chalk hover:bg-primary transition-colors duration-300 rounded-full flex items-center justify-center mb-4"></i>
                   <span className="text-lg">مشاهده همه</span>
                 </Link>
