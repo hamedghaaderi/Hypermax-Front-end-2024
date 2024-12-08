@@ -4,6 +4,8 @@ import Footer from "../components/footer";
 import StaticSection from "../components/staticsection";
 import useUserData from "../store/userdata";
 import { Link, Outlet, useNavigate } from "react-router-dom";
+import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
+import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
 
 const AccountPage = () => {
   const navigate = useNavigate();
@@ -17,6 +19,8 @@ const AccountPage = () => {
     <>
       <Header />
       <main className="bg-body font-shabnam">
+        <BreadCrumbDesk />
+        <BreadCrumbMobile variant={"section"} />
         <section className="max-w-whole m-auto desk:w-90% desklg:w-full p-7 desk:px-0 relative desk:flex desk:flex-row-reverse">
           <aside className="desk:sticky desk:top-[205px] bg-white rounded-2xl h-fit flex flex-col mb-7 desk:mb-0 desk:w-1/5">
             <Link

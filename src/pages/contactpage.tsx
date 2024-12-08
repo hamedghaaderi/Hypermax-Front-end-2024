@@ -4,6 +4,8 @@ import Header from "../components/header";
 import MobileMenu from "../components/mobilemenu";
 import StaticSection from "../components/staticsection";
 import { siteInfoContext } from "../services/siteinfo-provider";
+import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
+import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
 
 const ContactPage = () => {
   const { info }: any = useContext(siteInfoContext);
@@ -12,6 +14,8 @@ const ContactPage = () => {
     <>
       <Header />
       <main className="bg-body font-shabnam">
+        <BreadCrumbDesk />
+        <BreadCrumbMobile variant={"section"} />
         <article className="max-w-whole w-90% desklg:w-full m-auto flex flex-col desk:flex-row items-center justify-between pt-7">
           <section className="flex flex-col-reverse items-center justify-between w-full desk:w-2/5 desk:mr-7">
             <div className="flex flex-col items-center justify-center bg-white w-full rounded-xl py-16 mb-7 desk:mb-0 hover:bg-primary transition-all duration-300 group">

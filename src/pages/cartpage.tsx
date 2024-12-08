@@ -15,6 +15,8 @@ import SuccessAlert from "../components/alerts/successalert";
 import ErrorAlert from "../components/alerts/erroralert";
 import { useState } from "react";
 import Redirect from "../components/sub-components/redirect";
+import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
+import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
 
 const CartPage = () => {
   const [showRedirect, setShowRedirect] = useState(false);
@@ -74,6 +76,8 @@ const CartPage = () => {
     <>
       <Header />
       <main className="bg-body font-shabnam">
+        <BreadCrumbDesk />
+        <BreadCrumbMobile variant={"section"}/>
         <article className="max-w-whole m-auto desk:flex desk:w-90% desklg:w-full desk:flex-row p-5 desk:p-7 relative desk:px-0">
           {products.length !== 0 && (
             <aside className="rounded-2xl bg-white mr-5 hidden desk:block w-1/3 h-fit sticky top-213px">

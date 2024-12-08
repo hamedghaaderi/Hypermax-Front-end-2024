@@ -11,6 +11,8 @@ import MobileFilter from "../components/filters/mobilefilter";
 import { useSearchParams } from "react-router-dom";
 import { categoryContext } from "../services/catbrand-provider";
 import NoProducts from "../components/loadings-errors/noproducts";
+import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
+import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
 
 const BrandProductPage = () => {
   const [showFilter, setShowFilter] = useState(false);
@@ -36,8 +38,9 @@ const BrandProductPage = () => {
 
   return (
     <>
+      <BreadCrumbDesk />
       <section className="max-w-whole m-auto relative desk:flex desk:w-90% desklg:w-full desk:flex-row">
-        <div className="desk:hidden border-y border-y-border flex flex-row-reverse h-fit w-full sticky mb-9 top-88px px-7 p-2 z-10 bg-white">
+        <div className="desk:hidden border-y border-y-border flex flex-row-reverse h-fit w-full sticky top-88px px-7 p-2 z-10 bg-white">
           <button
             onClick={() => setShowFilter(true)}
             className="flex items-center py-1 px-2 border border-border rounded-xl text-text font-shabnam bg-body"
@@ -68,7 +71,8 @@ const BrandProductPage = () => {
             </span>
           )}
         </div>
-        <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 desk:mt-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center tablet:gap-9 desk:gap-5 desklg:gap-9">
+        <BreadCrumbMobile variant={"div"} />
+        <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 mt-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center tablet:gap-9 desk:gap-5 desklg:gap-9">
           {isLoading && <IsLoading />}
           {isError && <IsError />}
           {data?.pages[0].data.count === 0 && <NoProducts />}

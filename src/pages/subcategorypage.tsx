@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { categoryContext } from "../services/catbrand-provider";
 import { Link, useLocation } from "react-router-dom";
 import defaultImage from "../../public/image/default image.jpg"
+import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
+import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
 
 const SubCategoryPage = () => {
   const { subCategories }: any = useContext(categoryContext);
@@ -10,6 +12,8 @@ const SubCategoryPage = () => {
 
   return (
     <>
+      <BreadCrumbDesk />
+      <BreadCrumbMobile variant={"section"}/>
       <section className="max-w-whole m-auto w-90% desklg:w-full py-7 desk:py-11 flex flex-row flex-wrap items-center justify-center gap-x-7 gap-y-11 desk:gap-x-11">
         {subCategories?.map((_subCategory: any) => {
           if (_subCategory.parent == id) {
