@@ -1,4 +1,5 @@
 import AddRemove from "../sub-components/addremove";
+import defaultImage from "../../../public/image/default image.jpg"
 
 const CartItem = (props: any) => {
   const { name, price, discount_percentage, image } = props;
@@ -15,7 +16,7 @@ const CartItem = (props: any) => {
           <div className="w-24 h-24">
             <img
               className="w-full h-full object-contain"
-              src={image}
+              src={image === null ? defaultImage : image}
               alt="product picture"
             />
           </div>

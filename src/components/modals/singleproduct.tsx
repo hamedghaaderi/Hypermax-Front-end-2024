@@ -4,6 +4,7 @@ import useBasket from "../../store/basket";
 import AddRemove from "../sub-components/addremove";
 import Add from "../sub-components/add";
 import { Link } from "react-router-dom";
+import defaultImage from "../../../public/image/default image.jpg"
 
 interface ICartModal {
   onClose: () => void;
@@ -52,7 +53,7 @@ const SingleProduct = ({ onClose, open, product }: ICartModal) => {
             <div className="w-full h-64 flex items-center justify-center">
               <img
                 className="object-contain w-full h-64"
-                src={product.image}
+                src={product.image === null ? defaultImage : product.image}
                 alt="product picture"
               />
             </div>

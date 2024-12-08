@@ -3,6 +3,8 @@ import HomePage from "./pages/homepage";
 import ShopPage from "./pages/shoppage";
 import SearchPage from "./pages/searchpage";
 import CategoryPage from "./pages/categorypage";
+import CategoryProductPage from "./pages/categoryproductpage";
+import SubCategoryPage from "./pages/subcategorypage";
 import AuthGuardProvider from "./services/auth-guard";
 import NotFound from "./pages/notfound";
 import CartPage from "./pages/cartpage";
@@ -19,9 +21,28 @@ const App = () => {
   const routes = useRoutes([
     { path: "/", element: <HomePage /> },
     { path: "*", element: <NotFound /> },
+    { path: "/faq", element: <FaqPage /> },
+    { path: "/contactus", element: <ContactPage /> },
     { path: "/shop", element: <ShopPage /> },
     { path: "/search", element: <SearchPage /> },
-    { path: "/category/:id", element: <CategoryPage /> },
+    {
+      path: "/category",
+      element: <SamePage />,
+      children: [
+        {
+          index: true,
+          element: <CategoryPage />,
+        },
+        {
+          path: "/category/subcategory/:id",
+          element: <SubCategoryPage />,
+        },
+        {
+          path: "/category/:id",
+          element: <CategoryProductPage />,
+        },
+      ],
+    },
     {
       path: "/brand",
       element: <SamePage />,
@@ -36,8 +57,6 @@ const App = () => {
         },
       ],
     },
-    { path: "/faq", element: <FaqPage /> },
-    { path: "/contactus", element: <ContactPage /> },
     {
       path: "/account",
       element: (

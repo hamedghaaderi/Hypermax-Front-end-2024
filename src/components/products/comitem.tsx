@@ -1,4 +1,5 @@
 import useCompares from "../../store/compare";
+import defaultImage from "../../../public/image/default image.jpg"
 
 const ComItem = (props: any) => {
   const { removeCompare } = useCompares((state: any) => state.action);
@@ -16,7 +17,7 @@ const ComItem = (props: any) => {
           <div className="w-24 h-24 ml-7">
             <img
               className="w-full h-full object-contain"
-              src={image}
+              src={image === null ? defaultImage : image}
               alt="product picture"
             />
           </div>

@@ -1,4 +1,5 @@
 import useFavorites from "../../store/favorites";
+import defaultImage from "../../../public/image/default image.jpg";
 
 const FavItem = (props: any) => {
   const { removeFavorite } = useFavorites((state: any) => state.action);
@@ -16,7 +17,7 @@ const FavItem = (props: any) => {
           <div className="w-24 h-24 ml-7">
             <img
               className="w-full h-full object-contain"
-              src={image}
+              src={image === null ? defaultImage : image}
               alt="product picture"
             />
           </div>

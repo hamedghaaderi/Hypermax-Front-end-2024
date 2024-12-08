@@ -3,6 +3,7 @@ import useFavorites from "../../store/favorites";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import SingleProduct from "../modals/singleproduct";
+import defaultImage from "../../../public/image/default image.jpg";
 
 const ProductItem = (props: any) => {
   const { name, price, discount_percentage, image } = props;
@@ -28,7 +29,7 @@ const ProductItem = (props: any) => {
         <div className="h-1/2 w-full flex flex-row items-center justify-center">
           <img
             className="h-3/4  w-full object-contain"
-            src={image}
+            src={image === null ? defaultImage : image}
             alt="product picture"
           />
         </div>

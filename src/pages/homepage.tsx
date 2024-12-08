@@ -11,6 +11,7 @@ import { Autoplay, Pagination, FreeMode } from "swiper/modules";
 import { Link } from "react-router-dom";
 import useInfiniteProducts from "../hook/infiniteproducts";
 import HomeSection from "../components/sub-components/homesection";
+import defaultImage from "../../public/image/default image.jpg"
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -95,7 +96,7 @@ const HomePage = () => {
                       <div className="w-44 h-44 p-7 border-2 hover:border-primary transition-all duration-300 bg-white border-border rounded-full">
                         <img
                           className="w-full h-full object-contain"
-                          src={_brand.image}
+                          src={_brand.image === null ? defaultImage :_brand.image}
                           alt={_brand.name}
                         />
                       </div>
