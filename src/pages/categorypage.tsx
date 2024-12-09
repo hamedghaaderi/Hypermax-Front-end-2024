@@ -12,7 +12,7 @@ const CategoryPage = () => {
     <>
       <BreadCrumbDesk />
       <BreadCrumbMobile variant={"section"}/>
-      <section className="max-w-whole m-auto w-90% desklg:w-full py-7 desk:py-11 flex flex-row flex-wrap items-center justify-center gap-x-7 gap-y-11 desk:gap-x-11">
+      <section className="max-w-whole m-auto w-90% desklg:w-full py-7 flex flex-row flex-wrap items-center justify-center gap-7 desk:gap-11">
         {categories?.map((_category: any) => {
           return (
             <div
@@ -28,7 +28,7 @@ const CategoryPage = () => {
                   alt={_category.name}
                 />
               </Link>
-              <div className="font-shabnam text-text desk:text-xl text-base mt-6">
+              <div className="font-shabnam text-text desk:text-xl text-base mt-4 desk:mt-6">
                 {_category.name}
               </div>
             </div>

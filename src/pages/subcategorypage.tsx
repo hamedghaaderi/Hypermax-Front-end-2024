@@ -14,7 +14,7 @@ const SubCategoryPage = () => {
     <>
       <BreadCrumbDesk />
       <BreadCrumbMobile variant={"section"}/>
-      <section className="max-w-whole m-auto w-90% desklg:w-full py-7 desk:py-11 flex flex-row flex-wrap items-center justify-center gap-x-7 gap-y-11 desk:gap-x-11">
+      <section className="max-w-whole m-auto w-90% desklg:w-full py-7 flex flex-row flex-wrap items-center justify-center gap-7 desk:gap-11">
         {subCategories?.map((_subCategory: any) => {
           if (_subCategory.parent == id) {
             return (
@@ -29,7 +29,7 @@ const SubCategoryPage = () => {
                       alt={_subCategory.name}
                     />
                 </Link>
-                <div className="font-shabnam text-text desk:text-xl text-base mt-6">
+                <div className="font-shabnam text-text desk:text-xl text-base mt-4 desk:mt-6">
                   {_subCategory.name}
                 </div>
               </div>

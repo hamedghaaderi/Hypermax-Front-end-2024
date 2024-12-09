@@ -12,7 +12,7 @@ const BrandPage = () => {
     <>
       <BreadCrumbDesk />
       <BreadCrumbMobile variant={"section"}/>
-      <section className="max-w-whole m-auto w-90% desklg:w-full py-7 desk:py-11 flex flex-row flex-wrap items-center justify-center gap-x-7 gap-y-11 desk:gap-x-11">
+      <section className="max-w-whole m-auto w-90% desklg:w-full py-7 flex flex-row flex-wrap items-center justify-center gap-7 desk:gap-11">
         {brands?.map((_brand: any) => {
           return (
             <div key={_brand.id} className="w-fit flex flex-col items-center">
@@ -23,7 +23,7 @@ const BrandPage = () => {
                   alt={_brand.name}
                 />
               </Link>
-              <div className="font-shabnam text-text  desk:text-xl text-base mt-4">
+              <div className="font-shabnam text-text  desk:text-xl text-base mt-4 desk:mt-6">
                 {_brand.name}
               </div>
             </div>

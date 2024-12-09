@@ -76,7 +76,7 @@ const CategoryProductPage = () => {
           )}
         </div>
         <BreadCrumbMobile variant={"div"}/>
-        <div className="flex flex-col items-center justify-between mx-12 mt-7 desk:w-3/4 tablet:mx-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center tablet:gap-9 desk:gap-5 desklg:gap-9">
+        <div className="flex flex-col items-center justify-between mx-12 mt-7 desk:w-3/4 tablet:mx-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center gap-7">
           {isLoading && <IsLoading />}
           {isError && <IsError />}
           {data?.pages[0].data.count === 0 && <NoProducts />}
