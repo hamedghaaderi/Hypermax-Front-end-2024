@@ -50,12 +50,12 @@ const BreadCrumbDesk = () => {
             </Link>
           </>
         )}
-        {route[1] === "contactus" && (
+        {route[1] === "contact-us" && (
           <>
             <span className="px-3 text-text">/</span>
             <Link
               className="text-text hover:text-primary transition-all duration-300"
-              to="/contactus"
+              to="/contact-us"
             >
               ارتباط با ما
             </Link>
@@ -121,6 +121,39 @@ const BreadCrumbDesk = () => {
               to="/cart"
             >
               سبد خرید
+            </Link>
+          </>
+        )}
+        {route[1] === "fresh-products" && (
+          <>
+            <span className="px-3 text-text">/</span>
+            <Link
+              className="text-text hover:text-primary transition-all duration-300"
+              to="/fresh-products"
+            >
+              محصولات تازه
+            </Link>
+          </>
+        )}
+        {route[1] === "top-sold-products" && (
+          <>
+            <span className="px-3 text-text">/</span>
+            <Link
+              className="text-text hover:text-primary transition-all duration-300"
+              to="/top-sold-products"
+            >
+              محصولات پرفروش
+            </Link>
+          </>
+        )}
+        {route[1] === "special-products" && (
+          <>
+            <span className="px-3 text-text">/</span>
+            <Link
+              className="text-text hover:text-primary transition-all duration-300"
+              to="/special-products"
+            >
+              محصولات ویژه
             </Link>
           </>
         )}

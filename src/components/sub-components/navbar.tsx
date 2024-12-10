@@ -49,7 +49,7 @@ const Navbar = () => {
               <Link to="/faq">راهنما</Link>
             </li>
             <li className="hover:text-primary py-5 transition-colors duration-300">
-              <Link to="/contactus">ارتباط با ما</Link>
+              <Link to="/contact-us">ارتباط با ما</Link>
             </li>
           </ul>
         </div>

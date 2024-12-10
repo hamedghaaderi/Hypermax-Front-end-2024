@@ -162,17 +162,17 @@ const HomePage = () => {
           </section>
         )}
         {freshData?.pages && (
-          <HomeSection title="محصولات تازه" href="/shop" data={freshData} />
+          <HomeSection title="محصولات تازه" href="/fresh-products" data={freshData} />
         )}
         {topSoldData?.pages && (
           <HomeSection
             title="محصولات پر فروش"
-            href="/shop"
+            href="/top-sold-products"
             data={topSoldData}
           />
         )}
         {specialData?.pages && (
-          <HomeSection title="محصولات ویژه" href="/shop" data={specialData} />
+          <HomeSection title="محصولات ویژه" href="/special-products" data={specialData} />
         )}
         <StaticSection />
       </main>

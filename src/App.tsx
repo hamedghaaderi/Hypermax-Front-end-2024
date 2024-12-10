@@ -16,15 +16,21 @@ import BrandProductPage from "./pages/brandproductpage";
 import BrandPage from "./pages/brandpage";
 import FaqPage from "./pages/faqpage";
 import ContactPage from "./pages/contactpage";
+import FreshProductsPage from "./pages/freshproductspage";
+import SpecialProductsPage from "./pages/specialproductspage";
+import TopSoldProductsPage from "./pages/topsoldproductspage";
 
 const App = () => {
   const routes = useRoutes([
     { path: "/", element: <HomePage /> },
     { path: "*", element: <NotFound /> },
     { path: "/faq", element: <FaqPage /> },
-    { path: "/contactus", element: <ContactPage /> },
+    { path: "/contact-us", element: <ContactPage /> },
     { path: "/shop", element: <ShopPage /> },
     { path: "/search", element: <SearchPage /> },
+    { path: "/fresh-products", element: <FreshProductsPage /> },
+    { path: "/special-products", element: <SpecialProductsPage /> },
+    { path: "/top-sold-products", element: <TopSoldProductsPage /> },
     {
       path: "/category",
       element: <SamePage />,

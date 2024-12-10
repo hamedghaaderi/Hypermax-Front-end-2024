@@ -39,7 +39,6 @@ const ShopPage = () => {
       fetchNextPage();
     }
   }, [isIntersecting]);
-  console.log('data: ', data);
 
   return (
     <>
