@@ -7,7 +7,6 @@ const useBrands = () => {
     queryFn: async () => {
       return baseURL.get("brands/").then((res) => res);
     },
-    gcTime: Infinity,
   });
   return { isError, isLoading, data };
 };

@@ -7,7 +7,6 @@ const useCategories = () => {
     queryFn: async () => {
       return baseURL.get("categories/").then((res) => res);
     },
-    gcTime: Infinity,
   });
   return { isError, isLoading, data };
 };

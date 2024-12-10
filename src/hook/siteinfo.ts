@@ -7,7 +7,6 @@ const useSiteInfo = () => {
     queryFn: async () => {
       return baseURL.get("site-info/").then((res) => res);
     },
-    gcTime: Infinity,
   });
   return { isError, isLoading, data };
 };

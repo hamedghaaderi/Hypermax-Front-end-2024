@@ -7,7 +7,6 @@ const useTopSoldBrands = () => {
     queryFn: async () => {
       return baseURL.get("top-sold-brands/").then((res) => res);
     },
-    gcTime: Infinity,
   });
   return { status, data };
 };
