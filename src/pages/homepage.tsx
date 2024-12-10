@@ -114,7 +114,7 @@ const HomePage = () => {
               })}
               <SwiperSlide className="w-44 h-44 rounded-full flex items-center justify-center">
                 <Link to="/brand" className="flex flex-col items-center">
-                  <i className="fa-solid fa-angle-left rotate-180 mr-1 h-14 w-14 text-black hover:text-white bg-gray-chalk hover:bg-primary transition-colors duration-300 rounded-full flex items-center justify-center mb-4"></i>
+                  <i className="fa-solid fa-angle-left rotate-180 mr-1 h-14 w-14 text-black hover:text-white bg-border hover:bg-primary transition-colors duration-300 rounded-full flex items-center justify-center mb-4"></i>
                   <span className="text-lg">مشاهده همه</span>
                 </Link>
               </SwiperSlide>
@@ -154,7 +154,7 @@ const HomePage = () => {
               })}
               <SwiperSlide className="w-40 h-40 rounded-full flex items-center justify-center">
                 <Link to="/category" className="flex flex-col items-center">
-                  <i className="fa-solid fa-angle-left rotate-180 mr-1 h-14 w-14 text-black hover:text-white bg-gray-chalk hover:bg-primary transition-colors duration-300 rounded-full flex items-center justify-center mb-4"></i>
+                  <i className="fa-solid fa-angle-left rotate-180 mr-1 h-14 w-14 text-black hover:text-white bg-border hover:bg-primary transition-colors duration-300 rounded-full flex items-center justify-center mb-4"></i>
                   <span className="text-lg">مشاهده همه</span>
                 </Link>
               </SwiperSlide>
