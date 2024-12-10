@@ -9,6 +9,7 @@ import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
 
 const ContactPage = () => {
   const { info }: any = useContext(siteInfoContext);
+  console.log('info: ', info);
 
   return (
     <>
@@ -40,7 +41,7 @@ const ContactPage = () => {
           <section className="w-full h-96 desk:h-716px p-4 bg-white rounded-xl desk:w-3/5">
             <iframe
               className="w-full h-full rounded-lg"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.3406974350205!2d90.48469931445422!3d23.663771197998262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b0d5983f048d%3A0x754f30c82bcad3cd!2sJalkuri%20Bus%20Stop!5e0!3m2!1sen!2sbd!4v1605354966349!5m2!1sen!2sbd"
+              src={info?.map}
             ></iframe>
           </section>
         </article>

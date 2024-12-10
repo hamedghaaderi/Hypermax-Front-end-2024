@@ -9,18 +9,24 @@ import useBanners from "../hook/banners";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, FreeMode } from "swiper/modules";
 import { Link } from "react-router-dom";
-import useInfiniteProducts from "../hook/infiniteproducts";
 import HomeSection from "../components/sub-components/homesection";
 import defaultImage from "../../public/image/default image.jpg";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
+import useFreshProducts from "../hook/freshproducts";
+import useSpecialProducts from "../hook/specialproducts";
+import useTopSoldProducts from "../hook/topsoldproducts";
+import useTopSoldBrands from "../hook/topsoldbrands";
 
 const HomePage = () => {
-  const { categories, brands }: any = useContext(categoryContext);
-  const { data: productData } = useInfiniteProducts();
-  const { status, data: bannersData } = useBanners();
+  const { categories }: any = useContext(categoryContext);
+  const { status: bannersStatus, data: bannersData } = useBanners();
+  const { status: brandsStatus, data: brandsData } = useTopSoldBrands();
+  const { data: freshData } = useFreshProducts();
+  const { data: specialData } = useSpecialProducts();
+  const { data: topSoldData } = useTopSoldProducts();
 
   return (
     <>
@@ -28,7 +34,7 @@ const HomePage = () => {
       <main className="bg-body font-shabnam">
         <article className="max-w-whole desk:w-90% desklg:w-full m-auto flex flex-row desk:pt-8 gap-x-7">
           <section className="w-full h-72 desk:h-96 desk:w-2/3 desklg:w-3/4">
-            {status == "success" && (
+            {bannersStatus == "success" && (
               <Swiper
                 spaceBetween={15}
                 centeredSlides={true}
@@ -78,7 +84,7 @@ const HomePage = () => {
             </div>
           </aside>
         </article>
-        {brands && (
+        {brandsStatus === "success" && (
           <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
             <h2 className="text-center text-text text-2xl mb-7">
               برند های ویژه
@@ -89,17 +95,17 @@ const HomePage = () => {
               spaceBetween={20}
               modules={[FreeMode]}
             >
-              {brands?.map((_brand: any) => {
+              {brandsData?.data.map((_brand: any) => {
                 return (
                   <SwiperSlide key={_brand.id} className="w-fit">
-                    <Link to={`/brand/${_brand.id}`}>
+                    <Link to={`/brand/${_brand.brand.id}`}>
                       <div className="w-44 h-44 p-7 border-2 hover:border-primary transition-all duration-300 bg-white border-border rounded-full">
                         <img
                           className="w-full h-full object-contain"
                           src={
-                            _brand.image === null ? defaultImage : _brand.image
+                            _brand.brand.image === null ? defaultImage : _brand.brand.image
                           }
-                          alt={_brand.name}
+                          alt={_brand.brand.name}
                         />
                       </div>
                     </Link>
@@ -155,14 +161,18 @@ const HomePage = () => {
             </Swiper>
           </section>
         )}
-        {productData?.pages && (
-          <HomeSection title="محصولات پرفروش" href="/shop" data={productData} />
+        {freshData?.pages && (
+          <HomeSection title="محصولات تازه" href="/shop" data={freshData} />
         )}
-        {productData?.pages && (
-          <HomeSection title="محصولات تازه" href="/shop" data={productData} />
+        {topSoldData?.pages && (
+          <HomeSection
+            title="محصولات پر فروش"
+            href="/shop"
+            data={topSoldData}
+          />
         )}
-        {productData?.pages && (
-          <HomeSection title="محصولات ویژه" href="/shop" data={productData} />
+        {specialData?.pages && (
+          <HomeSection title="محصولات ویژه" href="/shop" data={specialData} />
         )}
         <StaticSection />
       </main>

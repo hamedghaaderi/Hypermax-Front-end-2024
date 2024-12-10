@@ -22,7 +22,7 @@ const HomeSection = ({ title, href, data }: any) => {
             _product?.data.results.map((_product: any) => {
               return (
                 <SwiperSlide className="w-fit">
-                  <ProductItem key={_product.id} {..._product} />
+                  <ProductItem key={_product.id} {..._product.product} />
                 </SwiperSlide>
               );
             })

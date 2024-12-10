@@ -33,12 +33,13 @@ const ShopPage = () => {
   const ref = useRef<any>();
   const { isIntersecting } = useOnScreen(ref);
   const { data, fetchNextPage, isError, isLoading, hasNextPage } =
-    useInfiniteProducts();
+  useInfiniteProducts();
   useEffect(() => {
     if (isIntersecting) {
       fetchNextPage();
     }
   }, [isIntersecting]);
+  console.log('data: ', data);
 
   return (
     <>
