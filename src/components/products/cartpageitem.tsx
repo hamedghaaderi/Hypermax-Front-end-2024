@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import AddRemove from "../sub-components/addremove";
 import { categoryContext } from "../../services/catbrand-provider";
-import defaultImage from "../../../public/image/default image.jpg"
+import defaultImage from "../../../public/image/default image.jpg";
 
 const CartPageItem = (props: any) => {
   const { name, price, discount_percentage, image, subcategory, brand } = props;
@@ -36,7 +36,8 @@ const CartPageItem = (props: any) => {
               </div>
               <span className="flex flex-row-reverse justify-between items-center text-lg tablet:text-2xl text-text cursor-default">
                 <span>
-                  {Math.round(price * ((100 - discount_percentage) / 100))}
+                  {price &&
+                    Math.round(price * ((100 - discount_percentage) / 100))}
                 </span>
                 <span className="mr-1">ریال</span>
               </span>

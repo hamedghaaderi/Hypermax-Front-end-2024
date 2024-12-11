@@ -34,18 +34,21 @@ const ProductItem = (props: any) => {
           />
         </div>
         <div className="border-t border-t-border flex flex-col items-center justify-between h-1/2 pt-3">
-          <div className="text-text text-sm desk:text-base text-center cursor-default">{name}</div>
+          <div className="text-text text-sm desk:text-base text-center cursor-default">
+            {name}
+          </div>
           <div className="flex flex-row items-center justify-center cursor-default">
             <span className="text-sm desk:text-base flex flex-row-reverse justify-between items-center text-primary">
               <span>
-                {Math.round(price * ((100 - discount_percentage) / 100))}
+                {price &&
+                  Math.round(price * ((100 - discount_percentage) / 100))}
               </span>
               <span className="mr-1">ریال</span>
             </span>
             {discount_percentage !== "0.00" && (
               <span className="flex flex-row-reverse justify-between items-center ml-2 text-red">
                 <span className="line-through text-xs desk:text-sm">
-                  {Math.round(price)}
+                  {price && Math.round(price)}
                 </span>
               </span>
             )}
@@ -88,7 +91,11 @@ const ProductItem = (props: any) => {
           {discount_percentage !== "0.00" && (
             <div className="absolute top-4 cursor-default right-4 text-[10px] desk:text-xs text-white bg-orange rounded-lg px-2 py-1">
               <span className="ml-1">تخفیف</span>
-              <span>%{Math.round(discount_percentage).toFixed(1)}</span>
+              <span>
+                %
+                {discount_percentage &&
+                  Math.round(discount_percentage).toFixed(1)}
+              </span>
             </div>
           )}
         </div>

@@ -1,5 +1,5 @@
 import AddRemove from "../sub-components/addremove";
-import defaultImage from "../../../public/image/default image.jpg"
+import defaultImage from "../../../public/image/default image.jpg";
 
 const CartItem = (props: any) => {
   const { name, price, discount_percentage, image } = props;
@@ -26,13 +26,13 @@ const CartItem = (props: any) => {
           <div className="flex flex-col items-center justify-between">
             <span className="flex mb-2 flex-row-reverse items-center justify-between text-primary">
               <span className="flex flex-col items-end justify-between">
-                {price * ((100 - discount_percentage) / 100)}
+                {price && price * ((100 - discount_percentage) / 100)}
               </span>
               <span className="mr-1">ریال</span>
             </span>
             {discount_percentage !== "0.00" && (
               <span className="text-red text-sm line-through">
-                {Math.round(price)}
+                {price && Math.round(price)}
               </span>
             )}
           </div>
