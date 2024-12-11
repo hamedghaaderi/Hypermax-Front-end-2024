@@ -140,12 +140,12 @@
 }
 ::-webkit-scrollbar-track {
   border-radius: 6px;
-  background-color: #cacacab3;
+  background-color: #e7e5e5b3;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 6px;
-  background-color: #32b765;
+  background-color: #cfcece;
 }
 .swiper-pagination-bullet-active {
-  background-color: #32b765
+  background-color: #cfcece;
 }

@@ -32,9 +32,6 @@ export default {
       fontFamily: {
         "shabnam": "Shabnam",
       },
-      content: {
-        "triangle": `""`
-      },
       colors: {
         "red": "#ff3838",
         "gray": "#777777",
