@@ -9,17 +9,24 @@ import useBanners from "../hook/banners";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, FreeMode } from "swiper/modules";
 import { Link } from "react-router-dom";
-import useInfiniteProducts from "../hook/infiniteproducts";
 import HomeSection from "../components/sub-components/homesection";
+import defaultImage from "../../public/image/default image.jpg";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/free-mode";
+import useFreshProducts from "../hook/freshproducts";
+import useSpecialProducts from "../hook/specialproducts";
+import useTopSoldProducts from "../hook/topsoldproducts";
+import useTopSoldBrands from "../hook/topsoldbrands";
 
 const HomePage = () => {
-  const { categories, brands }: any = useContext(categoryContext);
-  const { data: productData } = useInfiniteProducts();
-  const { status, data: bannersData } = useBanners();
+  const { categories }: any = useContext(categoryContext);
+  const { status: bannersStatus, data: bannersData } = useBanners();
+  const { status: brandsStatus, data: brandsData } = useTopSoldBrands();
+  const { data: freshData } = useFreshProducts();
+  const { data: specialData } = useSpecialProducts();
+  const { data: topSoldData } = useTopSoldProducts();
 
   return (
     <>
@@ -27,7 +34,7 @@ const HomePage = () => {
       <main className="bg-body font-shabnam">
         <article className="max-w-whole desk:w-90% desklg:w-full m-auto flex flex-row desk:pt-8 gap-x-7">
           <section className="w-full h-72 desk:h-96 desk:w-2/3 desklg:w-3/4">
-            {status == "success" && (
+            {bannersStatus == "success" && (
               <Swiper
                 spaceBetween={15}
                 centeredSlides={true}
@@ -77,41 +84,95 @@ const HomePage = () => {
             </div>
           </aside>
         </article>
-        {productData?.pages && (
-          <HomeSection title="محصولات پرفروش" href="/shop" data={productData} />
-        )}
-        {productData?.pages && (
-          <HomeSection title="محصولات تازه" href="/shop" data={productData} />
-        )}
-        {productData?.pages && (
-          <HomeSection title="محصولات ویژه" href="/shop" data={productData} />
-        )}
-        {brands && (
+        {brandsStatus === "success" && (
           <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
-            <h2 className="text-center text-text text-2xl mb-7">برند ها</h2>
+            <h2 className="text-center text-text text-2xl mb-7">
+              برند های ویژه
+            </h2>
             <Swiper
               slidesPerView="auto"
               freeMode={true}
               spaceBetween={20}
               modules={[FreeMode]}
             >
-              {brands?.map((_brand: any) => {
+              {brandsData?.data.map((_brand: any) => {
                 return (
                   <SwiperSlide key={_brand.id} className="w-fit">
-                    <Link to={`/brand/${_brand.id}`}>
-                      <div className="w-40 h-40 p-5 border-2 border-border rounded-xl">
+                    <Link to={`/brand/${_brand.brand.id}`}>
+                      <div className="w-44 h-44 p-7 border-2 hover:border-primary transition-all duration-300 bg-white border-border rounded-full">
                         <img
                           className="w-full h-full object-contain"
-                          src={_brand.image}
-                          alt={_brand.name}
+                          src={
+                            _brand.brand.image === null ? defaultImage : _brand.brand.image
+                          }
+                          alt={_brand.brand.name}
                         />
                       </div>
                     </Link>
                   </SwiperSlide>
                 );
               })}
+              <SwiperSlide className="w-44 h-44 rounded-full flex items-center justify-center">
+                <Link to="/brand" className="flex flex-col items-center">
+                  <i className="fa-solid fa-angle-left rotate-180 mr-1 h-14 w-14 text-black hover:text-white bg-border hover:bg-primary transition-colors duration-300 rounded-full flex items-center justify-center mb-4"></i>
+                  <span className="text-lg">مشاهده همه</span>
+                </Link>
+              </SwiperSlide>
             </Swiper>
           </section>
+        )}
+        {categories && (
+          <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
+            <h2 className="text-center text-text text-2xl mb-7">
+              دسته بندی های ویژه
+            </h2>
+            <Swiper
+              slidesPerView="auto"
+              freeMode={true}
+              spaceBetween={20}
+              modules={[FreeMode]}
+            >
+              {categories?.map((_category: any) => {
+                return (
+                  <SwiperSlide
+                    key={_category.id}
+                    className="w-fit flex flex-col items-center"
+                  >
+                    <Link to={`/category/subcategory/${_category.id}`}>
+                      <img
+                        className="inline-block object-fill w-40 h-40 brightness-100 hover:brightness-75 transition-all duration-300 bg-white rounded-xl"
+                        src={
+                          _category.image === null
+                            ? defaultImage
+                            : _category.image
+                        }
+                        alt={_category.name}
+                      />
+                    </Link>
+                  </SwiperSlide>
+                );
+              })}
+              <SwiperSlide className="w-40 h-40 rounded-full flex items-center justify-center">
+                <Link to="/category" className="flex flex-col items-center">
+                  <i className="fa-solid fa-angle-left rotate-180 mr-1 h-14 w-14 text-black hover:text-white bg-border hover:bg-primary transition-colors duration-300 rounded-full flex items-center justify-center mb-4"></i>
+                  <span className="text-lg">مشاهده همه</span>
+                </Link>
+              </SwiperSlide>
+            </Swiper>
+          </section>
+        )}
+        {freshData?.pages && (
+          <HomeSection title="محصولات تازه" href="/fresh-products" data={freshData} />
+        )}
+        {topSoldData?.pages && (
+          <HomeSection
+            title="محصولات پر فروش"
+            href="/top-sold-products"
+            data={topSoldData}
+          />
+        )}
+        {specialData?.pages && (
+          <HomeSection title="محصولات ویژه" href="/special-products" data={specialData} />
         )}
         <StaticSection />
       </main>

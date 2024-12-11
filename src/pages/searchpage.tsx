@@ -75,9 +75,9 @@ const SearchPage = () => {
               </span>
             )}
           </div>
-          <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 desk:mt-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center tablet:gap-9 desk:gap-5 desklg:gap-9">
+          <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 desk:mt-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center gap-7">
             {data?.pages && (
-              <div className="w-full self-start mb-7 font-shabnam bg-white text-text cursor-default p-5 rounded-xl flex flex-row items-center justify-end">
+              <div className="w-full self-start font-shabnam bg-white text-text cursor-default p-5 rounded-xl flex flex-row items-center justify-end">
                 <span className="mr-3 text-xl desk:text-2xl text-primary">
                   {searchQuery}
                 </span>

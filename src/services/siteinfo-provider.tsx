@@ -10,8 +10,7 @@ const SiteInfoProvider: React.FC<{ children: React.JSX.Element }> = ({
 
   const memoizedValue: any = useMemo(
     () => ({
-      info: data?.data
-      
+      info: data?.data,
     }),
     [data?.data]
   );

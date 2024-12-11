@@ -69,7 +69,7 @@ const Footer = () => {
                   </ul>
                   <ul className="text-right text-text leading-10">
                     <li className="transition-colors duration-300 hover:text-primary">
-                      <Link to="/contactus">ارتباط با ما</Link>
+                      <Link to="/contact-us">ارتباط با ما</Link>
                     </li>
                     <li className="transition-colors duration-300 hover:text-primary">
                       <Link to="/faq">راهنما</Link>

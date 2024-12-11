@@ -15,6 +15,8 @@ import SuccessAlert from "../components/alerts/successalert";
 import ErrorAlert from "../components/alerts/erroralert";
 import { useState } from "react";
 import Redirect from "../components/sub-components/redirect";
+import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
+import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
 
 const CartPage = () => {
   const [showRedirect, setShowRedirect] = useState(false);
@@ -74,9 +76,11 @@ const CartPage = () => {
     <>
       <Header />
       <main className="bg-body font-shabnam">
-        <article className="max-w-whole m-auto desk:flex desk:w-90% desklg:w-full desk:flex-row p-5 desk:p-7 relative desk:px-0">
+        <BreadCrumbDesk />
+        <BreadCrumbMobile variant={"section"}/>
+        <article className="max-w-whole m-auto desk:flex w-90% desklg:w-full desk:flex-row py-7 relative">
           {products.length !== 0 && (
-            <aside className="rounded-2xl bg-white mr-5 hidden desk:block w-1/3 h-fit sticky top-213px">
+            <aside className="rounded-2xl bg-white mr-7 hidden desk:block w-1/3 h-fit sticky top-213px">
               <div className="flex flex-col items-end justify-between text-text pb-4 border-b-2 border-border py-5 px-7">
                 <div className="flex flex-row-reverse w-full items-center justify-between pb-4 border-b border-border">
                   <span>جمع جزء</span>
@@ -168,12 +172,12 @@ const CartPage = () => {
             className={products.length == 0 ? "desk:w-full" : "desk:w-2/3"}
           >
             {products.length == 0 && (
-              <div className="py-5 px-7 rounded-2xl bg-white mb-5">
+              <div className="pt-5 rounded-2xl bg-white">
                 <div
                   className={
                     products.length !== 0
-                      ? "w-full flex items-center justify-between pb-3"
-                      : "w-full text-right pb-3"
+                      ? "w-full flex items-center justify-between pb-6 px-7 border-b-2 border-border"
+                      : "w-full text-right pb-6 px-7 border-b-2 border-border"
                   }
                 >
                   <span className="text-text text-xl tablet:text-2xl">
@@ -186,7 +190,7 @@ const CartPage = () => {
               </div>
             )}
             {products.length !== 0 && (
-              <div className="pt-5 rounded-2xl bg-white mb-5">
+              <div className="pt-5 rounded-2xl bg-white mb-7">
                 <div className="w-full flex items-center justify-between pb-6 px-7 border-b-2 border-border">
                   <button
                     onClick={() => removeAll()}
@@ -210,7 +214,7 @@ const CartPage = () => {
           </section>
         </article>
         {products.length !== 0 && (
-          <section className="rounded-2xl bg-white m-5 mt-0 desk:hidden">
+          <section className="rounded-2xl bg-white w-90% m-auto mb-7 desk:hidden">
             <div className="flex flex-col items-end justify-between text-text pb-4 border-b-2 border-border py-5 px-7">
               <div className="flex flex-row-reverse w-full items-center justify-between pb-4 border-b border-border">
                 <span>جمع جزء</span>

@@ -4,14 +4,19 @@ import Header from "../components/header";
 import MobileMenu from "../components/mobilemenu";
 import StaticSection from "../components/staticsection";
 import { siteInfoContext } from "../services/siteinfo-provider";
+import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
+import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
 
 const ContactPage = () => {
   const { info }: any = useContext(siteInfoContext);
+  console.log('info: ', info);
 
   return (
     <>
       <Header />
       <main className="bg-body font-shabnam">
+        <BreadCrumbDesk />
+        <BreadCrumbMobile variant={"section"} />
         <article className="max-w-whole w-90% desklg:w-full m-auto flex flex-col desk:flex-row items-center justify-between pt-7">
           <section className="flex flex-col-reverse items-center justify-between w-full desk:w-2/5 desk:mr-7">
             <div className="flex flex-col items-center justify-center bg-white w-full rounded-xl py-16 mb-7 desk:mb-0 hover:bg-primary transition-all duration-300 group">
@@ -36,7 +41,7 @@ const ContactPage = () => {
           <section className="w-full h-96 desk:h-716px p-4 bg-white rounded-xl desk:w-3/5">
             <iframe
               className="w-full h-full rounded-lg"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.3406974350205!2d90.48469931445422!3d23.663771197998262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b0d5983f048d%3A0x754f30c82bcad3cd!2sJalkuri%20Bus%20Stop!5e0!3m2!1sen!2sbd!4v1605354966349!5m2!1sen!2sbd"
+              src={info?.map}
             ></iframe>
           </section>
         </article>
