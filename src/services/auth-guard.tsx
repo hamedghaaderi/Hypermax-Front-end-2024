@@ -1,20 +1,25 @@
+import { useEffect } from "react";
 import useLoginSignup from "../store/loginsignup";
 import useUserData from "../store/userdata";
 
 const AuthGuardProvider: React.FC<{ children: React.JSX.Element }> = ({
-  children, 
+  children,
 }) => {
-  const checkisLoggedIn = () => {
-    const { isLoggedIn } = useUserData((state: any) => state);
-    const { showLoginSignup, hiddenClose } = useLoginSignup((state: any) => state.action);
+  const { isLoggedIn } = useUserData((state: any) => state);
+  const { showLoginSignup, hiddenClose } = useLoginSignup(
+    (state: any) => state.action
+  );
 
+  const checkisLoggedIn = () => {
     if (!isLoggedIn) {
       showLoginSignup();
       hiddenClose();
     }
   };
 
-  checkisLoggedIn();
+  useEffect(() => {
+    checkisLoggedIn();
+  }, []);
 
   return <>{children}</>;
 };
