@@ -25,15 +25,15 @@ const PersonalInfoPage = () => {
     <>
       {isLoading &&  <IsLoading />}
       {user!== null && (
-        <div className="bg-white rounded-2xl p-5 flex flex-col items-end justify-between desk:mr-7 desk:w-4/5">
-          <div className="flex flex-row items-center justify-between mr-1">
+        <div className="bg-white rounded-2xl flex flex-col items-end justify-between desk:mr-7 desk:w-4/5">
+          <div className="flex flex-row items-center justify-end p-5 border-b-2 w-full border-border">
             <h3 className="text-text text-lg mr-2">پروفایل شما</h3>
             <i className="fa-solid fa-user text-primary"></i>
           </div>
           <form
             onSubmit={handleSubmit(handleFormSubmit)}
             id="user-info"
-            className="flex flex-col items-end w-full mt-7 tablet:mt-3 justify-between"
+            className="flex flex-col items-end w-full p-5 pt-2 justify-between"
           >
             <div className="w-full flex flex-col justify-between items-end tablet:flex-row-reverse tablet:flex-wrap tablet:items-baseline">
               <div className="w-full tablet:w-48% desklg:w-[23%]">

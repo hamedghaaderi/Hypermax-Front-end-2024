@@ -11,14 +11,14 @@ import { Autoplay, Pagination, FreeMode } from "swiper/modules";
 import { Link } from "react-router-dom";
 import HomeSection from "../components/sub-components/homesection";
 import defaultImage from "../../public/image/default image.jpg";
-
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/free-mode";
 import useFreshProducts from "../hook/freshproducts";
 import useSpecialProducts from "../hook/specialproducts";
 import useTopSoldProducts from "../hook/topsoldproducts";
 import useTopSoldBrands from "../hook/topsoldbrands";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/free-mode";
 
 const HomePage = () => {
   const { categories }: any = useContext(categoryContext);
