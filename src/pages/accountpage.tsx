@@ -4,8 +4,8 @@ import Footer from "../components/footer";
 import StaticSection from "../components/staticsection";
 import useUserData from "../store/userdata";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
-import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
+import BreadCrumbDesk from "../components/breadcrumb/breadcrumbdesk";
+import BreadCrumbMobile from "../components/breadcrumb/breadcrumbmobile";
 
 const AccountPage = () => {
   const navigate = useNavigate();

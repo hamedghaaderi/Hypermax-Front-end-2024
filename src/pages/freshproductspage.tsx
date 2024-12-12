@@ -9,8 +9,8 @@ import IsLoadingProducts from "../components/loadings-errors/isloadingproducts";
 import IsError from "../components/loadings-errors/iserror";
 import useOnScreen from "../hook/onscreen";
 import NoProducts from "../components/loadings-errors/noproducts";
-import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
-import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
+import BreadCrumbDesk from "../components/breadcrumb/breadcrumbdesk";
+import BreadCrumbMobile from "../components/breadcrumb/breadcrumbmobile";
 import useFreshProducts from "../hook/freshproducts";
 
 const FreshProductsPage = () => {

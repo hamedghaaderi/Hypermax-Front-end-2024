@@ -15,8 +15,8 @@ import MobileFilter from "../components/filters/mobilefilter";
 import { categoryContext } from "../services/catbrand-provider";
 import { useSearchParams } from "react-router-dom";
 import NoProducts from "../components/loadings-errors/noproducts";
-import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
-import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
+import BreadCrumbDesk from "../components/breadcrumb/breadcrumbdesk";
+import BreadCrumbMobile from "../components/breadcrumb/breadcrumbmobile";
 
 const ShopPage = () => {
   const [showFilter, setShowFilter] = useState(false);

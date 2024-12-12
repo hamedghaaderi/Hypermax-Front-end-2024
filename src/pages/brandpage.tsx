@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { categoryContext } from "../services/catbrand-provider";
 import { Link } from "react-router-dom";
 import defaultImage from "../../public/image/default image.jpg";
-import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
-import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
+import BreadCrumbDesk from "../components/breadcrumb/breadcrumbdesk";
+import BreadCrumbMobile from "../components/breadcrumb/breadcrumbmobile";
 
 const BrandPage = () => {
   const { brands }: any = useContext(categoryContext);
