@@ -19,9 +19,19 @@ import ContactPage from "./pages/contactpage";
 import FreshProductsPage from "./pages/freshproductspage";
 import SpecialProductsPage from "./pages/specialproductspage";
 import TopSoldProductsPage from "./pages/topsoldproductspage";
+import { Helmet } from "react-helmet";
+import { siteInfoContext } from "./services/siteinfo-provider";
+import { useContext } from "react";
 import DiscountedPage from "./pages/discountedpage";
 
 const App = () => {
+  const { info }: any = useContext(siteInfoContext);
+  // const metaTags = [
+  //   { name: "description", content: "This is an example description." },
+  //   { name: "keywords", content: "example, meta, react, seo" },
+  //   { property: "og:title", content: "React Helmet Example" },
+  //   { property: "og:description", content: "Dynamically injecting meta tags." },
+  // ];
   const routes = useRoutes([
     { path: "/", element: <HomePage /> },
     { path: "*", element: <NotFound /> },
@@ -89,7 +99,21 @@ const App = () => {
       ),
     },
   ]);
-  return <>{routes}</>;
+  return (
+    <>
+      <Helmet>
+        {/* {metaTags.map((meta, index) => (
+          <meta
+            key={index}
+            {...meta}
+          />
+        ))} */}
+        <link rel="icon" type="image/svg+xml" href={info?.icon} />
+        <title>{info?.site_name}</title>
+      </Helmet>
+      {routes}
+    </>
+  );
 };
 
 export default App;
