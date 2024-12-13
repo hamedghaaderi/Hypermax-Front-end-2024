@@ -1,12 +1,12 @@
 import Logo from "./sub-components/logo";
 import user from "../../public/image/user.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import TopHeader from "./sub-components/topheader";
 import useBasket from "../store/basket";
 import useFavorites from "../store/favorites";
 import useCompares from "../store/compare";
 import Navbar from "./sub-components/navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ComModalDesk from "./modals/commodaldesk";
 import FavModalDesk from "./modals/favmodaldesk";
 import CartModalDesk from "./modals/cartmodaldesk";
@@ -18,8 +18,9 @@ import { createPortal } from "react-dom";
 import HeaderAccountModal from "./modals/headeraccountmodal";
 
 const Header = () => {
+  const location = useLocation();
   const { show } = useLoginSignup((state: any) => state);
-  const { showLoginSignup, showClose } = useLoginSignup(
+  const { showLoginSignup, showClose, hiddenLoginSignup } = useLoginSignup(
     (state: any) => state.action
   );
   const [showCart, setShowCart] = useState(false);
@@ -46,6 +47,17 @@ const Header = () => {
       event.target.value = "";
     }
   };
+
+  useEffect(() => {
+    if (
+      location.pathname !== "/cart" &&
+      location.pathname !== "/account/history" &&
+      location.pathname !== "/account"
+    ) {
+      hiddenLoginSignup();
+      showClose()
+    }
+  }, []);
 
   return (
     <>
