@@ -128,7 +128,7 @@ const HomePage = () => {
             </Swiper>
           </section>
         )}
-        {categoriesStatus && (
+        {categoriesStatus === "success" && (
           <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
             <h2 className="text-center text-text text-2xl mb-7">
               دسته بندی های ویژه
