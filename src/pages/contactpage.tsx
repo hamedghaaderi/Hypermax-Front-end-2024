@@ -9,7 +9,6 @@ import BreadCrumbMobile from "../components/breadcrumb/breadcrumbmobile";
 
 const ContactPage = () => {
   const { info }: any = useContext(siteInfoContext);
-  console.log('info: ', info);
 
   return (
     <>

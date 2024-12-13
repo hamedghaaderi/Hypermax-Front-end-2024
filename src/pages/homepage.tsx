@@ -15,6 +15,8 @@ import useFreshProducts from "../hook/freshproducts";
 import useSpecialProducts from "../hook/specialproducts";
 import useTopSoldProducts from "../hook/topsoldproducts";
 import useTopSoldBrands from "../hook/topsoldbrands";
+import useDiscountedProducts from "../hook/discountedproducts";
+import useSpecialCategories from "../hook/specialcategories";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,9 +26,12 @@ const HomePage = () => {
   const { categories }: any = useContext(categoryContext);
   const { status: bannersStatus, data: bannersData } = useBanners();
   const { status: brandsStatus, data: brandsData } = useTopSoldBrands();
+  const { status: categoriesStatus, data: categoriesData } =
+    useSpecialCategories();
   const { data: freshData } = useFreshProducts();
   const { data: specialData } = useSpecialProducts();
   const { data: topSoldData } = useTopSoldProducts();
+  const { data: discountedData } = useDiscountedProducts();
 
   return (
     <>
@@ -87,7 +92,7 @@ const HomePage = () => {
         {brandsStatus === "success" && (
           <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
             <h2 className="text-center text-text text-2xl mb-7">
-              برند های ویژه
+              برند های پر فروش
             </h2>
             <Swiper
               slidesPerView="auto"
@@ -103,7 +108,9 @@ const HomePage = () => {
                         <img
                           className="w-full h-full object-contain"
                           src={
-                            _brand.brand.image === null ? defaultImage : _brand.brand.image
+                            _brand.brand.image === null
+                              ? defaultImage
+                              : _brand.brand.image
                           }
                           alt={_brand.brand.name}
                         />
@@ -121,7 +128,7 @@ const HomePage = () => {
             </Swiper>
           </section>
         )}
-        {categories && (
+        {categoriesStatus && (
           <section className="rounded-md bg-body max-w-whole w-90% desklg:w-full m-auto mt-12 desk:mt-16 mb-8">
             <h2 className="text-center text-text text-2xl mb-7">
               دسته بندی های ویژه
@@ -132,21 +139,21 @@ const HomePage = () => {
               spaceBetween={20}
               modules={[FreeMode]}
             >
-              {categories?.map((_category: any) => {
+              {categoriesData?.data.map((_category: any) => {
                 return (
                   <SwiperSlide
                     key={_category.id}
                     className="w-fit flex flex-col items-center"
                   >
-                    <Link to={`/category/subcategory/${_category.id}`}>
+                    <Link to={`/category/${_category.category.id}`}>
                       <img
                         className="inline-block object-fill w-40 h-40 brightness-100 hover:brightness-75 transition-all duration-300 bg-white rounded-xl"
                         src={
-                          _category.image === null
+                          _category.category.image === null
                             ? defaultImage
-                            : _category.image
+                            : _category.category.image
                         }
-                        alt={_category.name}
+                        alt={_category.category.name}
                       />
                     </Link>
                   </SwiperSlide>
@@ -162,7 +169,18 @@ const HomePage = () => {
           </section>
         )}
         {freshData?.pages && (
-          <HomeSection title="محصولات تازه" href="/fresh-products" data={freshData} />
+          <HomeSection
+            title="محصولات تازه"
+            href="/fresh-products"
+            data={freshData}
+          />
+        )}
+        {discountedData?.pages && (
+          <HomeSection
+            title="تخفیفات استثنایی"
+            href="/discounted-products"
+            data={discountedData}
+          />
         )}
         {topSoldData?.pages && (
           <HomeSection
@@ -172,7 +190,11 @@ const HomePage = () => {
           />
         )}
         {specialData?.pages && (
-          <HomeSection title="محصولات ویژه" href="/special-products" data={specialData} />
+          <HomeSection
+            title="محصولات ویژه"
+            href="/special-products"
+            data={specialData}
+          />
         )}
         <StaticSection />
       </main>

@@ -145,6 +145,17 @@ const BreadCrumbMobile = ({ variant }: any) => {
             </Link>
           </>
         )}
+        {route[1] === "discounted-products" && (
+          <>
+            <span className="px-3 text-text">/</span>
+            <Link
+              className="text-text hover:text-primary transition-all duration-300"
+              to="/discounted-products"
+            >
+              تخفیفات استثنایی
+            </Link>
+          </>
+        )}
         {route[1] === "top-sold-products" && (
           <>
             <span className="px-3 text-text">/</span>

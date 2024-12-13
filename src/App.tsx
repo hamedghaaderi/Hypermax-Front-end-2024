@@ -19,6 +19,7 @@ import ContactPage from "./pages/contactpage";
 import FreshProductsPage from "./pages/freshproductspage";
 import SpecialProductsPage from "./pages/specialproductspage";
 import TopSoldProductsPage from "./pages/topsoldproductspage";
+import DiscountedPage from "./pages/discountedpage";
 
 const App = () => {
   const routes = useRoutes([
@@ -31,6 +32,7 @@ const App = () => {
     { path: "/fresh-products", element: <FreshProductsPage /> },
     { path: "/special-products", element: <SpecialProductsPage /> },
     { path: "/top-sold-products", element: <TopSoldProductsPage /> },
+    { path: "/discounted-products", element: <DiscountedPage /> },
     {
       path: "/category",
       element: <SamePage />,
