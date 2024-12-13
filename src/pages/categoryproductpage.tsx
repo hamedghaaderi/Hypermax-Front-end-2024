@@ -54,12 +54,12 @@ const CategoryProductPage = () => {
           </button>
           {subCatQuery !== null && (
             <span className="py-1 px-2 border border-border rounded-xl text-text font-shabnam bg-body mr-3">
-              {subCatOBJ.name}
+              {subCatOBJ?.name}
             </span>
           )}
           {brandQuery !== null && (
             <span className="py-1 px-2 border border-border rounded-xl text-text font-shabnam bg-body mr-3">
-              {brandOBJ.name}
+              {brandOBJ?.name}
             </span>
           )}
           {minQuery !== null && (

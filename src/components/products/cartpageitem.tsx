@@ -37,6 +37,7 @@ const CartPageItem = (props: any) => {
               <span className="flex flex-row-reverse justify-between items-center text-lg tablet:text-2xl text-text cursor-default">
                 <span>
                   {price &&
+                    discount_percentage &&
                     Math.round(price * ((100 - discount_percentage) / 100))}
                 </span>
                 <span className="mr-1">ریال</span>

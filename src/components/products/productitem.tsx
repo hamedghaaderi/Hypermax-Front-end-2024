@@ -41,6 +41,7 @@ const ProductItem = (props: any) => {
             <span className="text-sm desk:text-base flex flex-row-reverse justify-between items-center text-primary">
               <span>
                 {price &&
+                  discount_percentage &&
                   Math.round(price * ((100 - discount_percentage) / 100))}
               </span>
               <span className="mr-1">ریال</span>
