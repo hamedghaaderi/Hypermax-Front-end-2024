@@ -18,8 +18,8 @@ const FaqPage = () => {
         <BreadCrumbMobile variant={"section"} />
         <section className="max-w-whole w-90% desklg:w-full m-auto pt-7">
           {status === "success" &&
-            data?.data.map((_faq: any) => {
-              return <QuestionAnswer key={_faq.id} {..._faq} />;
+            data?.data.map((_faq: any, index: any) => {
+              return <QuestionAnswer key={index} {..._faq} />;
             })}
         </section>
         <StaticSection />
