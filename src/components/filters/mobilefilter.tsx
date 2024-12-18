@@ -58,7 +58,7 @@ const MobileFilter = ({ onClose, open }: ICartModal) => {
       setSubCategory(null);
     }
     if (route[1] === "brand") {
-      setSubCategory(null);
+      setBrand(null);
     }
   }, []);
 

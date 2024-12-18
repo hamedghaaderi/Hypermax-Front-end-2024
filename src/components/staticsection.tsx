@@ -84,47 +84,47 @@ const StaticSection = () => {
       <section>
         <div className="bg-body">
           <div className="flex flex-col justify-between max-w-whole m-auto p-9 desk:px-0 desk:w-90% desklg:w-full font-shabnam tablet:flex-wrap tablet:flex-row-reverse">
-            <div className="flex flex-row-reverse items-center justify-between  mb-7 tablet:w-48% desklg:w-23% desklg:flex-nowrap">
+            <div className="flex flex-row-reverse items-center justify-start mb-7 tablet:w-48% desklg:w-23% desklg:flex-nowrap">
               <div className="w-12 h-12 px-4 rounded-full text-primary bg-white border-2 border-primary flex items-center justify-center transition-colors duration-300 hover:bg-primary hover:text-white">
                 <i className="fa-solid fa-truck-moving"></i>
               </div>
               <div className="cursor-default text-right mr-5 text-text">
                 <h5 className="text-lg mb-2">تحویل درب منزل رایگان</h5>
                 <p className="text-base">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.
+                  در سریع ترین زمان ممکن
                 </p>
               </div>
             </div>
-            <div className="flex flex-row-reverse items-center justify-between mb-7 tablet:w-48% desklg:w-23% desklg:flex-nowrap">
+            <div className="flex flex-row-reverse items-center justify-start mb-7 tablet:w-48% desklg:w-23% desklg:flex-nowrap">
               <div className="w-12 h-12 px-4 rounded-full text-primary bg-white border-2 border-primary flex items-center justify-center transition-colors duration-300 hover:bg-primary hover:text-white">
                 <i className="fa-solid fa-arrows-rotate"></i>
               </div>
               <div className="cursor-default text-right mr-5 text-text">
                 <h5 className="text-lg mb-2">مرجوعی کالا بی قید و شرط</h5>
                 <p className="text-base">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.
+                  در صورت هرگونه مشکل کالای خود را مرجوع کنید
                 </p>
               </div>
             </div>
-            <div className="flex flex-row-reverse items-center justify-between mb-7 tablet:w-48% desklg:w-23% desklg:flex-nowrap">
+            <div className="flex flex-row-reverse items-center justify-start mb-7 tablet:w-48% desklg:w-23% desklg:flex-nowrap">
               <div className="w-12 h-12 px-4 rounded-full text-primary bg-white border-2 border-primary flex items-center justify-center transition-colors duration-300 hover:bg-primary hover:text-white">
                 <i className="fa-solid fa-headset"></i>
               </div>
               <div className="cursor-default text-right mr-5 text-text">
                 <h5 className="text-lg mb-2">سیستم پشتیبانی سریع</h5>
                 <p className="text-base">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.
+                  با پاسخگویی 24 ساعته
                 </p>
               </div>
             </div>
-            <div className="flex flex-row-reverse items-center justify-between tablet:mb-7 tablet:w-48% desklg:w-23% desklg:flex-nowrap">
+            <div className="flex flex-row-reverse items-center justify-start tablet:mb-7 tablet:w-48% desklg:w-23% desklg:flex-nowrap">
               <div className="w-12 h-12 px-4 rounded-full text-primary bg-white border-2 border-primary flex items-center justify-center transition-colors duration-300 hover:bg-primary hover:text-white">
                 <i className="fa-solid fa-lock"></i>
               </div>
               <div className="cursor-default text-right mr-5 text-text">
                 <h5 className="text-lg mb-2">راه های پرداخت امن</h5>
                 <p className="text-base">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                  با خیال راحت از ما خرید کنید
                 </p>
               </div>
             </div>

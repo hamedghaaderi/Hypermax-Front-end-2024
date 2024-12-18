@@ -42,7 +42,7 @@ const DesktopFilter = () => {
       setSubCategory(null);
     }
     if (route[1] === "brand") {
-      setBrand(null);
+      setBrand(null);      
     }
   }, []);
 

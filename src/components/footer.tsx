@@ -11,7 +11,7 @@ const Footer = () => {
       <footer className="font-shabnam">
         <div className="bg-body">
           <div className=" max-w-whole m-auto">
-            <div className="flex flex-col pt-12 px-5 desk:w-90% desklg:w-full desk:m-auto desk:flex-wrap tablet:px-5 desk:flex desk:flex-row-reverse desk:justify-between desk:px-0">
+            <div className="flex flex-col p-9 desk:w-90% desklg:w-full desk:m-auto desk:flex-wrap desk:flex desk:flex-row-reverse desk:justify-between desk:px-0">
               <div className="flex flex-col mb-7 desk:w-5/12 items-end desklg:w-1/4">
                 <Logo />
                 <p className="mt-6 text-right text-text cursor-default">
