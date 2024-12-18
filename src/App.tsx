@@ -23,15 +23,11 @@ import { Helmet } from "react-helmet";
 import { siteInfoContext } from "./services/siteinfo-provider";
 import { useContext } from "react";
 import DiscountedPage from "./pages/discountedpage";
+import useSEO from "./hook/SEO";
 
 const App = () => {
   const { info }: any = useContext(siteInfoContext);
-  // const metaTags = [
-  //   { name: "description", content: "This is an example description." },
-  //   { name: "keywords", content: "example, meta, react, seo" },
-  //   { property: "og:title", content: "React Helmet Example" },
-  //   { property: "og:description", content: "Dynamically injecting meta tags." },
-  // ];
+  const { data: SEOData } = useSEO();
   const routes = useRoutes([
     { path: "/", element: <HomePage /> },
     { path: "*", element: <NotFound /> },
@@ -102,12 +98,9 @@ const App = () => {
   return (
     <>
       <Helmet>
-        {/* {metaTags.map((meta, index) => (
-          <meta
-            key={index}
-            {...meta}
-          />
-        ))} */}
+        {SEOData?.data.map((meta: any, index: any) => (
+          <meta key={index} {...meta} />
+        ))}
         <link rel="icon" type="image/svg+xml" href={info?.icon} />
         <title>{info?.site_name}</title>
       </Helmet>
