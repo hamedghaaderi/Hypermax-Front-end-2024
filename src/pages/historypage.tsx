@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import IsLoading from "../components/loadings-errors/isloading";
 import useOrders from "../hook/orders";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import History from "../components/orders/history";
+import { useSearchParams } from "react-router-dom";
 
 import "swiper/css";
 import "swiper/css/free-mode";
+import useBasket from "../store/basket";
 
 const HistoryPage = () => {
+  const [searchParams] = useSearchParams();
+  const { removeAll } = useBasket((state: any) => state.action);
   const { status, data } = useOrders();
   const [tab, setTab] = useState("all");
+  const qPaid = searchParams.get("status") ?? "";
   const pending = data?.data.filter(
     (_orderItem: any) => _orderItem.state === "در انتظار"
   );
@@ -29,6 +34,12 @@ const HistoryPage = () => {
   const cancelled = data?.data.filter(
     (_orderItem: any) => _orderItem.state === "لغو شده"
   );
+
+  useEffect(() => {
+    if (qPaid === "1") {
+      removeAll();
+    }
+  }, [qPaid]);
 
   return (
     <>
