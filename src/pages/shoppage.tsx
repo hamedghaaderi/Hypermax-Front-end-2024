@@ -15,8 +15,8 @@ import MobileFilter from "../components/filters/mobilefilter";
 import { categoryContext } from "../services/catbrand-provider";
 import { useSearchParams } from "react-router-dom";
 import NoProducts from "../components/loadings-errors/noproducts";
-import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
-import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
+import BreadCrumbDesk from "../components/breadcrumb/breadcrumbdesk";
+import BreadCrumbMobile from "../components/breadcrumb/breadcrumbmobile";
 
 const ShopPage = () => {
   const [showFilter, setShowFilter] = useState(false);
@@ -56,12 +56,12 @@ const ShopPage = () => {
             </button>
             {subCatQuery !== null && (
               <span className="py-1 px-2 border border-border rounded-xl text-text font-shabnam bg-body mr-3">
-                {subCatOBJ.name}
+                {subCatOBJ?.name}
               </span>
             )}
             {brandQuery !== null && (
               <span className="py-1 px-2 border border-border rounded-xl text-text font-shabnam bg-body mr-3">
-                {brandOBJ.name}
+                {brandOBJ?.name}
               </span>
             )}
             {minQuery !== null && (
@@ -78,7 +78,7 @@ const ShopPage = () => {
             )}
           </div>
           <BreadCrumbMobile variant={"div"}/>
-          <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 mt-7 desk:ml-0 desk:mr-5 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center gap-7">
+          <div className="flex flex-col items-center justify-between mx-12 desk:w-3/4 tablet:mx-7 mt-7 desk:ml-0 desk:mr-7 desklg:mr-9 tablet:flex-row tablet:flex-wrap tablet:justify-center desk:justify-center gap-7">
             {isLoading && <IsLoading />}
             {isError && <IsError />}
             {data?.pages[0].data.count === 0 && <NoProducts />}

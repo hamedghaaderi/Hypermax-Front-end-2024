@@ -15,9 +15,7 @@ const Footer = () => {
               <div className="flex flex-col mb-7 desk:w-5/12 items-end desklg:w-1/4">
                 <Logo />
                 <p className="mt-6 text-right text-text cursor-default">
-                  لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                  استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و
-                  مجله در ستون و سطرآنچنان که لازم است.
+                  {info?.description}
                 </p>
               </div>
               <div className="flex flex-col items-end desk:w-5/12 desklg:w-fit mb-10">
@@ -88,12 +86,7 @@ const Footer = () => {
             </div>
             <div className="px-3 bg-primary mt-2 py-0 rounded-ss-lg rounded-tr-lg desk:mt-4">
               <p className="px-4 py-6 text-sm text-center text-white cursor-default">
-                .تمامی حقوق این سایت متعلق به
-                <Link className=" hover:opacity-65" to="/">
-                  {" "}
-                  هایپر مکث{" "}
-                </Link>
-                می باشد ©
+                {info?.bottom_slogan}
               </p>
             </div>
           </div>

@@ -28,7 +28,9 @@ const ComItem = (props: any) => {
             <div className="flex flex-col items-center justify-between">
               <span className="flex mb-2 flex-row-reverse items-center justify-between text-primary">
                 <span className="flex flex-col items-end justify-between">
-                  {price && price * ((100 - discount_percentage) / 100)}
+                  {price &&
+                    discount_percentage &&
+                    price * ((100 - discount_percentage) / 100)}
                 </span>
                 <span className="mr-1">ریال</span>
               </span>

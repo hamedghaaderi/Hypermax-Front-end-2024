@@ -19,8 +19,15 @@ import ContactPage from "./pages/contactpage";
 import FreshProductsPage from "./pages/freshproductspage";
 import SpecialProductsPage from "./pages/specialproductspage";
 import TopSoldProductsPage from "./pages/topsoldproductspage";
+import { Helmet } from "react-helmet";
+import { siteInfoContext } from "./services/siteinfo-provider";
+import { useContext } from "react";
+import DiscountedPage from "./pages/discountedpage";
+import useSEO from "./hook/SEO";
 
 const App = () => {
+  const { info }: any = useContext(siteInfoContext);
+  const { data: SEOData } = useSEO();
   const routes = useRoutes([
     { path: "/", element: <HomePage /> },
     { path: "*", element: <NotFound /> },
@@ -31,6 +38,7 @@ const App = () => {
     { path: "/fresh-products", element: <FreshProductsPage /> },
     { path: "/special-products", element: <SpecialProductsPage /> },
     { path: "/top-sold-products", element: <TopSoldProductsPage /> },
+    { path: "/discounted-products", element: <DiscountedPage /> },
     {
       path: "/category",
       element: <SamePage />,
@@ -87,7 +95,18 @@ const App = () => {
       ),
     },
   ]);
-  return <>{routes}</>;
+  return (
+    <>
+      <Helmet>
+        {SEOData?.data.map((meta: any, index: any) => (
+          <meta key={index} {...meta} />
+        ))}
+        <link rel="icon" type="image/svg+xml" href={info?.icon} />
+        <title>{info?.site_name}</title>
+      </Helmet>
+      {routes}
+    </>
+  );
 };
 
 export default App;

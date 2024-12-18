@@ -4,12 +4,11 @@ import Header from "../components/header";
 import MobileMenu from "../components/mobilemenu";
 import StaticSection from "../components/staticsection";
 import { siteInfoContext } from "../services/siteinfo-provider";
-import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
-import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
+import BreadCrumbDesk from "../components/breadcrumb/breadcrumbdesk";
+import BreadCrumbMobile from "../components/breadcrumb/breadcrumbmobile";
 
 const ContactPage = () => {
   const { info }: any = useContext(siteInfoContext);
-  console.log('info: ', info);
 
   return (
     <>

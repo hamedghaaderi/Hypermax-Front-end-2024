@@ -15,8 +15,8 @@ import SuccessAlert from "../components/alerts/successalert";
 import ErrorAlert from "../components/alerts/erroralert";
 import { useState } from "react";
 import Redirect from "../components/sub-components/redirect";
-import BreadCrumbDesk from "../components/sub-components/breadcrumbdesk";
-import BreadCrumbMobile from "../components/sub-components/breadcrumbmobile";
+import BreadCrumbDesk from "../components/breadcrumb/breadcrumbdesk";
+import BreadCrumbMobile from "../components/breadcrumb/breadcrumbmobile";
 
 const CartPage = () => {
   const [showRedirect, setShowRedirect] = useState(false);
