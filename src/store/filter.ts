@@ -46,7 +46,7 @@ const useFilter = create((set) => ({
     setBrand: (_brand: any) => {
       if (_brand === null) {
         return set((_oldFilter: any) => ({
-          subCategory: _brand,
+          brand: _brand,
           isFilter:
             _oldFilter.maxPrice === "" &&
             _oldFilter.minPrice === "" &&

@@ -21,7 +21,9 @@ const AsideMenu = ({
   const { isLoggedIn } = useUserData((state: any) => state);
   const { info }: any = useContext(siteInfoContext);
   const { categories }: any = useContext(categoryContext);
+  const {show} = useLoginSignup((state: any) => state)
   open && (document.body.style.overflow = "hidden");
+  !show && (document.body.style.overflow = "hidden");
   const handleClose = () => {
     document.getElementById("backdrop")?.classList.add("animate-opacityout");
     document.getElementById("container")?.classList.add("animate-translateout");

@@ -47,6 +47,11 @@ const Header = () => {
       event.target.value = "";
     }
   };
+  const handleClick = (event: any) => {
+    const value = getValues("search");
+    navigate(`/search?q=${value}`);
+    event.target.value = "";
+  };
 
   useEffect(() => {
     if (
@@ -55,7 +60,7 @@ const Header = () => {
       location.pathname !== "/account"
     ) {
       hiddenLoginSignup();
-      showClose()
+      showClose();
     }
   }, []);
 
@@ -117,9 +122,12 @@ const Header = () => {
                 onKeyUp={handleKeyUp}
                 {...register("search")}
               />
-              <div className="h-full w-11 flex flex-row-reverse justify-center items-center rounded-l-md text-heading">
+              <button
+                onClick={handleClick}
+                className="h-full w-11 flex flex-row-reverse hover:bg-primary hover:text-white justify-center transition-all duration-300 items-center rounded-l-md text-heading"
+              >
                 <i className="fa-solid fa-magnifying-glass"></i>
-              </div>
+              </button>
             </form>
             <div className="hidden desk:block">
               <div className="flex relative flex-row-reverse desk:mr-2 desklg:mr-0 items-center justify-between">

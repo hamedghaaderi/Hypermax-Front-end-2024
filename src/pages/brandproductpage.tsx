@@ -17,6 +17,7 @@ import BreadCrumbMobile from "../components/breadcrumb/breadcrumbmobile";
 const BrandProductPage = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [searchParams] = useSearchParams();
+  !showFilter && (document.body.style.overflow = "visible");
   const brandQuery = searchParams.get("brand") ?? null;
   const subCatQuery = searchParams.get("cat") ?? null;
   const minQuery = searchParams.get("min") ?? null;
